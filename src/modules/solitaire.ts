@@ -750,8 +750,97 @@ export function SolitaireGame() : void{
         }
     }
 
+    function refreshPositionAll(){
+        for( var x = 0 ; x < allEntityCards.length ; x++ ){
+            refreshPosition(x);
+        }
+    }
+
+    function refreshPosition(cardIndex){
+        if(allEntityCards[cardIndex]["base"] == "pilebase1"){
+            var lengthofbase = allEntityCards[cardIndex]["basecount"];
+
+            if(allEntityCards[cardIndex]["facingfront"]) allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(pilebaseleft1 + (cardOriginalSize * cardScale), solitairePositionY + (spacingY * (lengthofbase+1)), pilebasetop1);
+            else allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(pilebaseleft1, solitairePositionY + (spacingY * (lengthofbase+1)), pilebasetop1);
+        }
+        else if(allEntityCards[cardIndex]["base"] == "pilebase2"){
+            var lengthofbase = allEntityCards[cardIndex]["basecount"];
+
+            if(allEntityCards[cardIndex]["facingfront"]) allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(pilebaseleft2 + (cardOriginalSize * cardScale), solitairePositionY + (spacingY * (lengthofbase+1)), pilebasetop2);
+            else allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(pilebaseleft2, solitairePositionY + (spacingY * (lengthofbase+1)), pilebasetop2);
+        }
+        else if(allEntityCards[cardIndex]["base"] == "dealbase1"){
+            var lengthofbase = allEntityCards[cardIndex]["basecount"];
+
+            if(allEntityCards[cardIndex]["facingfront"]) allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(dealbaseleft["dealbase1"] + (cardOriginalSize * cardScale), solitairePositionY + (spacingY * (lengthofbase+1)), dealbasetop);
+            else allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(dealbaseleft["dealbase1"], solitairePositionY + (spacingY * (lengthofbase+1)), dealbasetop);
+        }
+        else if(allEntityCards[cardIndex]["base"] == "dealbase2"){
+            var lengthofbase = allEntityCards[cardIndex]["basecount"];
+
+            if(allEntityCards[cardIndex]["facingfront"]) allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(dealbaseleft["dealbase2"] + (cardOriginalSize * cardScale), solitairePositionY + (spacingY * (lengthofbase+1)), dealbasetop);
+            else allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(dealbaseleft["dealbase2"], solitairePositionY + (spacingY * (lengthofbase+1)), dealbasetop);
+        }
+        else if(allEntityCards[cardIndex]["base"] == "dealbase3"){
+            var lengthofbase = allEntityCards[cardIndex]["basecount"];
+
+            if(allEntityCards[cardIndex]["facingfront"]) allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(dealbaseleft["dealbase3"] + (cardOriginalSize * cardScale), solitairePositionY + (spacingY * (lengthofbase+1)), dealbasetop);
+            else allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(dealbaseleft["dealbase3"], solitairePositionY + (spacingY * (lengthofbase+1)), dealbasetop);
+        }
+        else if(allEntityCards[cardIndex]["base"] == "dealbase4"){
+            var lengthofbase = allEntityCards[cardIndex]["basecount"];
+
+            if(allEntityCards[cardIndex]["facingfront"]) allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(dealbaseleft["dealbase4"] + (cardOriginalSize * cardScale), solitairePositionY + (spacingY * (lengthofbase+1)), dealbasetop);
+            else allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(dealbaseleft["dealbase4"], solitairePositionY + (spacingY * (lengthofbase+1)), dealbasetop);
+        }
+        else if(allEntityCards[cardIndex]["base"] == "cardplaybase1"){
+            var lengthofbase = allEntityCards[cardIndex]["basecount"];
+
+            if(allEntityCards[cardIndex]["facingfront"]) allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(cardbaseleft["cardplaybase1"] + (cardOriginalSize * cardScale), solitairePositionY + (spacingY * (lengthofbase+1)), cardbasetop - (spacingZ * (lengthofbase)));
+            else allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(cardbaseleft["cardplaybase1"], solitairePositionY + (spacingY * (lengthofbase+1)), cardbasetop - (spacingZ * (lengthofbase)));
+        }
+        else if(allEntityCards[cardIndex]["base"] == "cardplaybase2"){
+            var lengthofbase = allEntityCards[cardIndex]["basecount"];
+
+            if(allEntityCards[cardIndex]["facingfront"]) allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(cardbaseleft["cardplaybase2"] + (cardOriginalSize * cardScale), solitairePositionY + (spacingY * (lengthofbase+1)), cardbasetop - (spacingZ * (lengthofbase)));
+            else allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(cardbaseleft["cardplaybase2"], solitairePositionY + (spacingY * (lengthofbase+1)), cardbasetop - (spacingZ * (lengthofbase)));
+        }
+        else if(allEntityCards[cardIndex]["base"] == "cardplaybase3"){
+            var lengthofbase = allEntityCards[cardIndex]["basecount"];
+
+            if(allEntityCards[cardIndex]["facingfront"]) allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(cardbaseleft["cardplaybase3"] + (cardOriginalSize * cardScale), solitairePositionY + (spacingY * (lengthofbase+1)), cardbasetop - (spacingZ * (lengthofbase)));
+            else allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(cardbaseleft["cardplaybase3"], solitairePositionY + (spacingY * (lengthofbase+1)), cardbasetop - (spacingZ * (lengthofbase)));
+        }
+        else if(allEntityCards[cardIndex]["base"] == "cardplaybase4"){
+            var lengthofbase = allEntityCards[cardIndex]["basecount"];
+
+
+            if(allEntityCards[cardIndex]["facingfront"]) allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(cardbaseleft["cardplaybase4"] + (cardOriginalSize * cardScale), solitairePositionY + (spacingY * (lengthofbase+1)), cardbasetop - (spacingZ * (lengthofbase)));
+            else allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(cardbaseleft["cardplaybase4"], solitairePositionY + (spacingY * (lengthofbase+1)), cardbasetop - (spacingZ * (lengthofbase)));
+        }
+        else if(allEntityCards[cardIndex]["base"] == "cardplaybase5"){
+            var lengthofbase = allEntityCards[cardIndex]["basecount"];
+
+            if(allEntityCards[cardIndex]["facingfront"]) allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(cardbaseleft["cardplaybase5"] + (cardOriginalSize * cardScale), solitairePositionY + (spacingY * (lengthofbase+1)), cardbasetop - (spacingZ * (lengthofbase)));
+            else allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(cardbaseleft["cardplaybase5"], solitairePositionY + (spacingY * (lengthofbase+1)), cardbasetop - (spacingZ * (lengthofbase)));
+        }
+        else if(allEntityCards[cardIndex]["base"] == "cardplaybase6"){
+            var lengthofbase = allEntityCards[cardIndex]["basecount"];
+
+            if(allEntityCards[cardIndex]["facingfront"]) allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(cardbaseleft["cardplaybase6"] + (cardOriginalSize * cardScale), solitairePositionY + (spacingY * (lengthofbase+1)), cardbasetop - (spacingZ * (lengthofbase)));
+            else allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(cardbaseleft["cardplaybase6"], solitairePositionY + (spacingY * (lengthofbase+1)), cardbasetop - (spacingZ * (lengthofbase)));
+        }
+        else if(allEntityCards[cardIndex]["base"] != "cardplaybase7"){
+            var lengthofbase = allEntityCards[cardIndex]["basecount"];
+
+            if(allEntityCards[cardIndex]["facingfront"]) allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(cardbaseleft["cardplaybase7"] + (cardOriginalSize * cardScale), solitairePositionY + (spacingY * (lengthofbase+1)), cardbasetop - (spacingZ * (lengthofbase)));
+            else allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(cardbaseleft["cardplaybase7"], solitairePositionY + (spacingY * (lengthofbase+1)), cardbasetop - (spacingZ * (lengthofbase)));
+        }
+    }
+
     prepareAllCards();
     loadAllCards();
     loadCardBases();
+    refreshPositionAll();
 }
 
