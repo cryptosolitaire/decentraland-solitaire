@@ -84,7 +84,6 @@ export function SolitaireGame() : void{
         return array;
     }
 
-    // Using loop to render all 52 cards causes a freeze up
     function loadAllCards(){
         for( var x = 0 ; x < allEntityCards.length ; x++ ){
             allEntityCards[x]["entity"].addComponent(new GLTFShape("models/cards/"+allEntityCards[x]["name"]+".gltf"));
@@ -92,12 +91,11 @@ export function SolitaireGame() : void{
             allEntityCards[x]["entity"].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
             allEntityCards[x]["entity"].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (spacingY * (x+1)), solitairePositionZ);
             allEntityCards[x]["entity"].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-            var tempname = allEntityCards[x]["name"];
-            allEntityCards[x]["entity"].addComponent(new OnClick(event =>{
-                cardclick(tempname);
-            }));
+            // Using dynamic setting of add component onclick does not register dynamic variable
+            addOnClick(x);
         }
 
+        // Using loop to render all 52 cards causes a freeze up
         engine.addEntity(allEntityCards[0]["entity"]);
         engine.addEntity(allEntityCards[1]["entity"]);
         engine.addEntity(allEntityCards[2]["entity"]);
@@ -150,6 +148,269 @@ export function SolitaireGame() : void{
         engine.addEntity(allEntityCards[49]["entity"]);
         engine.addEntity(allEntityCards[50]["entity"]);
         engine.addEntity(allEntityCards[51]["entity"]);
+    }
+
+    function addOnClick(index){
+        if(allEntityCards[index]["name"] == "ac"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("ac");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "ad"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("ad");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "ah"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("ah");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "as"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("as");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "2c"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("2c");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "2d"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("2d");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "2h"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("2h");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "2s"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("2s");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "3c"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("3c");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "3d"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("3d");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "3h"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("3h");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "3s"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("3s");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "4c"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("4c");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "4d"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("4d");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "4h"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("4h");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "4s"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("4s");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "5c"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("5c");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "5d"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("5d");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "5h"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("5h");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "5s"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("5s");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "6c"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("6c");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "6d"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("6d");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "6h"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("6h");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "6s"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("6s");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "7c"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("7c");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "7d"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("7d");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "7h"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("7h");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "7s"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("7s");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "8c"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("8c");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "8d"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("8d");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "8h"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("8h");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "8s"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("8s");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "9c"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("9c");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "9d"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("9d");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "9h"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("9h");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "9s"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("9s");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "10c"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("10c");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "10d"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("10d");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "10h"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("10h");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "10s"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("10s");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "jc"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("jc");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "jd"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("jd");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "jh"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("jh");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "js"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("js");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "qc"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("qc");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "qd"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("qd");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "qh"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("qh");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "qs"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("qs");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "kc"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("kc");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "kd"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("kd");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "kh"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("kh");
+            }));
+        }
+        else if(allEntityCards[index]["name"] == "ks"){
+            allEntityCards[index]["entity"].addComponent(new OnClick(event =>{
+                cardclick("ks");
+            }));
+        }
     }
 
     var allCardBack = [];
@@ -290,6 +551,9 @@ export function SolitaireGame() : void{
                 }
             }
             isPlaying = 1;
+        }
+        else if(isPlaying == 1){
+            log(allEntityCards[x]["name"]);
         }
     }
 
