@@ -839,6 +839,17 @@ export function SolitaireGame() : void{
         }
     }
 
+    function refreshRotationAll(){
+        for( var x = 0 ; x < allEntityCards.length ; x++ ){
+            refreshRotation(x);
+        }
+    }
+
+    function refreshRotation(cardIndex){
+        if(allEntityCards[cardIndex]["facingfront"]) allEntityCards[cardIndex]["entity"].getComponent(Transform).rotation.setEuler(solitaireRotationX, 180, 0);
+        else allEntityCards[cardIndex]["entity"].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
+    }
+
     function openTopCard(){
         var cardplaybase = [];
         cardplaybase["index1"] = -1;
@@ -922,5 +933,6 @@ export function SolitaireGame() : void{
     loadCardBases();
     refreshOrder();
     refreshPositionAll();
+    refreshRotationAll();
 }
 
