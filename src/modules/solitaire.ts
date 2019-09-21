@@ -901,30 +901,37 @@ export function SolitaireGame() : void{
         if(cardplaybase["index1"] != -1 && allEntityCards[cardplaybase["index1"]]["facingfront"] == false){
             allEntityCards[cardplaybase["index1"]]["facingfront"] = true;
             refreshPosition(cardplaybase["index1"]);
+            refreshRotation(cardplaybase["index1"]);
         }
         if(cardplaybase["index2"] != -1 && allEntityCards[cardplaybase["index2"]]["facingfront"] == false){
             allEntityCards[cardplaybase["index2"]]["facingfront"] = true;
             refreshPosition(cardplaybase["index2"]);
+            refreshRotation(cardplaybase["index2"]);
         }
         if(cardplaybase["index3"] != -1 && allEntityCards[cardplaybase["index3"]]["facingfront"] == false){
             allEntityCards[cardplaybase["index3"]]["facingfront"] = true;
             refreshPosition(cardplaybase["index3"]);
+            refreshRotation(cardplaybase["index3"]);
         }
         if(cardplaybase["index4"] != -1 && allEntityCards[cardplaybase["index4"]]["facingfront"] == false){
             allEntityCards[cardplaybase["index4"]]["facingfront"] = true;
             refreshPosition(cardplaybase["index4"]);
+            refreshRotation(cardplaybase["index4"]);
         }
         if(cardplaybase["index5"] != -1 && allEntityCards[cardplaybase["index5"]]["facingfront"] == false){
             allEntityCards[cardplaybase["index5"]]["facingfront"] = true;
             refreshPosition(cardplaybase["index5"]);
+            refreshRotation(cardplaybase["index5"]);
         }
         if(cardplaybase["index6"] != -1 && allEntityCards[cardplaybase["index6"]]["facingfront"] == false){
             allEntityCards[cardplaybase["index6"]]["facingfront"] = true;
             refreshPosition(cardplaybase["index6"]);
+            refreshRotation(cardplaybase["index6"]);
         }
         if(cardplaybase["index7"] != -1 && allEntityCards[cardplaybase["index7"]]["facingfront"] == false){
             allEntityCards[cardplaybase["index7"]]["facingfront"] = true;
             refreshPosition(cardplaybase["index7"]);
+            refreshRotation(cardplaybase["index7"]);
         }
     }
 
