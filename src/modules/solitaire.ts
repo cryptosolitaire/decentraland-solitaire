@@ -10,593 +10,6 @@ export function SolitaireGame() : void{
     let cardOriginalSize = 1.5;
     let cardScale = 0.15;
 
-    // Define all cards
-    var allCards = ["ac","ad","ah","as","2c","2d","2h","2s","3c","3d","3h","3s","4c","4d","4h","4s","5c","5d","5h","6s","6c","6d","6h","6s","7c","7d","7h","7s","8c","8d","8h","8s","9c","9d","9h","9s","10c","10d","10h","10s","jc","jd","jh","js","qc","qd","qh","qs","kc","kd","kh","ks"];
-
-    // Render all cards
-    var allEntityCards = [];
-    // Using loop to render all 52 cards causes a freeze up
-    function loadAllCards(){
-        var x = 0;
-
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-        x++;
-        allEntityCards[allCards[x]] = new Entity();
-        allEntityCards[allCards[x]].addComponent(new GLTFShape("models/cards/"+allCards[x]+".gltf"));
-        allEntityCards[allCards[x]].addComponent(new Transform());
-        allEntityCards[allCards[x]].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allEntityCards[allCards[x]].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
-        allEntityCards[allCards[x]].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
-        engine.addEntity(allEntityCards[allCards[x]]);
-        allEntityCards[allCards[x]].addComponent(new OnClick(event =>{
-            cardclick(allCards[x]);
-        }));
-    }
-
     var cardbasetop;
     var cardbaseleft = {};
     var dealbasetop;
@@ -621,6 +34,112 @@ export function SolitaireGame() : void{
     pilebasetop = dealbasetop;
     pilebaseleft = cardbaseleft["cardplaybase1"] ;
     spacing = 0.1;
+
+    // Define all cards
+    var allCards = ["ac","ad","ah","as","2c","2d","2h","2s","3c","3d","3h","3s","4c","4d","4h","4s","5c","5d","5h","6s","6c","6d","6h","6s","7c","7d","7h","7s","8c","8d","8h","8s","9c","9d","9h","9s","10c","10d","10h","10s","jc","jd","jh","js","qc","qd","qh","qs","kc","kd","kh","ks"];
+
+    // Render all cards
+    var allEntityCards = [];
+
+    function prepareAllCards(){
+        allEntityCards = [];
+
+        for(var x = 0 ; x < allCards.length ; x++ ){
+            allEntityCards[x] = [];
+            allEntityCards[x]["name"] = allCards[x];
+            allEntityCards[x]["entity"] = new Entity();
+            allEntityCards[x]["base"] = "pilebase";
+        }
+
+        shuffle(allEntityCards);
+    }
+
+    // To shuffle array
+    function shuffle(array) {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+
+          // Pick a remaining element...
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex -= 1;
+
+          // And swap it with the current element.
+          temporaryValue = array[currentIndex];
+          array[currentIndex] = array[randomIndex];
+          array[randomIndex] = temporaryValue;
+        }
+
+        return array;
+    }
+
+    // Using loop to render all 52 cards causes a freeze up
+    function loadAllCards(){
+        for( var x = 0 ; x < allEntityCards.length ; x++ ){
+            allEntityCards[x]["entity"].addComponent(new GLTFShape("models/cards/"+allEntityCards[x]["name"]+".gltf"));
+            allEntityCards[x]["entity"].addComponent(new Transform());
+            allEntityCards[x]["entity"].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
+            allEntityCards[x]["entity"].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
+            allEntityCards[x]["entity"].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
+            allEntityCards[x]["entity"].addComponent(new OnClick(event =>{
+                cardclick(allEntityCards[x]["name"]);
+            }));
+        }
+
+        engine.addEntity(allEntityCards[0]["entity"]);
+        engine.addEntity(allEntityCards[1]["entity"]);
+        engine.addEntity(allEntityCards[2]["entity"]);
+        engine.addEntity(allEntityCards[3]["entity"]);
+        engine.addEntity(allEntityCards[4]["entity"]);
+        engine.addEntity(allEntityCards[5]["entity"]);
+        engine.addEntity(allEntityCards[6]["entity"]);
+        engine.addEntity(allEntityCards[7]["entity"]);
+        engine.addEntity(allEntityCards[8]["entity"]);
+        engine.addEntity(allEntityCards[9]["entity"]);
+        engine.addEntity(allEntityCards[10]["entity"]);
+        engine.addEntity(allEntityCards[11]["entity"]);
+        engine.addEntity(allEntityCards[12]["entity"]);
+        engine.addEntity(allEntityCards[13]["entity"]);
+        engine.addEntity(allEntityCards[14]["entity"]);
+        engine.addEntity(allEntityCards[15]["entity"]);
+        engine.addEntity(allEntityCards[16]["entity"]);
+        engine.addEntity(allEntityCards[17]["entity"]);
+        engine.addEntity(allEntityCards[18]["entity"]);
+        engine.addEntity(allEntityCards[19]["entity"]);
+        engine.addEntity(allEntityCards[20]["entity"]);
+        engine.addEntity(allEntityCards[21]["entity"]);
+        engine.addEntity(allEntityCards[22]["entity"]);
+        engine.addEntity(allEntityCards[23]["entity"]);
+        engine.addEntity(allEntityCards[24]["entity"]);
+        engine.addEntity(allEntityCards[25]["entity"]);
+        engine.addEntity(allEntityCards[26]["entity"]);
+        engine.addEntity(allEntityCards[27]["entity"]);
+        engine.addEntity(allEntityCards[28]["entity"]);
+        engine.addEntity(allEntityCards[29]["entity"]);
+        engine.addEntity(allEntityCards[30]["entity"]);
+        engine.addEntity(allEntityCards[31]["entity"]);
+        engine.addEntity(allEntityCards[32]["entity"]);
+        engine.addEntity(allEntityCards[33]["entity"]);
+        engine.addEntity(allEntityCards[34]["entity"]);
+        engine.addEntity(allEntityCards[35]["entity"]);
+        engine.addEntity(allEntityCards[36]["entity"]);
+        engine.addEntity(allEntityCards[37]["entity"]);
+        engine.addEntity(allEntityCards[38]["entity"]);
+        engine.addEntity(allEntityCards[39]["entity"]);
+        engine.addEntity(allEntityCards[40]["entity"]);
+        engine.addEntity(allEntityCards[41]["entity"]);
+        engine.addEntity(allEntityCards[42]["entity"]);
+        engine.addEntity(allEntityCards[43]["entity"]);
+        engine.addEntity(allEntityCards[44]["entity"]);
+        engine.addEntity(allEntityCards[45]["entity"]);
+        engine.addEntity(allEntityCards[46]["entity"]);
+        engine.addEntity(allEntityCards[47]["entity"]);
+        engine.addEntity(allEntityCards[48]["entity"]);
+        engine.addEntity(allEntityCards[49]["entity"]);
+        engine.addEntity(allEntityCards[50]["entity"]);
+        engine.addEntity(allEntityCards[51]["entity"]);
+    }
 
     var allCardBack = [];
     function loadCardBases(){
@@ -723,36 +242,14 @@ export function SolitaireGame() : void{
 
     }
 
-    loadAllCards();
-    loadCardBases();
-
     var isPlaying = 0;
 
-    var cardArrangement = [];
-    cardArrangement["cardplaybase1"] = [];
-    cardArrangement["cardplaybase2"] = [];
-    cardArrangement["cardplaybase3"] = [];
-    cardArrangement["cardplaybase4"] = [];
-    cardArrangement["cardplaybase5"] = [];
-    cardArrangement["cardplaybase6"] = [];
-    cardArrangement["cardplaybase7"] = [];
-    cardArrangement["dealbase1"] = [];
-    cardArrangement["dealbase2"] = [];
-    cardArrangement["dealbase3"] = [];
-    cardArrangement["dealbase4"] = [];
-    cardArrangement["pilebase1"] = [];
-    cardArrangement["pilebase2"] = [];
-
     function cardclick(cardname){
-        if(isPlaying == 0){
-            isPlaying = -1;
-
-        }
-        else if(isPlaying == 1){
-
-        }
+        log(cardname);
     }
 
-
+    prepareAllCards();
+    loadAllCards();
+    loadCardBases();
 }
 
