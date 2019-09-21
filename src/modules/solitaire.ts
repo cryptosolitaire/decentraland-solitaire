@@ -40,7 +40,7 @@ export function SolitaireGame() : void{
     pilebasetop2 = dealbasetop;
     pilebaseleft2 = cardbaseleft["cardplaybase2"] ;
     spacingY = 0.001;
-    spacingZ = 0.004;
+    spacingZ = 0.06;
 
 
     // Define all cards
