@@ -265,6 +265,33 @@ export function SolitaireGame() : void{
 
         if(isPlaying == 0){
             isPlaying = -1;
+            /*
+            for( var y = allEntityCards.length - 1 ; y >= allEntityCards.length - 29 ; y++ ){
+                if(y == 51){
+                    moveCard(y,"cardplaybase1");
+                }
+                else if(y >= 49 && y <= 50){
+                    moveCard(y,"cardplaybase2");
+                }
+                else if(y >= 46 && y <= 48){
+                    moveCard(y,"cardplaybase3");
+                }
+                else if(y >= 42 && y <= 45){
+                    moveCard(y,"cardplaybase4");
+                }
+                else if(y >= 37 && y <= 41){
+                    moveCard(y,"cardplaybase5");
+                }
+                else if(y >= 31 && y <= 36){
+                    moveCard(y,"cardplaybase6");
+                }
+                else if(y >= 24 && y <= 30){
+                    moveCard(y,"cardplaybase7");
+                }
+            }
+            */
+            moveCard(51,"cardplaybase1");
+            isPlaying = 1;
         }
     }
 
