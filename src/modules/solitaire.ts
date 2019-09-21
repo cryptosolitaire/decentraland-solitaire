@@ -48,7 +48,8 @@ export function SolitaireGame() : void{
             allEntityCards[x] = [];
             allEntityCards[x]["name"] = allCards[x];
             allEntityCards[x]["entity"] = new Entity();
-            allEntityCards[x]["base"] = "pilebase";
+            allEntityCards[x]["base"] = "pilebase1";
+            allEntityCards[x]["basecount"] = x;
         }
 
         shuffle(allEntityCards);
@@ -246,12 +247,37 @@ export function SolitaireGame() : void{
     var isPlaying = 0;
 
     function cardclick(cardname){
+        var cardIndex = 0;
         for( var x = 0 ; x < allEntityCards.length ; x++ ){
             if(allEntityCards[x]["name"] == cardname){
-                log(allEntityCards[x]["name"]);
-                log(allEntityCards[x]["base"]);
+                cardIndex = x;
                 break;
             }
+        }
+
+        if(isPlaying == 0){
+            isPlaying = -1;
+        }
+    }
+
+    function refreshOrder(){
+        var count = [];
+        count["pilebase1"] = 0;
+        count["pilebase2"] = 0;
+        count["dealbase1"] = 0;
+        count["dealbase2"] = 0;
+        count["dealbase3"] = 0;
+        count["dealbase4"] = 0;
+        count["cardplaybase1"] = 0;
+        count["cardplaybase2"] = 0;
+        count["cardplaybase3"] = 0;
+        count["cardplaybase4"] = 0;
+        count["cardplaybase5"] = 0;
+        count["cardplaybase6"] = 0;
+        count["cardplaybase7"] = 0;
+
+        for( var x = 0 ; x < allEntityCards.length ; x++ ){
+            allEntityCards[x]["basecount"] = count[allEntityCards[x]["base"]]++;
         }
     }
 
