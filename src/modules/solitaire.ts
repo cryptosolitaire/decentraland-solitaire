@@ -82,8 +82,9 @@ export function SolitaireGame() : void{
             allEntityCards[x]["entity"].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
             allEntityCards[x]["entity"].getComponent(Transform).position.set(solitairePositionX, solitairePositionY + (0.001 * (x+1)), solitairePositionZ);
             allEntityCards[x]["entity"].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
+            var tempname = allEntityCards[x]["name"];
             allEntityCards[x]["entity"].addComponent(new OnClick(event =>{
-                cardclick(allEntityCards[x]["name"]);
+                cardclick(tempname);
             }));
         }
 
@@ -245,7 +246,13 @@ export function SolitaireGame() : void{
     var isPlaying = 0;
 
     function cardclick(cardname){
-        log(cardname);
+        for( var x = 0 ; x < allEntityCards.length ; x++ ){
+            if(allEntityCards[x]["name"] == cardname){
+                log(allEntityCards[x]["name"]);
+                log(allEntityCards[x]["base"]);
+                break;
+            }
+        }
     }
 
     prepareAllCards();
