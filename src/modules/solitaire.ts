@@ -330,6 +330,7 @@ export function SolitaireGame() : void{
             if(allEntityCards[cardIndex]["facingfront"]) allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(pilebaseleft1 + (cardOriginalSize * cardScale), solitairePositionY + (spacingY * (lengthofbase+1)), pilebasetop1);
             else allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(pilebaseleft1, solitairePositionY + (spacingY * (lengthofbase+1)), pilebasetop1);
             allEntityCards[cardIndex]["base"] = "pilebase1";
+            allEntityCards[cardIndex]["basecount"] = lengthofbase;
         }
         else if(base == "pilebase2" && allEntityCards[cardIndex]["base"] != "pilebase2"){
             var lengthofbase = 0;
@@ -343,6 +344,7 @@ export function SolitaireGame() : void{
             if(allEntityCards[cardIndex]["facingfront"]) allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(pilebaseleft2 + (cardOriginalSize * cardScale), solitairePositionY + (spacingY * (lengthofbase+1)), pilebasetop2);
             else allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(pilebaseleft2, solitairePositionY + (spacingY * (lengthofbase+1)), pilebasetop2);
             allEntityCards[cardIndex]["base"] = "pilebase2";
+            allEntityCards[cardIndex]["basecount"] = lengthofbase;
         }
         else if(base == "dealbase1" && allEntityCards[cardIndex]["base"] != "dealbase1"){
             var lengthofbase = 0;
@@ -356,6 +358,7 @@ export function SolitaireGame() : void{
             if(allEntityCards[cardIndex]["facingfront"]) allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(dealbaseleft["dealbase1"] + (cardOriginalSize * cardScale), solitairePositionY + (spacingY * (lengthofbase+1)), dealbasetop);
             else allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(dealbaseleft["dealbase1"], solitairePositionY + (spacingY * (lengthofbase+1)), dealbasetop);
             allEntityCards[cardIndex]["base"] = "dealbase1";
+            allEntityCards[cardIndex]["basecount"] = lengthofbase;
         }
         else if(base == "dealbase2" && allEntityCards[cardIndex]["base"] != "dealbase2"){
             var lengthofbase = 0;
@@ -369,6 +372,7 @@ export function SolitaireGame() : void{
             if(allEntityCards[cardIndex]["facingfront"]) allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(dealbaseleft["dealbase2"] + (cardOriginalSize * cardScale), solitairePositionY + (spacingY * (lengthofbase+1)), dealbasetop);
             else allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(dealbaseleft["dealbase2"], solitairePositionY + (spacingY * (lengthofbase+1)), dealbasetop);
             allEntityCards[cardIndex]["base"] = "dealbase2";
+            allEntityCards[cardIndex]["basecount"] = lengthofbase;
         }
         else if(base == "dealbase3" && allEntityCards[cardIndex]["base"] != "dealbase3"){
             var lengthofbase = 0;
@@ -382,6 +386,7 @@ export function SolitaireGame() : void{
             if(allEntityCards[cardIndex]["facingfront"]) allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(dealbaseleft["dealbase3"] + (cardOriginalSize * cardScale), solitairePositionY + (spacingY * (lengthofbase+1)), dealbasetop);
             else allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(dealbaseleft["dealbase3"], solitairePositionY + (spacingY * (lengthofbase+1)), dealbasetop);
             allEntityCards[cardIndex]["base"] = "dealbase3";
+            allEntityCards[cardIndex]["basecount"] = lengthofbase;
         }
         else if(base == "dealbase4" && allEntityCards[cardIndex]["base"] != "dealbase4"){
             var lengthofbase = 0;
@@ -395,6 +400,7 @@ export function SolitaireGame() : void{
             if(allEntityCards[cardIndex]["facingfront"]) allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(dealbaseleft["dealbase4"] + (cardOriginalSize * cardScale), solitairePositionY + (spacingY * (lengthofbase+1)), dealbasetop);
             else allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(dealbaseleft["dealbase4"], solitairePositionY + (spacingY * (lengthofbase+1)), dealbasetop);
             allEntityCards[cardIndex]["base"] = "dealbase4";
+            allEntityCards[cardIndex]["basecount"] = lengthofbase;
         }
         else if(base == "cardplaybase1" && allEntityCards[cardIndex]["base"] != "cardplaybase1"){
             var lengthofbase = 0;
@@ -408,6 +414,7 @@ export function SolitaireGame() : void{
             if(allEntityCards[cardIndex]["facingfront"]) allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(cardbaseleft["cardplaybase1"] + (cardOriginalSize * cardScale), solitairePositionY + (spacingY * (lengthofbase+1)), cardbasetop - (spacingZ * (lengthofbase)));
             else allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(cardbaseleft["cardplaybase1"], solitairePositionY + (spacingY * (lengthofbase+1)), cardbasetop - (spacingZ * (lengthofbase)));
             allEntityCards[cardIndex]["base"] = "cardplaybase1";
+            allEntityCards[cardIndex]["basecount"] = lengthofbase;
         }
         else if(base == "cardplaybase2" && allEntityCards[cardIndex]["base"] != "cardplaybase2"){
             var lengthofbase = 0;
@@ -421,6 +428,7 @@ export function SolitaireGame() : void{
             if(allEntityCards[cardIndex]["facingfront"]) allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(cardbaseleft["cardplaybase2"] + (cardOriginalSize * cardScale), solitairePositionY + (spacingY * (lengthofbase+1)), cardbasetop - (spacingZ * (lengthofbase)));
             else allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(cardbaseleft["cardplaybase2"], solitairePositionY + (spacingY * (lengthofbase+1)), cardbasetop - (spacingZ * (lengthofbase)));
             allEntityCards[cardIndex]["base"] = "cardplaybase2";
+            allEntityCards[cardIndex]["basecount"] = lengthofbase;
         }
         else if(base == "cardplaybase3" && allEntityCards[cardIndex]["base"] != "cardplaybase3"){
             var lengthofbase = 0;
@@ -434,6 +442,7 @@ export function SolitaireGame() : void{
             if(allEntityCards[cardIndex]["facingfront"]) allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(cardbaseleft["cardplaybase3"] + (cardOriginalSize * cardScale), solitairePositionY + (spacingY * (lengthofbase+1)), cardbasetop - (spacingZ * (lengthofbase)));
             else allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(cardbaseleft["cardplaybase3"], solitairePositionY + (spacingY * (lengthofbase+1)), cardbasetop - (spacingZ * (lengthofbase)));
             allEntityCards[cardIndex]["base"] = "cardplaybase3";
+            allEntityCards[cardIndex]["basecount"] = lengthofbase;
         }
         else if(base == "cardplaybase4" && allEntityCards[cardIndex]["base"] != "cardplaybase4"){
             var lengthofbase = 0;
@@ -447,6 +456,7 @@ export function SolitaireGame() : void{
             if(allEntityCards[cardIndex]["facingfront"]) allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(cardbaseleft["cardplaybase4"] + (cardOriginalSize * cardScale), solitairePositionY + (spacingY * (lengthofbase+1)), cardbasetop - (spacingZ * (lengthofbase)));
             else allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(cardbaseleft["cardplaybase4"], solitairePositionY + (spacingY * (lengthofbase+1)), cardbasetop - (spacingZ * (lengthofbase)));
             allEntityCards[cardIndex]["base"] = "cardplaybase4";
+            allEntityCards[cardIndex]["basecount"] = lengthofbase;
         }
         else if(base == "cardplaybase5" && allEntityCards[cardIndex]["base"] != "cardplaybase5"){
             var lengthofbase = 0;
@@ -460,6 +470,7 @@ export function SolitaireGame() : void{
             if(allEntityCards[cardIndex]["facingfront"]) allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(cardbaseleft["cardplaybase5"] + (cardOriginalSize * cardScale), solitairePositionY + (spacingY * (lengthofbase+1)), cardbasetop - (spacingZ * (lengthofbase)));
             else allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(cardbaseleft["cardplaybase5"], solitairePositionY + (spacingY * (lengthofbase+1)), cardbasetop - (spacingZ * (lengthofbase)));
             allEntityCards[cardIndex]["base"] = "cardplaybase5";
+            allEntityCards[cardIndex]["basecount"] = lengthofbase;
         }
         else if(base == "cardplaybase6" && allEntityCards[cardIndex]["base"] != "cardplaybase6"){
             var lengthofbase = 0;
@@ -473,6 +484,7 @@ export function SolitaireGame() : void{
             if(allEntityCards[cardIndex]["facingfront"]) allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(cardbaseleft["cardplaybase6"] + (cardOriginalSize * cardScale), solitairePositionY + (spacingY * (lengthofbase+1)), cardbasetop - (spacingZ * (lengthofbase)));
             else allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(cardbaseleft["cardplaybase6"], solitairePositionY + (spacingY * (lengthofbase+1)), cardbasetop - (spacingZ * (lengthofbase)));
             allEntityCards[cardIndex]["base"] = "cardplaybase6";
+            allEntityCards[cardIndex]["basecount"] = lengthofbase;
         }
         else if(base == "cardplaybase7" && allEntityCards[cardIndex]["base"] != "cardplaybase7"){
             var lengthofbase = 0;
@@ -486,6 +498,7 @@ export function SolitaireGame() : void{
             if(allEntityCards[cardIndex]["facingfront"]) allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(cardbaseleft["cardplaybase7"] + (cardOriginalSize * cardScale), solitairePositionY + (spacingY * (lengthofbase+1)), cardbasetop - (spacingZ * (lengthofbase)));
             else allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(cardbaseleft["cardplaybase7"], solitairePositionY + (spacingY * (lengthofbase+1)), cardbasetop - (spacingZ * (lengthofbase)));
             allEntityCards[cardIndex]["base"] = "cardplaybase7";
+            allEntityCards[cardIndex]["basecount"] = lengthofbase;
         }
     }
 
