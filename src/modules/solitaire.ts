@@ -266,8 +266,7 @@ export function SolitaireGame() : void{
 
         if(isPlaying == 0){
             isPlaying = -1;
-            /*
-            for( var y = allEntityCards.length - 1 ; y >= allEntityCards.length - 29 ; y++ ){
+            for( var y = allEntityCards.length - 1 ; y >= allEntityCards.length - 29 ; y-- ){
                 if(y == 51){
                     moveCard(y,"cardplaybase1");
                 }
@@ -290,8 +289,6 @@ export function SolitaireGame() : void{
                     moveCard(y,"cardplaybase7");
                 }
             }
-            */
-            moveCard(51,"cardplaybase1");
             isPlaying = 1;
         }
     }
@@ -322,8 +319,7 @@ export function SolitaireGame() : void{
             var lengthofbase = 0;
             for(var x = allEntityCards.length - 1 ; x >= 0 ; x-- ){
                 if(allEntityCards[x]["base"] == "pilebase1"){
-                    lengthofbase = allEntityCards[x]["basecount"] + 1;
-                    break;
+                    if(allEntityCards[x]["basecount"] >= lengthofbase) lengthofbase = allEntityCards[x]["basecount"] + 1;
                 }
             }
 
@@ -336,8 +332,7 @@ export function SolitaireGame() : void{
             var lengthofbase = 0;
             for(var x = allEntityCards.length - 1 ; x >= 0 ; x-- ){
                 if(allEntityCards[x]["base"] == "pilebase2"){
-                    lengthofbase = allEntityCards[x]["basecount"] + 1;
-                    break;
+                    if(allEntityCards[x]["basecount"] >= lengthofbase) lengthofbase = allEntityCards[x]["basecount"] + 1;
                 }
             }
 
@@ -350,8 +345,7 @@ export function SolitaireGame() : void{
             var lengthofbase = 0;
             for(var x = allEntityCards.length - 1 ; x >= 0 ; x-- ){
                 if(allEntityCards[x]["base"] == "dealbase1"){
-                    lengthofbase = allEntityCards[x]["basecount"] + 1;
-                    break;
+                    if(allEntityCards[x]["basecount"] >= lengthofbase) lengthofbase = allEntityCards[x]["basecount"] + 1;
                 }
             }
 
@@ -364,8 +358,7 @@ export function SolitaireGame() : void{
             var lengthofbase = 0;
             for(var x = allEntityCards.length - 1 ; x >= 0 ; x-- ){
                 if(allEntityCards[x]["base"] == "dealbase2"){
-                    lengthofbase = allEntityCards[x]["basecount"] + 1;
-                    break;
+                    if(allEntityCards[x]["basecount"] >= lengthofbase) lengthofbase = allEntityCards[x]["basecount"] + 1;
                 }
             }
 
@@ -378,8 +371,7 @@ export function SolitaireGame() : void{
             var lengthofbase = 0;
             for(var x = allEntityCards.length - 1 ; x >= 0 ; x-- ){
                 if(allEntityCards[x]["base"] == "dealbase3"){
-                    lengthofbase = allEntityCards[x]["basecount"] + 1;
-                    break;
+                    if(allEntityCards[x]["basecount"] >= lengthofbase) lengthofbase = allEntityCards[x]["basecount"] + 1;
                 }
             }
 
@@ -392,8 +384,7 @@ export function SolitaireGame() : void{
             var lengthofbase = 0;
             for(var x = allEntityCards.length - 1 ; x >= 0 ; x-- ){
                 if(allEntityCards[x]["base"] == "dealbase4"){
-                    lengthofbase = allEntityCards[x]["basecount"] + 1;
-                    break;
+                    if(allEntityCards[x]["basecount"] >= lengthofbase) lengthofbase = allEntityCards[x]["basecount"] + 1;
                 }
             }
 
@@ -406,8 +397,7 @@ export function SolitaireGame() : void{
             var lengthofbase = 0;
             for(var x = allEntityCards.length - 1 ; x >= 0 ; x-- ){
                 if(allEntityCards[x]["base"] == "cardplaybase1"){
-                    lengthofbase = allEntityCards[x]["basecount"] + 1;
-                    break;
+                    if(allEntityCards[x]["basecount"] >= lengthofbase) lengthofbase = allEntityCards[x]["basecount"] + 1;
                 }
             }
 
@@ -420,8 +410,7 @@ export function SolitaireGame() : void{
             var lengthofbase = 0;
             for(var x = allEntityCards.length - 1 ; x >= 0 ; x-- ){
                 if(allEntityCards[x]["base"] == "cardplaybase2"){
-                    lengthofbase = allEntityCards[x]["basecount"] + 1;
-                    break;
+                    if(allEntityCards[x]["basecount"] >= lengthofbase) lengthofbase = allEntityCards[x]["basecount"] + 1;
                 }
             }
 
@@ -434,8 +423,7 @@ export function SolitaireGame() : void{
             var lengthofbase = 0;
             for(var x = allEntityCards.length - 1 ; x >= 0 ; x-- ){
                 if(allEntityCards[x]["base"] == "cardplaybase3"){
-                    lengthofbase = allEntityCards[x]["basecount"] + 1;
-                    break;
+                    if(allEntityCards[x]["basecount"] >= lengthofbase) lengthofbase = allEntityCards[x]["basecount"] + 1;
                 }
             }
 
@@ -448,8 +436,7 @@ export function SolitaireGame() : void{
             var lengthofbase = 0;
             for(var x = allEntityCards.length - 1 ; x >= 0 ; x-- ){
                 if(allEntityCards[x]["base"] == "cardplaybase4"){
-                    lengthofbase = allEntityCards[x]["basecount"] + 1;
-                    break;
+                    if(allEntityCards[x]["basecount"] >= lengthofbase) lengthofbase = allEntityCards[x]["basecount"] + 1;
                 }
             }
 
@@ -462,8 +449,7 @@ export function SolitaireGame() : void{
             var lengthofbase = 0;
             for(var x = allEntityCards.length - 1 ; x >= 0 ; x-- ){
                 if(allEntityCards[x]["base"] == "cardplaybase5"){
-                    lengthofbase = allEntityCards[x]["basecount"] + 1;
-                    break;
+                    if(allEntityCards[x]["basecount"] >= lengthofbase) lengthofbase = allEntityCards[x]["basecount"] + 1;
                 }
             }
 
@@ -476,8 +462,7 @@ export function SolitaireGame() : void{
             var lengthofbase = 0;
             for(var x = allEntityCards.length - 1 ; x >= 0 ; x-- ){
                 if(allEntityCards[x]["base"] == "cardplaybase6"){
-                    lengthofbase = allEntityCards[x]["basecount"] + 1;
-                    break;
+                    if(allEntityCards[x]["basecount"] >= lengthofbase) lengthofbase = allEntityCards[x]["basecount"] + 1;
                 }
             }
 
@@ -490,8 +475,7 @@ export function SolitaireGame() : void{
             var lengthofbase = 0;
             for(var x = allEntityCards.length - 1 ; x >= 0 ; x-- ){
                 if(allEntityCards[x]["base"] == "cardplaybase7"){
-                    lengthofbase = allEntityCards[x]["basecount"] + 1;
-                    break;
+                    if(allEntityCards[x]["basecount"] >= lengthofbase) lengthofbase = allEntityCards[x]["basecount"] + 1;
                 }
             }
 
