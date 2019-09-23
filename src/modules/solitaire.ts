@@ -561,27 +561,6 @@ export function SolitaireGame() : void{
         }
     }
 
-    function refreshOrder(){
-        var count = [];
-        count["pilebase1"] = 0;
-        count["pilebase2"] = 0;
-        count["dealbase1"] = 0;
-        count["dealbase2"] = 0;
-        count["dealbase3"] = 0;
-        count["dealbase4"] = 0;
-        count["cardplaybase1"] = 0;
-        count["cardplaybase2"] = 0;
-        count["cardplaybase3"] = 0;
-        count["cardplaybase4"] = 0;
-        count["cardplaybase5"] = 0;
-        count["cardplaybase6"] = 0;
-        count["cardplaybase7"] = 0;
-
-        for( var x = 0 ; x < allEntityCards.length ; x++ ){
-            allEntityCards[x]["basecount"] = count[allEntityCards[x]["base"]]++;
-        }
-    }
-
     function moveCard(cardIndex, base){
         if(base == "pilebase1" && allEntityCards[cardIndex]["base"] != "pilebase1"){
             var lengthofbase = 0;
@@ -1119,7 +1098,6 @@ export function SolitaireGame() : void{
     prepareAllCards();
     loadAllCards();
     loadCardBases();
-    refreshOrder();
     refreshPositionAll();
     refreshRotationAll();
 }
