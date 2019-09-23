@@ -540,7 +540,6 @@ export function SolitaireGame() : void{
     }
 
     var isPlaying = 0;
-    var isSomethingClicked = false;
     function cardclick(cardname){
         var cardIndex = 0;
         for( var x = 0 ; x < allEntityCards.length ; x++ ){
@@ -580,7 +579,7 @@ export function SolitaireGame() : void{
             isPlaying = 1;
         }
         else if(isPlaying == 1){
-            if(isSomethingClicked){
+            if(isSomethingClicked()){
                 if(allEntityCards[cardIndex]["base"].includes("cardplaybase")){
                     var clickedindex = -1;
                     var clickedcounthighest = -1;
@@ -647,7 +646,6 @@ export function SolitaireGame() : void{
                 for (var x = 0 ; x < allEntityCards.length ; x++ ){
                     allEntityCards[x]["clicked"] = false;
                 }
-                isSomethingClicked = false;
                 refreshClickCardsAll();
             }
             else{
@@ -658,26 +656,23 @@ export function SolitaireGame() : void{
                                 allEntityCards[x]["clicked"] = true;
                             }
                         }
-                        isSomethingClicked = true;
                     }
                 }
                 else if(allEntityCards[cardIndex]["base"].includes("dealbase")){
                     if(allEntityCards[cardIndex]["draggable"]){
                         allEntityCards[cardIndex]["clicked"] = true;
-                        isSomethingClicked = true;
                     }
                 }
                 else if(allEntityCards[cardIndex]["base"].includes("pilebase")){
                     if(allEntityCards[cardIndex]["base"] == "pilebase2" && allEntityCards[cardIndex]["draggable"]){
                         allEntityCards[cardIndex]["clicked"] = true;
-                        isSomethingClicked = true;
                     }
                     else if(allEntityCards[cardIndex]["base"] == "pilebase1"){
                         //Open pilebase1 here
                     }
                 }
 
-                if(isSomethingClicked) refreshClickCardsAll();
+                if(isSomethingClicked()) refreshClickCardsAll();
             }
         }
     }
@@ -1214,6 +1209,14 @@ export function SolitaireGame() : void{
         refreshPosition(cardIndex);
         var cardposition = allEntityCards[cardIndex]["entity"].getComponent(Transform).position;
         if(allEntityCards[cardIndex]["clicked"]) cardposition.set(cardposition.x,cardposition.y + clickedliftsize,cardposition.z);
+    }
+
+    function isSomethingClicked(){
+        for(var x = 0 ; x < allEntityCards.length ; x++ ){
+            if(allEntityCards[x]["clicked"]) return true;
+        }
+
+        return false;
     }
 
     prepareAllCards();
