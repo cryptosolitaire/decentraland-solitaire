@@ -652,7 +652,7 @@ export function SolitaireGame() : void{
                 if(allEntityCards[cardIndex]["base"].includes("cardplaybase")){
                     if(allEntityCards[cardIndex]["draggable"]){
                         for(var x = 0 ; x < allEntityCards.length ; x++ ){
-                            if(allEntityCards[x]["basecount"] >= allEntityCards[cardIndex]["basecount"]){
+                            if(allEntityCards[x]["basecount"] >= allEntityCards[cardIndex]["basecount"] && allEntityCards[x]["base"] == allEntityCards[cardIndex]["base"]){
                                 allEntityCards[x]["clicked"] = true;
                             }
                         }
