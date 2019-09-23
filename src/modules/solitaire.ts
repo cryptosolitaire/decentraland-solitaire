@@ -992,6 +992,50 @@ export function SolitaireGame() : void{
 
     }
 
+    let suitCards = ["a","2","3","4","5","6","7","8","9","10","j","q","k"];
+    function clipToCardBase(fromcard,tocard){
+        var fromcardsuitcolor;
+        var fromcardsuitnumber;
+        var tocardsuitcolor;
+        var tocardsuitnumber;
+
+        if(fromcard[fromcard.length-1] == "d" || fromcard[fromcard.length-1] == "h") fromcardsuitcolor = "red";
+        else fromcardsuitcolor = "black";
+
+        if(tocard[tocard.length-1] == "d" || tocard[tocard.length-1] == "h") tocardsuitcolor = "red";
+        else tocardsuitcolor = "black";
+
+        if(fromcard.length == 3) fromcardsuitnumber = fromcard[0] + fromcard[1];
+        else fromcardsuitnumber = fromcard[0];
+        if(tocard.length == 3) tocardsuitnumber = tocard[0] + tocard[1];
+        else tocardsuitnumber = tocard[0];
+
+        for(var x = 0 ; x < suitCards.length ; x++ ){
+            if(fromcardsuitnumber == suitCards[x]){
+                fromcardsuitnumber = x;
+                break;
+            }
+        }
+
+        for(var y = 0 ; y < suitCards.length ; y++ ){
+            if(tocardsuitnumber == suitCards[y]){
+                tocardsuitnumber = y;
+                break;
+            }
+        }
+
+        if(fromcardsuitcolor != tocardsuitcolor && fromcardsuitnumber < tocardsuitnumber){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    function clipToDealBase(fromcard,tocard){
+
+    }
+
     prepareAllCards();
     loadAllCards();
     loadCardBases();
