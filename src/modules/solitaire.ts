@@ -970,20 +970,6 @@ export function SolitaireGame() : void{
 
     function setDraggable(){
         var data = [];
-        data["cardplaybase1index"] = -1;
-        data["cardplaybase1count"] = -1;
-        data["cardplaybase2index"] = -1;
-        data["cardplaybase2count"] = -1;
-        data["cardplaybase3index"] = -1;
-        data["cardplaybase3count"] = -1;
-        data["cardplaybase4index"] = -1;
-        data["cardplaybase4count"] = -1;
-        data["cardplaybase5index"] = -1;
-        data["cardplaybase5count"] = -1;
-        data["cardplaybase6index"] = -1;
-        data["cardplaybase6count"] = -1;
-        data["cardplaybase7index"] = -1;
-        data["cardplaybase7count"] = -1;
         data["pilebase1index"] = -1;
         data["pilebase1count"] = -1;
         data["pilebase2index"] = -1;
@@ -998,34 +984,16 @@ export function SolitaireGame() : void{
         data["dealbase4count"] = -1;
 
         for( var x = 0 ; x < allEntityCards.length ; x++ ){
-            if(allEntityCards[x]["basecount"] > data[allEntityCards[x]["base"]+"count"]){
+            allEntityCards[x]["draggable"] = false;
+            if(allEntityCards[x]["base"].includes("cardplaybase") && allEntityCards[x]["facingfront"]){
+                allEntityCards[x]["draggable"] = true;
+            }
+            else if(allEntityCards[x]["basecount"] > data[allEntityCards[x]["base"]+"count"]){
                 data[allEntityCards[x]["base"]+"index"] = x;
                 data[allEntityCards[x]["base"]+"count"] = allEntityCards[x]["basecount"];
             }
-            allEntityCards[x]["draggable"] = false;
         }
 
-        if(data["cardplaybase1index"] != -1 && allEntityCards[data["cardplaybase1index"]]["draggable"] == false){
-            allEntityCards[data["cardplaybase1index"]]["draggable"] = true;
-        }
-        if(data["cardplaybase2index"] != -1 && allEntityCards[data["cardplaybase2index"]]["draggable"] == false){
-            allEntityCards[data["cardplaybase2index"]]["draggable"] = true;
-        }
-        if(data["cardplaybase3index"] != -1 && allEntityCards[data["cardplaybase3index"]]["draggable"] == false){
-            allEntityCards[data["cardplaybase3index"]]["draggable"] = true;
-        }
-        if(data["cardplaybase4index"] != -1 && allEntityCards[data["cardplaybase4index"]]["draggable"] == false){
-            allEntityCards[data["cardplaybase4index"]]["draggable"] = true;
-        }
-        if(data["cardplaybase5index"] != -1 && allEntityCards[data["cardplaybase5index"]]["draggable"] == false){
-            allEntityCards[data["cardplaybase5index"]]["draggable"] = true;
-        }
-        if(data["cardplaybase6index"] != -1 && allEntityCards[data["cardplaybase6index"]]["draggable"] == false){
-            allEntityCards[data["cardplaybase6index"]]["draggable"] = true;
-        }
-        if(data["cardplaybase7index"] != -1 && allEntityCards[data["cardplaybase7index"]]["draggable"] == false){
-            allEntityCards[data["cardplaybase7index"]]["draggable"] = true;
-        }
         if(data["pilebase1index"] != -1 && allEntityCards[data["pilebase1index"]]["draggable"] == false){
             allEntityCards[data["pilebase1index"]]["draggable"] = true;
         }
