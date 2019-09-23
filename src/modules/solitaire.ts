@@ -60,6 +60,7 @@ export function SolitaireGame() : void{
             allEntityCards[x]["basecount"] = x;
             allEntityCards[x]["facingfront"] = false;
             allEntityCards[x]["draggable"] = false;
+            allEntityCards[x]["clicked"] = false;
         }
 
         shuffle(allEntityCards);
@@ -1100,6 +1101,19 @@ export function SolitaireGame() : void{
         else{
             return false;
         }
+    }
+
+    function refreshClickCardsAll(){
+        for( var x = 0 ; x < allEntityCards.length ; x++ ){
+            refreshClickCards(x);
+        }
+    }
+
+    var clickedliftsize = 0.05;
+    function refreshClickCards(cardIndex){
+        refreshPosition(cardIndex);
+        var cardposition = allEntityCards[cardIndex]["entity"].getComponent(Transform).position;
+        if(allEntityCards[cardIndex]["clicked"]) cardposition.set(cardposition.x,cardposition.y + clickedliftsize,cardposition.z);
     }
 
     prepareAllCards();
