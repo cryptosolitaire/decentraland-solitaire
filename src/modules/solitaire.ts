@@ -1006,8 +1006,8 @@ export function SolitaireGame() : void{
         }
 
         var tocard;
-        if (data["cardplaybase1index"] == -1) tocard = "empty";
-        else tocard = allEntityCards[data["cardplaybase1index"]]["name"];
+        if (data[cardbase + "index"] == -1) tocard = "empty";
+        else tocard = allEntityCards[data[cardbase + "index"]]["name"];
 
         if(tocard == "empty" && fromcard[0] == "k") return true;
         else if (tocard == "empty" && fromcard[0] != "k") return false;
