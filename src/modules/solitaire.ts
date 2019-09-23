@@ -1182,7 +1182,7 @@ export function SolitaireGame() : void{
 
     function refreshClickCardsAll(){
         for( var x = 0 ; x < allEntityCards.length ; x++ ){
-            refreshClickCards(x);
+            if(allEntityCards[x]["clicked"]) refreshClickCards(x);
         }
     }
 
