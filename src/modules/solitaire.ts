@@ -1069,7 +1069,7 @@ export function SolitaireGame() : void{
             }
         }
 
-        if(fromcardsuitcolor != tocardsuitcolor && fromcardsuitnumber < tocardsuitnumber){
+        if(fromcardsuitcolor != tocardsuitcolor && fromcardsuitnumber + 1 == tocardsuitnumber){
             return true;
         }
         else{
@@ -1121,7 +1121,7 @@ export function SolitaireGame() : void{
             }
         }
 
-        if(fromcardsuit == tocardsuit && fromcardsuitnumber > tocardsuitnumber){
+        if(fromcardsuit == tocardsuit && fromcardsuitnumber == tocardsuitnumber + 1){
             return true;
         }
         else{
