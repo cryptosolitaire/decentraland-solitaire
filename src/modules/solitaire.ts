@@ -580,61 +580,34 @@ export function SolitaireGame() : void{
         }
         else if(isPlaying == 1){
             if(isSomethingClicked()){
-                if(allEntityCards[cardIndex]["base"].includes("cardplaybase")){
-                    var clickedindex = -1;
-                    var clickedcounthighest = -1;
-                    var clickedcountlow = -1;
-                    for (var x = 0 ; x < allEntityCards.length ; x++ ){
-                        if(allEntityCards[x]["clicked"]){
-                            if(clickedindex == -1){
-                                clickedindex = x;
-                                clickedcounthighest = allEntityCards[x]["basecount"];
-                                clickedcountlow = allEntityCards[x]["basecount"];
-                            }
-                            else if(allEntityCards[x]["basecount"] > clickedcounthighest){
-                                clickedcounthighest = allEntityCards[x]["basecount"];
-                            }
-                            else if(allEntityCards[x]["basecount"] < clickedcountlow){
-                                clickedindex = x;
-                                clickedcountlow = allEntityCards[x]["basecount"];
-                            }
+                var clickedIndex = [];
+
+                for (var x = 0 ; x < allEntityCards.length; x++ ){
+                    if(allEntityCards[x]["clicked"]) clickedIndex.push(x);
+                }
+
+                for (var x = 0 ; x < clickedIndex.length ; x++ ){
+                    for(var y = 0 ; y < clickedIndex.length - 1 ; y++ ){
+                        if(allEntityCards[clickedIndex[y]]["basecount"] > (allEntityCards[clickedIndex[y] + 1]["basecount"])){
+                            var tempvar = allEntityCards[clickedIndex[y]]["basecount"];
+                            allEntityCards[clickedIndex[y]]["basecount"] = allEntityCards[clickedIndex[y] + 1]["basecount"];
+                            allEntityCards[clickedIndex[y]+1]["basecount"] = tempvar;
                         }
                     }
+                }
 
-                    if(allEntityCards[cardIndex]["base"] != allEntityCards[clickedindex]["base"] && clipToCardBase(allEntityCards[cardIndex]["base"],allEntityCards[clickedindex]["name"])){
-                        for (var x = clickedcountlow ; x <= clickedcounthighest ; x++ ){
-                            for (var y = 0 ; y < allEntityCards.length ; y++ ){
-                                if(allEntityCards[y]["basecount"] == x){
-                                    moveCard(y,allEntityCards[cardIndex]["base"]);
-                                    break;
-                                }
-                            }
+                if(allEntityCards[cardIndex]["base"].includes("cardplaybase")){
+                    if(allEntityCards[cardIndex]["base"] != allEntityCards[clickedIndex[0]]["base"] && clipToCardBase(allEntityCards[cardIndex]["base"],allEntityCards[clickedIndex[0]]["name"])){
+                        for (var x = 0 ; x < clickedIndex.length ; x++ ){
+                            moveCard(clickedIndex[x],allEntityCards[cardIndex]["base"]);
+                            openTopCard();
                         }
                     }
                 }
                 else if(allEntityCards[cardIndex]["base"].includes("dealbase")){
-                    var clickedindex = -1;
-                    var clickedcounthighest = -1;
-                    var clickedcountlow = -1;
-                    for (var x = 0 ; x < allEntityCards.length ; x++ ){
-                        if(allEntityCards[x]["clicked"]){
-                            if(clickedindex == -1){
-                                clickedindex = x;
-                                clickedcounthighest = allEntityCards[x]["basecount"];
-                                clickedcountlow = allEntityCards[x]["basecount"];
-                            }
-                            else if(allEntityCards[x]["basecount"] > clickedcounthighest){
-                                clickedcounthighest = allEntityCards[x]["basecount"];
-                            }
-                            else if(allEntityCards[x]["basecount"] < clickedcountlow){
-                                clickedindex = x;
-                                clickedcountlow = allEntityCards[x]["basecount"];
-                            }
-                        }
-                    }
-
-                    if(clickedcounthighest == clickedcountlow && clipToDealBase(allEntityCards[cardIndex]["base"],allEntityCards[clickedindex]["name"])){
-                        moveCard(clickedindex,allEntityCards[cardIndex]["base"]);
+                    if(clickedIndex.length == 1 && clipToDealBase(allEntityCards[cardIndex]["base"],allEntityCards[clickedIndex[0]]["name"])){
+                        moveCard(clickedIndex[0],allEntityCards[cardIndex]["base"]);
+                        openTopCard();
                     }
                 }
                 else if(allEntityCards[cardIndex]["base"].includes("pilebase")){
