@@ -456,11 +456,6 @@ export function SolitaireGame() : void{
             allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
             allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).position.set(cardbaseleft["cardplaybase"+x] + (cardOriginalSize * cardScale), solitairePositionY, cardbasetop);
             allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).rotation.setEuler(solitaireRotationX, 180, 0);
-            allCardBack[allCardBack.length-1]["base"] = "cardplaybase"+x+"bg";
-            allCardBack[allCardBack.length-1]["basecount"] = 0;
-            allCardBack[allCardBack.length-1]["facingfront"] = false;
-            allCardBack[allCardBack.length-1]["draggable"] = false;
-            allCardBack[allCardBack.length-1]["clicked"] = false;
             // Using dynamic setting of add component onclick does not register dynamic variable
             addOnClickBackOnLatest("cardplaybase"+x+"bg");
         }
@@ -476,11 +471,6 @@ export function SolitaireGame() : void{
             allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
             allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).position.set(dealbaseleft["dealbase"+x] + (cardOriginalSize * cardScale), solitairePositionY, dealbasetop);
             allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).rotation.setEuler(solitaireRotationX, 180, 0);
-            allCardBack[allCardBack.length-1]["base"] = "dealbase"+x+"bg";
-            allCardBack[allCardBack.length-1]["basecount"] = 0;
-            allCardBack[allCardBack.length-1]["facingfront"] = false;
-            allCardBack[allCardBack.length-1]["draggable"] = false;
-            allCardBack[allCardBack.length-1]["clicked"] = false;
             // Using dynamic setting of add component onclick does not register dynamic variable
             addOnClickBackOnLatest("dealbase"+x+"bg");
         }
@@ -494,11 +484,6 @@ export function SolitaireGame() : void{
         allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
         allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).position.set(pilebaseleft1 + (cardOriginalSize * cardScale), solitairePositionY, pilebasetop1);
         allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).rotation.setEuler(solitaireRotationX, 180, 0);
-        allCardBack[allCardBack.length-1]["base"] = "pilebase1bg";
-        allCardBack[allCardBack.length-1]["basecount"] = 0;
-        allCardBack[allCardBack.length-1]["facingfront"] = false;
-        allCardBack[allCardBack.length-1]["draggable"] = false;
-        allCardBack[allCardBack.length-1]["clicked"] = false;
         addOnClickBackOnLatest("pilebase1bg");
 
         /// Register all back entity to engine
