@@ -1201,6 +1201,7 @@ export function SolitaireGame() : void{
     function refreshClickCardsAll(){
         for( var x = 0 ; x < allEntityCards.length ; x++ ){
             if(allEntityCards[x]["clicked"]) refreshClickCards(x);
+            else refreshPosition(x);
         }
     }
 
