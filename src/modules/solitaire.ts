@@ -550,10 +550,10 @@ export function SolitaireGame() : void{
 
                 for (var x = 0 ; x < clickedIndex.length ; x++ ){
                     for(var y = 0 ; y < clickedIndex.length - 1 ; y++ ){
-                        if(allEntityCards[clickedIndex[y]]["basecount"] > (allEntityCards[clickedIndex[y] + 1]["basecount"])){
-                            var tempvar = allEntityCards[clickedIndex[y]]["basecount"];
-                            allEntityCards[clickedIndex[y]]["basecount"] = allEntityCards[clickedIndex[y] + 1]["basecount"];
-                            allEntityCards[clickedIndex[y]+1]["basecount"] = tempvar;
+                        if(allEntityCards[clickedIndex[y]]["basecount"] > (allEntityCards[clickedIndex[y + 1]]["basecount"])){
+                            var tempvar = clickedIndex[y];
+                            clickedIndex[y] = clickedIndex[y + 1];
+                            clickedIndex[y+1] = tempvar;
                         }
                     }
                 }
