@@ -993,7 +993,25 @@ export function SolitaireGame() : void{
     }
 
     let suitCards = ["a","2","3","4","5","6","7","8","9","10","j","q","k"];
-    function clipToCardBase(fromcard,tocard){
+    function clipToCardBase(cardbase,fromcard){
+        var data = [];
+        data["cardplaybase1index"] = -1;
+        data["cardplaybase1count"] = -1;
+
+        for( var x = 0 ; x < allEntityCards.length ; x++ ){
+            if(allEntityCards[x]["base"] == cardbase && allEntityCards[x]["basecount"] > data[allEntityCards[x]["base"]+"count"]){
+                data[allEntityCards[x]["base"]+"index"] = x;
+                data[allEntityCards[x]["base"]+"count"] = allEntityCards[x]["basecount"];
+            }
+        }
+
+        var tocard;
+        if (data["cardplaybase1index"] == -1) tocard = "empty";
+        else tocard = allEntityCards[data["cardplaybase1index"]]["name"];
+
+        if(tocard == "empty" && fromcard[0] == "k") return true;
+        else if (tocard == "empty" && fromcard[0] != "k") return false;
+
         var fromcardsuitcolor;
         var fromcardsuitnumber;
         var tocardsuitcolor;
