@@ -851,87 +851,63 @@ export function SolitaireGame() : void{
     }
 
     function openTopCard(){
-        var cardplaybase = [];
-        cardplaybase["index1"] = -1;
-        cardplaybase["count1"] = -1;
-        cardplaybase["index2"] = -1;
-        cardplaybase["count2"] = -1;
-        cardplaybase["index3"] = -1;
-        cardplaybase["count3"] = -1;
-        cardplaybase["index4"] = -1;
-        cardplaybase["count4"] = -1;
-        cardplaybase["index5"] = -1;
-        cardplaybase["count5"] = -1;
-        cardplaybase["index6"] = -1;
-        cardplaybase["count6"] = -1;
-        cardplaybase["index7"] = -1;
-        cardplaybase["count7"] = -1;
+        var data = [];
+        data["cardplaybase1index"] = -1;
+        data["cardplaybase1count"] = -1;
+        data["cardplaybase2index"] = -1;
+        data["cardplaybase2count"] = -1;
+        data["cardplaybase3index"] = -1;
+        data["cardplaybase3count"] = -1;
+        data["cardplaybase4index"] = -1;
+        data["cardplaybase4count"] = -1;
+        data["cardplaybase5index"] = -1;
+        data["cardplaybase5count"] = -1;
+        data["cardplaybase6index"] = -1;
+        data["cardplaybase6count"] = -1;
+        data["cardplaybase7index"] = -1;
+        data["cardplaybase7count"] = -1;
 
         for( var x = 0 ; x < allEntityCards.length ; x++ ){
-            if(allEntityCards[x]["base"] == "cardplaybase1" && allEntityCards[x]["basecount"] > cardplaybase["count1"]){
-                cardplaybase["index1"] = x;
-                cardplaybase["count1"] = allEntityCards[x]["basecount"];
-            }
-            else if(allEntityCards[x]["base"] == "cardplaybase2" && allEntityCards[x]["basecount"] > cardplaybase["count2"]){
-                cardplaybase["index2"] = x;
-                cardplaybase["count2"] = allEntityCards[x]["basecount"];
-            }
-            else if(allEntityCards[x]["base"] == "cardplaybase3" && allEntityCards[x]["basecount"] > cardplaybase["count3"]){
-                cardplaybase["index3"] = x;
-                cardplaybase["count3"] = allEntityCards[x]["basecount"];
-            }
-            else if(allEntityCards[x]["base"] == "cardplaybase4" && allEntityCards[x]["basecount"] > cardplaybase["count4"]){
-                cardplaybase["index4"] = x;
-                cardplaybase["count4"] = allEntityCards[x]["basecount"];
-            }
-            else if(allEntityCards[x]["base"] == "cardplaybase5" && allEntityCards[x]["basecount"] > cardplaybase["count5"]){
-                cardplaybase["index5"] = x;
-                cardplaybase["count5"] = allEntityCards[x]["basecount"];
-            }
-            else if(allEntityCards[x]["base"] == "cardplaybase6" && allEntityCards[x]["basecount"] > cardplaybase["count6"]){
-                cardplaybase["index6"] = x;
-                cardplaybase["count6"] = allEntityCards[x]["basecount"];
-            }
-            else if(allEntityCards[x]["base"] == "cardplaybase7" && allEntityCards[x]["basecount"] > cardplaybase["count7"]){
-                cardplaybase["index7"] = x;
-                cardplaybase["count7"] = allEntityCards[x]["basecount"];
+            if(allEntityCards[x]["basecount"] > data[allEntityCards[x]["base"]+"count"]){
+                data[allEntityCards[x]["base"]+"index"] = x;
+                data[allEntityCards[x]["base"]+"count"] = allEntityCards[x]["basecount"];
             }
         }
 
-        if(cardplaybase["index1"] != -1 && allEntityCards[cardplaybase["index1"]]["facingfront"] == false){
-            allEntityCards[cardplaybase["index1"]]["facingfront"] = true;
-            refreshPosition(cardplaybase["index1"]);
-            refreshRotation(cardplaybase["index1"]);
+        if(data["cardplaybase1index"] != -1 && allEntityCards[data["cardplaybase1index"]]["facingfront"] == false){
+            allEntityCards[data["cardplaybase1index"]]["facingfront"] = true;
+            refreshPosition(data["cardplaybase1index"]);
+            refreshRotation(data["cardplaybase1index"]);
         }
-        if(cardplaybase["index2"] != -1 && allEntityCards[cardplaybase["index2"]]["facingfront"] == false){
-            allEntityCards[cardplaybase["index2"]]["facingfront"] = true;
-            refreshPosition(cardplaybase["index2"]);
-            refreshRotation(cardplaybase["index2"]);
+        if(data["cardplaybase2index"] != -1 && allEntityCards[data["cardplaybase2index"]]["facingfront"] == false){
+            allEntityCards[data["cardplaybase2index"]]["facingfront"] = true;
+            refreshPosition(data["cardplaybase2index"]);
+            refreshRotation(data["cardplaybase2index"]);
         }
-        if(cardplaybase["index3"] != -1 && allEntityCards[cardplaybase["index3"]]["facingfront"] == false){
-            allEntityCards[cardplaybase["index3"]]["facingfront"] = true;
-            refreshPosition(cardplaybase["index3"]);
-            refreshRotation(cardplaybase["index3"]);
+        if(data["cardplaybase3index"] != -1 && allEntityCards[data["cardplaybase3index"]]["facingfront"] == false){
+            allEntityCards[data["cardplaybase3index"]]["facingfront"] = true;
+            refreshPosition(data["cardplaybase3index"]);
+            refreshRotation(data["cardplaybase3index"]);
         }
-        if(cardplaybase["index4"] != -1 && allEntityCards[cardplaybase["index4"]]["facingfront"] == false){
-            allEntityCards[cardplaybase["index4"]]["facingfront"] = true;
-            refreshPosition(cardplaybase["index4"]);
-            refreshRotation(cardplaybase["index4"]);
+        if(data["cardplaybase4index"] != -1 && allEntityCards[data["cardplaybase4index"]]["facingfront"] == false){
+            allEntityCards[data["cardplaybase4index"]]["facingfront"] = true;
+            refreshPosition(data["cardplaybase4index"]);
+            refreshRotation(data["cardplaybase4index"]);
         }
-        if(cardplaybase["index5"] != -1 && allEntityCards[cardplaybase["index5"]]["facingfront"] == false){
-            allEntityCards[cardplaybase["index5"]]["facingfront"] = true;
-            refreshPosition(cardplaybase["index5"]);
-            refreshRotation(cardplaybase["index5"]);
+        if(data["cardplaybase5index"] != -1 && allEntityCards[data["cardplaybase5index"]]["facingfront"] == false){
+            allEntityCards[data["cardplaybase5index"]]["facingfront"] = true;
+            refreshPosition(data["cardplaybase5index"]);
+            refreshRotation(data["cardplaybase5index"]);
         }
-        if(cardplaybase["index6"] != -1 && allEntityCards[cardplaybase["index6"]]["facingfront"] == false){
-            allEntityCards[cardplaybase["index6"]]["facingfront"] = true;
-            refreshPosition(cardplaybase["index6"]);
-            refreshRotation(cardplaybase["index6"]);
+        if(data["cardplaybase6index"] != -1 && allEntityCards[data["cardplaybase6index"]]["facingfront"] == false){
+            allEntityCards[data["cardplaybase6index"]]["facingfront"] = true;
+            refreshPosition(data["cardplaybase6index"]);
+            refreshRotation(data["cardplaybase6index"]);
         }
-        if(cardplaybase["index7"] != -1 && allEntityCards[cardplaybase["index7"]]["facingfront"] == false){
-            allEntityCards[cardplaybase["index7"]]["facingfront"] = true;
-            refreshPosition(cardplaybase["index7"]);
-            refreshRotation(cardplaybase["index7"]);
+        if(data["cardplaybase7index"] != -1 && allEntityCards[data["cardplaybase7index"]]["facingfront"] == false){
+            allEntityCards[data["cardplaybase7index"]]["facingfront"] = true;
+            refreshPosition(data["cardplaybase7index"]);
+            refreshRotation(data["cardplaybase7index"]);
         }
     }
 
