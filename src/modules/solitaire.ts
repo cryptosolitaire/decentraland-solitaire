@@ -86,6 +86,27 @@ export function SolitaireGame() : void{
         return array;
     }
 
+    function initialCardOrder(){
+        var count = [];
+        count["pilebase1"] = 0;
+        count["pilebase2"] = 0;
+        count["dealbase1"] = 0;
+        count["dealbase2"] = 0;
+        count["dealbase3"] = 0;
+        count["dealbase4"] = 0;
+        count["cardplaybase1"] = 0;
+        count["cardplaybase2"] = 0;
+        count["cardplaybase3"] = 0;
+        count["cardplaybase4"] = 0;
+        count["cardplaybase5"] = 0;
+        count["cardplaybase6"] = 0;
+        count["cardplaybase7"] = 0;
+
+        for( var x = 0 ; x < allEntityCards.length ; x++ ){
+            allEntityCards[x]["basecount"] = count[allEntityCards[x]["base"]]++;
+        }
+    }
+
     function loadAllCards(){
         for( var x = 0 ; x < allEntityCards.length ; x++ ){
             allEntityCards[x]["entity"].addComponent(new GLTFShape("models/cards/"+allEntityCards[x]["name"]+".gltf"));
@@ -150,6 +171,8 @@ export function SolitaireGame() : void{
         engine.addEntity(allEntityCards[49]["entity"]);
         engine.addEntity(allEntityCards[50]["entity"]);
         engine.addEntity(allEntityCards[51]["entity"]);
+
+        initialCardOrder();
     }
 
     function addOnClick(index){
