@@ -1021,6 +1021,7 @@ export function SolitaireGame() : void{
 
     let suitCards = ["a","2","3","4","5","6","7","8","9","10","j","q","k"];
     function clipToCardBase(cardbase,fromcard){
+        /// --- Check if toCardBase is empty and if card to be place is king
         var data = [];
         data[cardbase + "index"] = -1;
         data[cardbase + "count"] = -1;
@@ -1038,7 +1039,9 @@ export function SolitaireGame() : void{
 
         if(tocard == "empty" && fromcard[0] == "k") return true;
         else if (tocard == "empty" && fromcard[0] != "k") return false;
+        /// ---
 
+        /// --- To extract the from and to card color and number
         var fromcardsuitcolor;
         var fromcardsuitnumber;
         var tocardsuitcolor;
@@ -1068,17 +1071,20 @@ export function SolitaireGame() : void{
                 break;
             }
         }
+        /// ---
 
+        /// --- Return true or false if card can be place on the selected base
         if(fromcardsuitcolor != tocardsuitcolor && fromcardsuitnumber + 1 == tocardsuitnumber){
             return true;
         }
         else{
             return false;
         }
+        /// ---
     }
 
     function clipToDealBase(dealbase,fromcard){
-
+        /// --- Check if toCardBase is empty and if card to be place is ace
         var data = [];
         data[dealbase + "index"] = -1;
         data[dealbase + "count"] = -1;
@@ -1096,7 +1102,9 @@ export function SolitaireGame() : void{
 
         if(tocard == "empty" && fromcard[0] == "a") return true;
         else if (tocard == "empty" && fromcard[0] != "a") return false;
+        /// ---
 
+        /// --- To extract the from and to card suit and number
         var fromcardsuit = fromcard[fromcard.length-1];
         var fromcardsuitnumber;
         var tocardsuit = tocard[tocard.length-1];
@@ -1120,13 +1128,16 @@ export function SolitaireGame() : void{
                 break;
             }
         }
+        /// ---
 
+        /// --- Return true or false if card can be place on the selected base
         if(fromcardsuit == tocardsuit && fromcardsuitnumber == tocardsuitnumber + 1){
             return true;
         }
         else{
             return false;
         }
+        /// ---
     }
 
     function refreshClickCardsAll(){
