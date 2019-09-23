@@ -559,7 +559,6 @@ export function SolitaireGame() : void{
                 }
 
                 if(cardname.includes("bg")){
-                    log(cardname);
                     if(cardname.includes("cardplaybase")){
                         if(cardname.substring(0,13) != allEntityCards[clickedIndex[0]]["base"] && clipToCardBase(cardname.substring(0,13),allEntityCards[clickedIndex[0]]["name"])){
                             moveCard(clickedIndex[x],cardname.substring(0,13));
@@ -607,7 +606,6 @@ export function SolitaireGame() : void{
             }
             else{
                 if(cardname.includes("bg")){
-                    log(cardname);
                     if(cardname.includes("pilebase1")){
                         /// Reset pilebase1 return all cards from pilebase2 to pilebase1
                     }
