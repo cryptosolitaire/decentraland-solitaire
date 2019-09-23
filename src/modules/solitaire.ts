@@ -517,7 +517,7 @@ export function SolitaireGame() : void{
     }
 
     var isPlaying = 0;
-
+    var isSomethingClicked = false;
     function cardclick(cardname){
         var cardIndex = 0;
         for( var x = 0 ; x < allEntityCards.length ; x++ ){
@@ -557,7 +557,105 @@ export function SolitaireGame() : void{
             isPlaying = 1;
         }
         else if(isPlaying == 1){
-            log(allEntityCards[x]["draggable"]);
+            if(isSomethingClicked){
+                if(allEntityCards[cardIndex]["base"].includes("cardplaybase")){
+                    var clickedindex = -1;
+                    var clickedcounthighest = -1;
+                    var clickedcountlow = -1;
+                    for (var x = 0 ; x < allEntityCards.length ; x++ ){
+                        if(allEntityCards[x]["clicked"]){
+                            if(clickedindex == -1){
+                                clickedindex = x;
+                                clickedcounthighest = allEntityCards[x]["basecount"];
+                                clickedcountlow = allEntityCards[x]["basecount"];
+                            }
+                            else if(allEntityCards[x]["basecount"] > clickedcounthighest){
+                                clickedcounthighest = allEntityCards[x]["basecount"];
+                            }
+                            else if(allEntityCards[x]["basecount"] < clickedcountlow){
+                                clickedindex = x;
+                                clickedcountlow = allEntityCards[x]["basecount"];
+                            }
+                        }
+                    }
+
+                    if(allEntityCards[cardIndex]["base"] != allEntityCards[clickedindex]["base"] && clipToCardBase(allEntityCards[cardIndex]["base"],allEntityCards[clickedindex]["name"])){
+                        for (var x = clickedcountlow ; x <= clickedcounthighest ; x++ ){
+                            for (var y = 0 ; y < allEntityCards.length ; y++ ){
+                                if(allEntityCards[y]["basecount"] == x){
+                                    moveCard(y,allEntityCards[cardIndex]["base"]);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                else if(allEntityCards[cardIndex]["base"].includes("dealbase")){
+                    var clickedindex = -1;
+                    var clickedcounthighest = -1;
+                    var clickedcountlow = -1;
+                    for (var x = 0 ; x < allEntityCards.length ; x++ ){
+                        if(allEntityCards[x]["clicked"]){
+                            if(clickedindex == -1){
+                                clickedindex = x;
+                                clickedcounthighest = allEntityCards[x]["basecount"];
+                                clickedcountlow = allEntityCards[x]["basecount"];
+                            }
+                            else if(allEntityCards[x]["basecount"] > clickedcounthighest){
+                                clickedcounthighest = allEntityCards[x]["basecount"];
+                            }
+                            else if(allEntityCards[x]["basecount"] < clickedcountlow){
+                                clickedindex = x;
+                                clickedcountlow = allEntityCards[x]["basecount"];
+                            }
+                        }
+                    }
+
+                    if(clickedcounthighest == clickedcountlow && clipToDealBase(allEntityCards[cardIndex]["base"],allEntityCards[clickedindex]["name"])){
+                        moveCard(clickedindex,allEntityCards[cardIndex]["base"]);
+                    }
+                }
+                else if(allEntityCards[cardIndex]["base"].includes("pilebase")){
+                    if(allEntityCards[cardIndex]["base"] == "pilebase1"){
+                        //Open pilebase1 here
+                    }
+                }
+
+                for (var x = 0 ; x < allEntityCards.length ; x++ ){
+                    allEntityCards[x]["clicked"] = false;
+                }
+                isSomethingClicked = false;
+                refreshClickCardsAll();
+            }
+            else{
+                if(allEntityCards[cardIndex]["base"].includes("cardplaybase")){
+                    if(allEntityCards[cardIndex]["draggable"]){
+                        for(var x = 0 ; x < allEntityCards.length ; x++ ){
+                            if(allEntityCards[x]["basecount"] >= allEntityCards[cardIndex]["basecount"]){
+                                allEntityCards[x]["clicked"] = true;
+                            }
+                        }
+                        isSomethingClicked = true;
+                    }
+                }
+                else if(allEntityCards[cardIndex]["base"].includes("dealbase")){
+                    if(allEntityCards[cardIndex]["draggable"]){
+                        allEntityCards[cardIndex]["clicked"] = true;
+                        isSomethingClicked = true;
+                    }
+                }
+                else if(allEntityCards[cardIndex]["base"].includes("pilebase")){
+                    if(allEntityCards[cardIndex]["base"] == "pilebase2" && allEntityCards[cardIndex]["draggable"]){
+                        allEntityCards[cardIndex]["clicked"] = true;
+                        isSomethingClicked = true;
+                    }
+                    else if(allEntityCards[cardIndex]["base"] == "pilebase1"){
+                        //Open pilebase1 here
+                    }
+                }
+
+                if(isSomethingClicked) refreshClickCardsAll();
+            }
         }
     }
 
