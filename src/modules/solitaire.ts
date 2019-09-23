@@ -514,7 +514,7 @@ export function SolitaireGame() : void{
     var isPlaying = 0;
     function cardclick(cardname){
         var cardIndex = 0;
-        for( var x = 0 ; x < allEntityCards.length ; x++ ){
+        for( var x = 0 ; x < allEntityCards.length && !cardname.includes("bg") ; x++ ){
             if(allEntityCards[x]["name"] == cardname){
                 cardIndex = x;
                 break;
@@ -568,7 +568,21 @@ export function SolitaireGame() : void{
                     }
                 }
 
-                if(allEntityCards[cardIndex]["base"].includes("cardplaybase")){
+                if(cardname.includes("bg")){
+                    log(cardname);
+                    if(cardname.includes("cardplaybase") && clipToCardBase(cardname.substring(0,13),allEntityCards[clickedIndex[0]]["name"])){
+                        moveCard(clickedIndex[x],cardname.substring(0,13));
+                        openTopCard();
+                    }
+                    else if(cardname.includes("dealbase") && clipToDealBase(cardname.substring(0,9),allEntityCards[clickedIndex[0]]["name"])){
+                        moveCard(clickedIndex[0],cardname.substring(0,9));
+                        openTopCard();
+                    }
+                    else if(cardname.includes("pilebase")){
+                        /// Reset pilebase1 return all cards from pilebase2 to pilebase1
+                    }
+                }
+                else if(allEntityCards[cardIndex]["base"].includes("cardplaybase")){
                     if(allEntityCards[cardIndex]["base"] != allEntityCards[clickedIndex[0]]["base"] && clipToCardBase(allEntityCards[cardIndex]["base"],allEntityCards[clickedIndex[0]]["name"])){
                         for (var x = 0 ; x < clickedIndex.length ; x++ ){
                             moveCard(clickedIndex[x],allEntityCards[cardIndex]["base"]);
@@ -594,7 +608,13 @@ export function SolitaireGame() : void{
                 refreshClickCardsAll();
             }
             else{
-                if(allEntityCards[cardIndex]["base"].includes("cardplaybase")){
+                if(cardname.includes("bg")){
+                    log(cardname);
+                    if(cardname.includes("pilebase1")){
+                        /// Reset pilebase1 return all cards from pilebase2 to pilebase1
+                    }
+                }
+                else if(allEntityCards[cardIndex]["base"].includes("cardplaybase")){
                     if(allEntityCards[cardIndex]["draggable"]){
                         for(var x = 0 ; x < allEntityCards.length ; x++ ){
                             if(allEntityCards[x]["basecount"] >= allEntityCards[cardIndex]["basecount"] && allEntityCards[x]["base"] == allEntityCards[cardIndex]["base"]){
@@ -613,7 +633,7 @@ export function SolitaireGame() : void{
                         allEntityCards[cardIndex]["clicked"] = true;
                     }
                     else if(allEntityCards[cardIndex]["base"] == "pilebase1"){
-                        //Open pilebase1 here
+                        //Open pilebase1 to pilebase2 here
                     }
                 }
 
