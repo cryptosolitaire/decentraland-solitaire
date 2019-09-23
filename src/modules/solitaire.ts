@@ -995,8 +995,8 @@ export function SolitaireGame() : void{
     let suitCards = ["a","2","3","4","5","6","7","8","9","10","j","q","k"];
     function clipToCardBase(cardbase,fromcard){
         var data = [];
-        data["cardplaybase1index"] = -1;
-        data["cardplaybase1count"] = -1;
+        data[cardbase + "index"] = -1;
+        data[cardbase + "count"] = -1;
 
         for( var x = 0 ; x < allEntityCards.length ; x++ ){
             if(allEntityCards[x]["base"] == cardbase && allEntityCards[x]["basecount"] > data[allEntityCards[x]["base"]+"count"]){
@@ -1089,6 +1089,5 @@ export function SolitaireGame() : void{
     refreshOrder();
     refreshPositionAll();
     refreshRotationAll();
-    log(clipToDealBase("10d","kc"));
 }
 
