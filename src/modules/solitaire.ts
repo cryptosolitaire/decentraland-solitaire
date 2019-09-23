@@ -573,10 +573,12 @@ export function SolitaireGame() : void{
                     if(cardname.includes("cardplaybase") && clipToCardBase(cardname.substring(0,13),allEntityCards[clickedIndex[0]]["name"])){
                         moveCard(clickedIndex[x],cardname.substring(0,13));
                         openTopCard();
+                        setDraggable();
                     }
                     else if(cardname.includes("dealbase") && clipToDealBase(cardname.substring(0,9),allEntityCards[clickedIndex[0]]["name"])){
                         moveCard(clickedIndex[0],cardname.substring(0,9));
                         openTopCard();
+                        setDraggable();
                     }
                     else if(cardname.includes("pilebase")){
                         /// Reset pilebase1 return all cards from pilebase2 to pilebase1
@@ -587,6 +589,7 @@ export function SolitaireGame() : void{
                         for (var x = 0 ; x < clickedIndex.length ; x++ ){
                             moveCard(clickedIndex[x],allEntityCards[cardIndex]["base"]);
                             openTopCard();
+                            setDraggable();
                         }
                     }
                 }
@@ -594,6 +597,7 @@ export function SolitaireGame() : void{
                     if(clickedIndex.length == 1 && clipToDealBase(allEntityCards[cardIndex]["base"],allEntityCards[clickedIndex[0]]["name"])){
                         moveCard(clickedIndex[0],allEntityCards[cardIndex]["base"]);
                         openTopCard();
+                        setDraggable();
                     }
                 }
                 else if(allEntityCards[cardIndex]["base"].includes("pilebase")){
