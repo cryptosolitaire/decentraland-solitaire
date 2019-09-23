@@ -1033,7 +1033,36 @@ export function SolitaireGame() : void{
     }
 
     function clipToDealBase(fromcard,tocard){
+        var fromcardsuit = fromcard[fromcard.length-1];
+        var fromcardsuitnumber;
+        var tocardsuit = tocard[tocard.length-1];
+        var tocardsuitnumber;
 
+        if(fromcard.length == 3) fromcardsuitnumber = fromcard[0] + fromcard[1];
+        else fromcardsuitnumber = fromcard[0];
+        if(tocard.length == 3) tocardsuitnumber = tocard[0] + tocard[1];
+        else tocardsuitnumber = tocard[0];
+
+        for(var x = 0 ; x < suitCards.length ; x++ ){
+            if(fromcardsuitnumber == suitCards[x]){
+                fromcardsuitnumber = x;
+                break;
+            }
+        }
+
+        for(var y = 0 ; y < suitCards.length ; y++ ){
+            if(tocardsuitnumber == suitCards[y]){
+                tocardsuitnumber = y;
+                break;
+            }
+        }
+
+        if(fromcardsuit == tocardsuit && fromcardsuitnumber < tocardsuitnumber){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     prepareAllCards();
@@ -1042,5 +1071,6 @@ export function SolitaireGame() : void{
     refreshOrder();
     refreshPositionAll();
     refreshRotationAll();
+    log(clipToDealBase("10d","kc"));
 }
 
