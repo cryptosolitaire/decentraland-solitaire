@@ -438,6 +438,12 @@ export function SolitaireGame() : void{
         }
     }
 
+    function addOnClickBackOnLatest(basename){
+        allCardBack[allCardBack.length-1]["entity"].addComponent(new OnClick(event =>{
+            cardclick(basename);
+        }));
+    }
+
     var allCardBack = [];
     function loadCardBases(){
         /// Cardplaybase back
@@ -450,22 +456,15 @@ export function SolitaireGame() : void{
             allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
             allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).position.set(cardbaseleft["cardplaybase"+x] + (cardOriginalSize * cardScale), solitairePositionY, cardbasetop);
             allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).rotation.setEuler(solitaireRotationX, 180, 0);
-            allCardBack[allCardBack.length-1]["entity"].addComponent(new OnClick(event =>{
-                cardclick("cardplaybase"+x+"bg");
-            }));
             allCardBack[allCardBack.length-1]["base"] = "cardplaybase"+x+"bg";
             allCardBack[allCardBack.length-1]["basecount"] = 0;
             allCardBack[allCardBack.length-1]["facingfront"] = false;
             allCardBack[allCardBack.length-1]["draggable"] = false;
             allCardBack[allCardBack.length-1]["clicked"] = false;
+            // Using dynamic setting of add component onclick does not register dynamic variable
+            addOnClickBackOnLatest("cardplaybase"+x+"bg");
         }
-        engine.addEntity(allCardBack[allCardBack.length-1]["entity"]);
-        engine.addEntity(allCardBack[allCardBack.length-2]["entity"]);
-        engine.addEntity(allCardBack[allCardBack.length-3]["entity"]);
-        engine.addEntity(allCardBack[allCardBack.length-4]["entity"]);
-        engine.addEntity(allCardBack[allCardBack.length-5]["entity"]);
-        engine.addEntity(allCardBack[allCardBack.length-6]["entity"]);
-        engine.addEntity(allCardBack[allCardBack.length-7]["entity"]);
+
 
         /// Dealbase back
         for(var x = 1 ; x <= 4 ; x++ ){
@@ -477,19 +476,14 @@ export function SolitaireGame() : void{
             allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
             allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).position.set(dealbaseleft["dealbase"+x] + (cardOriginalSize * cardScale), solitairePositionY, dealbasetop);
             allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).rotation.setEuler(solitaireRotationX, 180, 0);
-            allCardBack[allCardBack.length-1]["entity"].addComponent(new OnClick(event =>{
-                cardclick("dealbase"+x+"bg");
-            }));
             allCardBack[allCardBack.length-1]["base"] = "dealbase"+x+"bg";
             allCardBack[allCardBack.length-1]["basecount"] = 0;
             allCardBack[allCardBack.length-1]["facingfront"] = false;
             allCardBack[allCardBack.length-1]["draggable"] = false;
             allCardBack[allCardBack.length-1]["clicked"] = false;
+            // Using dynamic setting of add component onclick does not register dynamic variable
+            addOnClickBackOnLatest("dealbase"+x+"bg");
         }
-        engine.addEntity(allCardBack[allCardBack.length-1]["entity"]);
-        engine.addEntity(allCardBack[allCardBack.length-2]["entity"]);
-        engine.addEntity(allCardBack[allCardBack.length-3]["entity"]);
-        engine.addEntity(allCardBack[allCardBack.length-4]["entity"]);
 
         /// Pilebase back
         allCardBack[allCardBack.length] = [];
@@ -500,18 +494,29 @@ export function SolitaireGame() : void{
         allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
         allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).position.set(pilebaseleft1 + (cardOriginalSize * cardScale), solitairePositionY, pilebasetop1);
         allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).rotation.setEuler(solitaireRotationX, 180, 0);
-        allCardBack[allCardBack.length-1]["entity"].addComponent(new OnClick(event =>{
-            cardclick("pilebase1bg");
-        }));
         allCardBack[allCardBack.length-1]["base"] = "pilebase1bg";
         allCardBack[allCardBack.length-1]["basecount"] = 0;
         allCardBack[allCardBack.length-1]["facingfront"] = false;
         allCardBack[allCardBack.length-1]["draggable"] = false;
         allCardBack[allCardBack.length-1]["clicked"] = false;
+        addOnClickBackOnLatest("pilebase1bg");
+
+        /// Register all back entity to engine
         engine.addEntity(allCardBack[allCardBack.length-1]["entity"]);
+        engine.addEntity(allCardBack[allCardBack.length-2]["entity"]);
+        engine.addEntity(allCardBack[allCardBack.length-3]["entity"]);
+        engine.addEntity(allCardBack[allCardBack.length-4]["entity"]);
+        engine.addEntity(allCardBack[allCardBack.length-5]["entity"]);
+        engine.addEntity(allCardBack[allCardBack.length-6]["entity"]);
+        engine.addEntity(allCardBack[allCardBack.length-7]["entity"]);
+        engine.addEntity(allCardBack[allCardBack.length-8]["entity"]);
+        engine.addEntity(allCardBack[allCardBack.length-9]["entity"]);
+        engine.addEntity(allCardBack[allCardBack.length-10]["entity"]);
+        engine.addEntity(allCardBack[allCardBack.length-11]["entity"]);
+        engine.addEntity(allCardBack[allCardBack.length-12]["entity"]);
     }
 
-    var isPlaying = 0;
+    var isPlaying = 2;
     function cardclick(cardname){
         var cardIndex = 0;
         for( var x = 0 ; x < allEntityCards.length && !cardname.includes("bg") ; x++ ){
@@ -644,6 +649,7 @@ export function SolitaireGame() : void{
                 if(isSomethingClicked()) refreshClickCardsAll();
             }
         }
+        log(cardname);
     }
 
     function moveCard(cardIndex, base){
