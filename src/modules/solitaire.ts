@@ -59,6 +59,7 @@ export function SolitaireGame() : void{
             allEntityCards[x]["base"] = "pilebase1";
             allEntityCards[x]["basecount"] = x;
             allEntityCards[x]["facingfront"] = false;
+            allEntityCards[x]["draggable"] = false;
         }
 
         shuffle(allEntityCards);
@@ -551,10 +552,11 @@ export function SolitaireGame() : void{
                 }
             }
             openTopCard();
+            setDraggable();
             isPlaying = 1;
         }
         else if(isPlaying == 1){
-            log(allEntityCards[x]["name"]);
+            log(allEntityCards[x]["draggable"]);
         }
     }
 
@@ -909,6 +911,85 @@ export function SolitaireGame() : void{
             refreshPosition(data["cardplaybase7index"]);
             refreshRotation(data["cardplaybase7index"]);
         }
+    }
+
+    function setDraggable(){
+        var data = [];
+        data["cardplaybase1index"] = -1;
+        data["cardplaybase1count"] = -1;
+        data["cardplaybase2index"] = -1;
+        data["cardplaybase2count"] = -1;
+        data["cardplaybase3index"] = -1;
+        data["cardplaybase3count"] = -1;
+        data["cardplaybase4index"] = -1;
+        data["cardplaybase4count"] = -1;
+        data["cardplaybase5index"] = -1;
+        data["cardplaybase5count"] = -1;
+        data["cardplaybase6index"] = -1;
+        data["cardplaybase6count"] = -1;
+        data["cardplaybase7index"] = -1;
+        data["cardplaybase7count"] = -1;
+        data["pilebase1index"] = -1;
+        data["pilebase1count"] = -1;
+        data["pilebase2index"] = -1;
+        data["pilebase2count"] = -1;
+        data["dealbase1index"] = -1;
+        data["dealbase1count"] = -1;
+        data["dealbase2index"] = -1;
+        data["dealbase2count"] = -1;
+        data["dealbase3index"] = -1;
+        data["dealbase3count"] = -1;
+        data["dealbase4index"] = -1;
+        data["dealbase4count"] = -1;
+
+        for( var x = 0 ; x < allEntityCards.length ; x++ ){
+            if(allEntityCards[x]["basecount"] > data[allEntityCards[x]["base"]+"count"]){
+                data[allEntityCards[x]["base"]+"index"] = x;
+                data[allEntityCards[x]["base"]+"count"] = allEntityCards[x]["basecount"];
+            }
+            allEntityCards[x]["draggable"] = false;
+        }
+
+        if(data["cardplaybase1index"] != -1 && allEntityCards[data["cardplaybase1index"]]["draggable"] == false){
+            allEntityCards[data["cardplaybase1index"]]["draggable"] = true;
+        }
+        if(data["cardplaybase2index"] != -1 && allEntityCards[data["cardplaybase2index"]]["draggable"] == false){
+            allEntityCards[data["cardplaybase2index"]]["draggable"] = true;
+        }
+        if(data["cardplaybase3index"] != -1 && allEntityCards[data["cardplaybase3index"]]["draggable"] == false){
+            allEntityCards[data["cardplaybase3index"]]["draggable"] = true;
+        }
+        if(data["cardplaybase4index"] != -1 && allEntityCards[data["cardplaybase4index"]]["draggable"] == false){
+            allEntityCards[data["cardplaybase4index"]]["draggable"] = true;
+        }
+        if(data["cardplaybase5index"] != -1 && allEntityCards[data["cardplaybase5index"]]["draggable"] == false){
+            allEntityCards[data["cardplaybase5index"]]["draggable"] = true;
+        }
+        if(data["cardplaybase6index"] != -1 && allEntityCards[data["cardplaybase6index"]]["draggable"] == false){
+            allEntityCards[data["cardplaybase6index"]]["draggable"] = true;
+        }
+        if(data["cardplaybase7index"] != -1 && allEntityCards[data["cardplaybase7index"]]["draggable"] == false){
+            allEntityCards[data["cardplaybase7index"]]["draggable"] = true;
+        }
+        if(data["pilebase1index"] != -1 && allEntityCards[data["pilebase1index"]]["draggable"] == false){
+            allEntityCards[data["pilebase1index"]]["draggable"] = true;
+        }
+        if(data["pilebase2index"] != -1 && allEntityCards[data["pilebase2index"]]["draggable"] == false){
+            allEntityCards[data["pilebase2index"]]["draggable"] = true;
+        }
+        if(data["dealbase1index"] != -1 && allEntityCards[data["dealbase1index"]]["draggable"] == false){
+            allEntityCards[data["dealbase1index"]]["draggable"] = true;
+        }
+        if(data["dealbase2index"] != -1 && allEntityCards[data["dealbase2index"]]["draggable"] == false){
+            allEntityCards[data["dealbase2index"]]["draggable"] = true;
+        }
+        if(data["dealbase3index"] != -1 && allEntityCards[data["dealbase3index"]]["draggable"] == false){
+            allEntityCards[data["dealbase3index"]]["draggable"] = true;
+        }
+        if(data["dealbase4index"] != -1 && allEntityCards[data["dealbase4index"]]["draggable"] == false){
+            allEntityCards[data["dealbase4index"]]["draggable"] = true;
+        }
+
     }
 
     prepareAllCards();
