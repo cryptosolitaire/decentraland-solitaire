@@ -1050,7 +1050,26 @@ export function SolitaireGame() : void{
         }
     }
 
-    function clipToDealBase(fromcard,tocard){
+    function clipToDealBase(dealbase,fromcard){
+
+        var data = [];
+        data[dealbase + "index"] = -1;
+        data[dealbase + "count"] = -1;
+
+        for( var x = 0 ; x < allEntityCards.length ; x++ ){
+            if(allEntityCards[x]["base"] == dealbase && allEntityCards[x]["basecount"] > data[allEntityCards[x]["base"]+"count"]){
+                data[allEntityCards[x]["base"]+"index"] = x;
+                data[allEntityCards[x]["base"]+"count"] = allEntityCards[x]["basecount"];
+            }
+        }
+
+        var tocard;
+        if (data[dealbase+"index"] == -1) tocard = "empty";
+        else tocard = allEntityCards[data[dealbase+"index"]]["name"];
+
+        if(tocard == "empty" && fromcard[0] == "a") return true;
+        else if (tocard == "empty" && fromcard[0] != "a") return false;
+
         var fromcardsuit = fromcard[fromcard.length-1];
         var fromcardsuitnumber;
         var tocardsuit = tocard[tocard.length-1];
@@ -1075,7 +1094,7 @@ export function SolitaireGame() : void{
             }
         }
 
-        if(fromcardsuit == tocardsuit && fromcardsuitnumber < tocardsuitnumber){
+        if(fromcardsuit == tocardsuit && fromcardsuitnumber > tocardsuitnumber){
             return true;
         }
         else{
