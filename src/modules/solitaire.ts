@@ -501,7 +501,7 @@ export function SolitaireGame() : void{
         engine.addEntity(allCardBack[allCardBack.length-12]["entity"]);
     }
 
-    var isPlaying = 2;
+    var isPlaying = 0;
     function cardclick(cardname){
         var cardIndex = 0;
         for( var x = 0 ; x < allEntityCards.length && !cardname.includes("bg") ; x++ ){
@@ -634,7 +634,6 @@ export function SolitaireGame() : void{
                 if(isSomethingClicked()) refreshClickCardsAll();
             }
         }
-        log(cardname);
     }
 
     function moveCard(cardIndex, base){
