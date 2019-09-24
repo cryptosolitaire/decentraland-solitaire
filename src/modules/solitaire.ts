@@ -1239,10 +1239,14 @@ export function SolitaireGame() : void{
         }
     }
 
-    prepareAllCards();
-    loadAllCards();
-    loadCardBases();
-    refreshPositionAll();
-    refreshRotationAll();
+    function newGame(){
+        prepareAllCards();
+        loadAllCards();
+        loadCardBases();
+        refreshPositionAll();
+        refreshRotationAll();
+    }
+
+    newGame();
 }
 
