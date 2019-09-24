@@ -1187,9 +1187,9 @@ export function SolitaireGame() : void{
                     if(allEntityCards[x]["base"] == "pilebase2") allEntityCards[x]["draggable"] = false;
                 }
 
-                moveCard(pilebase1index,"pilebase2");
                 allEntityCards[pilebase1index]["facingfront"] = true;
                 allEntityCards[pilebase1index]["draggable"] = true;
+                moveCard(pilebase1index,"pilebase2");
                 refreshRotation(pilebase1index);
             }
         }
