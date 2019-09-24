@@ -148,9 +148,8 @@ export function SolitaireGame() : void{
     }
 
     function newGame(){
-        prepareAllCards();
-        loadAllCards();
-        loadCardBases();
+        shuffle(allEntityCards);
+        resetAllCards();
         refreshPositionAll();
         refreshRotationAll();
     }
