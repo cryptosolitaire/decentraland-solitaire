@@ -1245,6 +1245,7 @@ export function SolitaireGame() : void{
         }
     }
 
+    initialLoad();
     newGame();
 }
 
