@@ -1,4 +1,5 @@
 export function SolitaireGame() : void{
+    /* #region Code Variables */
     let solitairePositionX = 7.75;
     let solitairePositionY = 1;
     let solitairePositionZ = 6;
@@ -21,7 +22,6 @@ export function SolitaireGame() : void{
     var spacingY;
     var spacingZ;
 
-
     cardbasetop = solitairePositionZ - 0.5;
     cardbaseleft["cardplaybase1"] = solitairePositionX;
     cardbaseleft["cardplaybase2"] = solitairePositionX + 0.25;
@@ -41,8 +41,9 @@ export function SolitaireGame() : void{
     pilebaseleft2 = cardbaseleft["cardplaybase2"] ;
     spacingY = 0.001;
     spacingZ = 0.06;
+    /* #endregion */
 
-    /// Initial load functions
+    /* #region Initial load functions */
     function prepareAllCards(){
         allEntityCards = [];
 
@@ -192,9 +193,9 @@ export function SolitaireGame() : void{
         loadAllCards();
         loadCardBases();
     }
-    /// ----------------------
+    /* #endregion */
 
-    /// New Game functions
+    /* #region New Game functions */
     function resetAllCards(){
         for(var x = 0 ; x < allEntityCards.length ; x++ ){
             allEntityCards[x]["base"] = "pilebase1";
@@ -228,7 +229,19 @@ export function SolitaireGame() : void{
         refreshPositionAll();
         refreshRotationAll();
     }
-    /// ------------------
+    /* #endregion */
+
+    /* #region World template */
+
+    /* #endregion */
+
+    /* #region Game Logic */
+
+    /* #endregion */
+
+    /* #region Game Functions */
+
+    /* #endregion */
 
     // Define all cards
     var allCards = ["ac","ad","ah","as","2c","2d","2h","2s","3c","3d","3h","3s","4c","4d","4h","4s","5c","5d","5h","6s","6c","6d","6h","6s","7c","7d","7h","7s","8c","8d","8h","8s","9c","9d","9h","9s","10c","10d","10h","10s","jc","jd","jh","js","qc","qd","qh","qs","kc","kd","kh","ks"];
