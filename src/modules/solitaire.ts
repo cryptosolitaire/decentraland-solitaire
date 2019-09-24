@@ -140,6 +140,13 @@ export function SolitaireGame() : void{
     /// ----------------------
 
     /// New Game functions
+    function resetAllCards(){
+        for(var x = 0 ; x < allEntityCards.length ; x++ ){
+            allEntityCards[x]["base"] = "pilebase1";
+            allEntityCards[x]["basecount"] = x;
+        }
+    }
+
     function newGame(){
         prepareAllCards();
         loadAllCards();
