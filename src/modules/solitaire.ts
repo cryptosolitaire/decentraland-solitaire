@@ -1203,15 +1203,17 @@ export function SolitaireGame() : void{
 
             for(var x = 0 ; x < allpilebase2index.length ; x++ ){
                 for(var y = 0 ; y < allpilebase2index.length - 1 ; y++ ){
-                    if(allEntityCards[allpilebase2index[x]]["basecount"] > allEntityCards[allpilebase2index[x+1]]["basecount"]){
-                        var tempvar = allpilebase2index[x];
-                        allpilebase2index[x]= allpilebase2index[x+1];
-                        allpilebase2index[x+1] = tempvar;
+                    if(allEntityCards[allpilebase2index[y]]["basecount"] > allEntityCards[allpilebase2index[y+1]]["basecount"]){
+                        var tempvar = allpilebase2index[y];
+                        allpilebase2index[y]= allpilebase2index[y+1];
+                        allpilebase2index[y+1] = tempvar;
                     }
                 }
             }
 
             for(var x = allpilebase2index.length - 1 ; x >= 0 ; x-- ){
+                allEntityCards[allpilebase2index[x]]["facingfront"] = false;
+                refreshRotation(allpilebase2index[x]);
                 moveCard(allpilebase2index[x],"pilebase1");
             }
         }
