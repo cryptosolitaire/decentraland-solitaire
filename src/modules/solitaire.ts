@@ -503,6 +503,50 @@ export function SolitaireGame() : void{
 
     var isPlaying = 0;
     function cardclick(cardname){
+        if(isPlaying == 0){
+            startGame();
+        }
+        else if(isPlaying == 1){
+            if(!isSomethingClicked()){
+                click1(cardname);
+            }
+            else{
+                click2(cardname);
+            }
+        }
+    }
+
+    function startGame(){
+        isPlaying = -1;
+        for( var y = allEntityCards.length - 1 ; y >= allEntityCards.length - 29 ; y-- ){
+            if(y == 51){
+                moveCard(y,"cardplaybase1");
+            }
+            else if(y >= 49 && y <= 50){
+                moveCard(y,"cardplaybase2");
+            }
+            else if(y >= 46 && y <= 48){
+                moveCard(y,"cardplaybase3");
+            }
+            else if(y >= 42 && y <= 45){
+                moveCard(y,"cardplaybase4");
+            }
+            else if(y >= 37 && y <= 41){
+                moveCard(y,"cardplaybase5");
+            }
+            else if(y >= 31 && y <= 36){
+                moveCard(y,"cardplaybase6");
+            }
+            else if(y >= 24 && y <= 30){
+                moveCard(y,"cardplaybase7");
+            }
+        }
+        openTopCard();
+        setDraggable();
+        isPlaying = 1;
+    }
+
+    function click1(cardname){
         var cardIndex = 0;
         for( var x = 0 ; x < allEntityCards.length && !cardname.includes("bg") ; x++ ){
             if(allEntityCards[x]["name"] == cardname){
@@ -511,135 +555,111 @@ export function SolitaireGame() : void{
             }
         }
 
-        if(isPlaying == 0){
-            isPlaying = -1;
-            for( var y = allEntityCards.length - 1 ; y >= allEntityCards.length - 29 ; y-- ){
-                if(y == 51){
-                    moveCard(y,"cardplaybase1");
-                }
-                else if(y >= 49 && y <= 50){
-                    moveCard(y,"cardplaybase2");
-                }
-                else if(y >= 46 && y <= 48){
-                    moveCard(y,"cardplaybase3");
-                }
-                else if(y >= 42 && y <= 45){
-                    moveCard(y,"cardplaybase4");
-                }
-                else if(y >= 37 && y <= 41){
-                    moveCard(y,"cardplaybase5");
-                }
-                else if(y >= 31 && y <= 36){
-                    moveCard(y,"cardplaybase6");
-                }
-                else if(y >= 24 && y <= 30){
-                    moveCard(y,"cardplaybase7");
+        if(cardname.includes("bg")){
+            if(cardname.includes("pilebase1")){
+                /// Reset pilebase1 return all cards from pilebase2 to pilebase1
+                drawPile();
+            }
+        }
+        else if(allEntityCards[cardIndex]["base"].includes("cardplaybase")){
+            if(allEntityCards[cardIndex]["draggable"]){
+                for(var x = 0 ; x < allEntityCards.length ; x++ ){
+                    if(allEntityCards[x]["basecount"] >= allEntityCards[cardIndex]["basecount"] && allEntityCards[x]["base"] == allEntityCards[cardIndex]["base"]){
+                        allEntityCards[x]["clicked"] = true;
+                    }
                 }
             }
-            openTopCard();
-            setDraggable();
-            isPlaying = 1;
         }
-        else if(isPlaying == 1){
-            if(isSomethingClicked()){
-                var clickedIndex = [];
+        else if(allEntityCards[cardIndex]["base"].includes("dealbase")){
+            if(allEntityCards[cardIndex]["draggable"]){
+                allEntityCards[cardIndex]["clicked"] = true;
+            }
+        }
+        else if(allEntityCards[cardIndex]["base"].includes("pilebase")){
+            if(allEntityCards[cardIndex]["base"] == "pilebase2" && allEntityCards[cardIndex]["draggable"]){
+                allEntityCards[cardIndex]["clicked"] = true;
+            }
+            else if(allEntityCards[cardIndex]["base"] == "pilebase1"){
+                //Open pilebase1 to pilebase2 here
+                drawPile();
+            }
+        }
 
-                for (var x = 0 ; x < allEntityCards.length; x++ ){
-                    if(allEntityCards[x]["clicked"]) clickedIndex.push(x);
+        if(isSomethingClicked()) refreshClickCardsAll();
+    }
+
+    function click2(cardname){
+        var cardIndex = 0;
+        for( var x = 0 ; x < allEntityCards.length && !cardname.includes("bg") ; x++ ){
+            if(allEntityCards[x]["name"] == cardname){
+                cardIndex = x;
+                break;
+            }
+        }
+
+        var clickedIndex = [];
+
+        for (var x = 0 ; x < allEntityCards.length; x++ ){
+            if(allEntityCards[x]["clicked"]) clickedIndex.push(x);
+        }
+
+        for (var x = 0 ; x < clickedIndex.length ; x++ ){
+            for(var y = 0 ; y < clickedIndex.length - 1 ; y++ ){
+                if(allEntityCards[clickedIndex[y]]["basecount"] > (allEntityCards[clickedIndex[y + 1]]["basecount"])){
+                    var tempvar = clickedIndex[y];
+                    clickedIndex[y] = clickedIndex[y + 1];
+                    clickedIndex[y+1] = tempvar;
                 }
+            }
+        }
 
+        if(cardname.includes("bg")){
+            if(cardname.includes("cardplaybase")){
+                if(cardname.substring(0,13) != allEntityCards[clickedIndex[0]]["base"] && clipToCardBase(cardname.substring(0,13),allEntityCards[clickedIndex[0]]["name"])){
+                    moveCard(clickedIndex[x],cardname.substring(0,13));
+                    openTopCard();
+                    setDraggable();
+                }
+            }
+            else if(cardname.includes("dealbase")){
+                if(cardname.substring(0,9) != allEntityCards[clickedIndex[0]]["base"] && clickedIndex.length == 1  && clipToDealBase(cardname.substring(0,9),allEntityCards[clickedIndex[0]]["name"])){
+                    moveCard(clickedIndex[0],cardname.substring(0,9));
+                    openTopCard();
+                    setDraggable();
+                }
+            }
+            else if(cardname.includes("pilebase")){
+                /// Reset pilebase1 return all cards from pilebase2 to pilebase1
+                drawPile();
+            }
+        }
+        else if(allEntityCards[cardIndex]["base"].includes("cardplaybase")){
+            if(allEntityCards[cardIndex]["base"] != allEntityCards[clickedIndex[0]]["base"] && clipToCardBase(allEntityCards[cardIndex]["base"],allEntityCards[clickedIndex[0]]["name"])){
                 for (var x = 0 ; x < clickedIndex.length ; x++ ){
-                    for(var y = 0 ; y < clickedIndex.length - 1 ; y++ ){
-                        if(allEntityCards[clickedIndex[y]]["basecount"] > (allEntityCards[clickedIndex[y + 1]]["basecount"])){
-                            var tempvar = clickedIndex[y];
-                            clickedIndex[y] = clickedIndex[y + 1];
-                            clickedIndex[y+1] = tempvar;
-                        }
-                    }
+                    moveCard(clickedIndex[x],allEntityCards[cardIndex]["base"]);
+                    openTopCard();
+                    setDraggable();
                 }
-
-                if(cardname.includes("bg")){
-                    if(cardname.includes("cardplaybase")){
-                        if(cardname.substring(0,13) != allEntityCards[clickedIndex[0]]["base"] && clipToCardBase(cardname.substring(0,13),allEntityCards[clickedIndex[0]]["name"])){
-                            moveCard(clickedIndex[x],cardname.substring(0,13));
-                            openTopCard();
-                            setDraggable();
-                        }
-                    }
-                    else if(cardname.includes("dealbase")){
-                        if(cardname.substring(0,9) != allEntityCards[clickedIndex[0]]["base"] && clickedIndex.length == 1  && clipToDealBase(cardname.substring(0,9),allEntityCards[clickedIndex[0]]["name"])){
-                            moveCard(clickedIndex[0],cardname.substring(0,9));
-                            openTopCard();
-                            setDraggable();
-                        }
-                    }
-                    else if(cardname.includes("pilebase")){
-                        /// Reset pilebase1 return all cards from pilebase2 to pilebase1
-                        drawPile();
-                    }
-                }
-                else if(allEntityCards[cardIndex]["base"].includes("cardplaybase")){
-                    if(allEntityCards[cardIndex]["base"] != allEntityCards[clickedIndex[0]]["base"] && clipToCardBase(allEntityCards[cardIndex]["base"],allEntityCards[clickedIndex[0]]["name"])){
-                        for (var x = 0 ; x < clickedIndex.length ; x++ ){
-                            moveCard(clickedIndex[x],allEntityCards[cardIndex]["base"]);
-                            openTopCard();
-                            setDraggable();
-                        }
-                    }
-                }
-                else if(allEntityCards[cardIndex]["base"].includes("dealbase")){
-                    if(allEntityCards[cardIndex]["base"] != allEntityCards[clickedIndex[0]]["base"] && clickedIndex.length == 1 && clipToDealBase(allEntityCards[cardIndex]["base"],allEntityCards[clickedIndex[0]]["name"])){
-                        moveCard(clickedIndex[0],allEntityCards[cardIndex]["base"]);
-                        openTopCard();
-                        setDraggable();
-                    }
-                }
-                else if(allEntityCards[cardIndex]["base"].includes("pilebase")){
-                    if(allEntityCards[cardIndex]["base"] == "pilebase1"){
-                        //Open pilebase1 here
-                        drawPile();
-                    }
-                }
-
-                for (var x = 0 ; x < allEntityCards.length ; x++ ){
-                    allEntityCards[x]["clicked"] = false;
-                }
-                refreshClickCardsAll();
-            }
-            else{
-                if(cardname.includes("bg")){
-                    if(cardname.includes("pilebase1")){
-                        /// Reset pilebase1 return all cards from pilebase2 to pilebase1
-                        drawPile();
-                    }
-                }
-                else if(allEntityCards[cardIndex]["base"].includes("cardplaybase")){
-                    if(allEntityCards[cardIndex]["draggable"]){
-                        for(var x = 0 ; x < allEntityCards.length ; x++ ){
-                            if(allEntityCards[x]["basecount"] >= allEntityCards[cardIndex]["basecount"] && allEntityCards[x]["base"] == allEntityCards[cardIndex]["base"]){
-                                allEntityCards[x]["clicked"] = true;
-                            }
-                        }
-                    }
-                }
-                else if(allEntityCards[cardIndex]["base"].includes("dealbase")){
-                    if(allEntityCards[cardIndex]["draggable"]){
-                        allEntityCards[cardIndex]["clicked"] = true;
-                    }
-                }
-                else if(allEntityCards[cardIndex]["base"].includes("pilebase")){
-                    if(allEntityCards[cardIndex]["base"] == "pilebase2" && allEntityCards[cardIndex]["draggable"]){
-                        allEntityCards[cardIndex]["clicked"] = true;
-                    }
-                    else if(allEntityCards[cardIndex]["base"] == "pilebase1"){
-                        //Open pilebase1 to pilebase2 here
-                        drawPile();
-                    }
-                }
-
-                if(isSomethingClicked()) refreshClickCardsAll();
             }
         }
+        else if(allEntityCards[cardIndex]["base"].includes("dealbase")){
+            if(allEntityCards[cardIndex]["base"] != allEntityCards[clickedIndex[0]]["base"] && clickedIndex.length == 1 && clipToDealBase(allEntityCards[cardIndex]["base"],allEntityCards[clickedIndex[0]]["name"])){
+                moveCard(clickedIndex[0],allEntityCards[cardIndex]["base"]);
+                openTopCard();
+                setDraggable();
+            }
+        }
+        else if(allEntityCards[cardIndex]["base"].includes("pilebase")){
+            if(allEntityCards[cardIndex]["base"] == "pilebase1"){
+                //Open pilebase1 here
+                drawPile();
+            }
+        }
+
+        for (var x = 0 ; x < allEntityCards.length ; x++ ){
+            allEntityCards[x]["clicked"] = false;
+        }
+        refreshClickCardsAll();
     }
 
     function moveCard(cardIndex, base){
