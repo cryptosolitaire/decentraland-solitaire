@@ -42,13 +42,7 @@ export function SolitaireGame() : void{
     spacingY = 0.001;
     spacingZ = 0.06;
 
-
-    // Define all cards
-    var allCards = ["ac","ad","ah","as","2c","2d","2h","2s","3c","3d","3h","3s","4c","4d","4h","4s","5c","5d","5h","6s","6c","6d","6h","6s","7c","7d","7h","7s","8c","8d","8h","8s","9c","9d","9h","9s","10c","10d","10h","10s","jc","jd","jh","js","qc","qd","qh","qs","kc","kd","kh","ks"];
-
-    // Render all cards
-    var allEntityCards = [];
-
+    /// Initial load functions
     function prepareAllCards(){
         allEntityCards = [];
 
@@ -64,47 +58,6 @@ export function SolitaireGame() : void{
         }
 
         shuffle(allEntityCards);
-    }
-
-    // To shuffle array
-    function shuffle(array) {
-        var currentIndex = array.length, temporaryValue, randomIndex;
-
-        // While there remain elements to shuffle...
-        while (0 !== currentIndex) {
-
-          // Pick a remaining element...
-          randomIndex = Math.floor(Math.random() * currentIndex);
-          currentIndex -= 1;
-
-          // And swap it with the current element.
-          temporaryValue = array[currentIndex];
-          array[currentIndex] = array[randomIndex];
-          array[randomIndex] = temporaryValue;
-        }
-
-        return array;
-    }
-
-    function initialCardOrder(){
-        var count = [];
-        count["pilebase1"] = 0;
-        count["pilebase2"] = 0;
-        count["dealbase1"] = 0;
-        count["dealbase2"] = 0;
-        count["dealbase3"] = 0;
-        count["dealbase4"] = 0;
-        count["cardplaybase1"] = 0;
-        count["cardplaybase2"] = 0;
-        count["cardplaybase3"] = 0;
-        count["cardplaybase4"] = 0;
-        count["cardplaybase5"] = 0;
-        count["cardplaybase6"] = 0;
-        count["cardplaybase7"] = 0;
-
-        for( var x = 0 ; x < allEntityCards.length ; x++ ){
-            allEntityCards[x]["basecount"] = count[allEntityCards[x]["base"]]++;
-        }
     }
 
     function loadAllCards(){
@@ -173,6 +126,56 @@ export function SolitaireGame() : void{
         engine.addEntity(allEntityCards[51]["entity"]);
 
         initialCardOrder();
+    }
+    /// ----------------------
+
+    // Define all cards
+    var allCards = ["ac","ad","ah","as","2c","2d","2h","2s","3c","3d","3h","3s","4c","4d","4h","4s","5c","5d","5h","6s","6c","6d","6h","6s","7c","7d","7h","7s","8c","8d","8h","8s","9c","9d","9h","9s","10c","10d","10h","10s","jc","jd","jh","js","qc","qd","qh","qs","kc","kd","kh","ks"];
+
+    // Render all cards
+    var allEntityCards = [];
+
+
+
+    // To shuffle array
+    function shuffle(array) {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+
+          // Pick a remaining element...
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex -= 1;
+
+          // And swap it with the current element.
+          temporaryValue = array[currentIndex];
+          array[currentIndex] = array[randomIndex];
+          array[randomIndex] = temporaryValue;
+        }
+
+        return array;
+    }
+
+    function initialCardOrder(){
+        var count = [];
+        count["pilebase1"] = 0;
+        count["pilebase2"] = 0;
+        count["dealbase1"] = 0;
+        count["dealbase2"] = 0;
+        count["dealbase3"] = 0;
+        count["dealbase4"] = 0;
+        count["cardplaybase1"] = 0;
+        count["cardplaybase2"] = 0;
+        count["cardplaybase3"] = 0;
+        count["cardplaybase4"] = 0;
+        count["cardplaybase5"] = 0;
+        count["cardplaybase6"] = 0;
+        count["cardplaybase7"] = 0;
+
+        for( var x = 0 ; x < allEntityCards.length ; x++ ){
+            allEntityCards[x]["basecount"] = count[allEntityCards[x]["base"]]++;
+        }
     }
 
     function addOnClick(index){
