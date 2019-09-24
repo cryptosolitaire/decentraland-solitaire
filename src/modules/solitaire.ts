@@ -575,6 +575,7 @@ export function SolitaireGame() : void{
                     }
                     else if(cardname.includes("pilebase")){
                         /// Reset pilebase1 return all cards from pilebase2 to pilebase1
+                        drawPile();
                     }
                 }
                 else if(allEntityCards[cardIndex]["base"].includes("cardplaybase")){
@@ -596,6 +597,7 @@ export function SolitaireGame() : void{
                 else if(allEntityCards[cardIndex]["base"].includes("pilebase")){
                     if(allEntityCards[cardIndex]["base"] == "pilebase1"){
                         //Open pilebase1 here
+                        drawPile();
                     }
                 }
 
@@ -608,6 +610,7 @@ export function SolitaireGame() : void{
                 if(cardname.includes("bg")){
                     if(cardname.includes("pilebase1")){
                         /// Reset pilebase1 return all cards from pilebase2 to pilebase1
+                        drawPile();
                     }
                 }
                 else if(allEntityCards[cardIndex]["base"].includes("cardplaybase")){
@@ -630,6 +633,7 @@ export function SolitaireGame() : void{
                     }
                     else if(allEntityCards[cardIndex]["base"] == "pilebase1"){
                         //Open pilebase1 to pilebase2 here
+                        drawPile();
                     }
                 }
 
@@ -1158,6 +1162,59 @@ export function SolitaireGame() : void{
         }
 
         return false;
+    }
+
+    function drawPile(){
+        var pilebase1count = 0;
+        for(var x = 0 ; x < allEntityCards.length ; x++ ){
+            if(allEntityCards[x]["base"] == "pilebase1") pilebase1count++;
+        }
+
+        if(pilebase1count > 0){
+            // movecard to pilebase2
+            var pilebase1index = -1;
+            var pilebase1count = -1;
+
+            for(var x = 0 ; x < allEntityCards.length ; x++ ){
+                if(allEntityCards[x]["base"] == "pilebase1" && allEntityCards[x]["basecount"] > pilebase1count){
+                    pilebase1index = x;
+                    pilebase1count = allEntityCards[x]["basecount"];
+                }
+            }
+
+            if(pilebase1index != -1){
+                for(var x = 0 ; x < allEntityCards.length ; x++ ){
+                    if(allEntityCards[x]["base"] == "pilebase2") allEntityCards[x]["draggable"] = false;
+                }
+
+                moveCard(pilebase1index,"pilebase2");
+                allEntityCards[pilebase1index]["facingfront"] = true;
+                allEntityCards[pilebase1index]["draggable"] = true;
+                refreshRotation(pilebase1index);
+            }
+        }
+        else{
+            // draw all cards back to base
+            var allpilebase2index = [];
+
+            for(var x = 0 ; x < allEntityCards.length ; x++ ){
+                if(allEntityCards[x]["base"] == "pilebase2") allpilebase2index.push(x);
+            }
+
+            for(var x = 0 ; x < allpilebase2index.length ; x++ ){
+                for(var y = 0 ; y < allpilebase2index.length - 1 ; y++ ){
+                    if(allEntityCards[allpilebase2index[x]]["basecount"] > allEntityCards[allpilebase2index[x+1]]["basecount"]){
+                        var tempvar = allEntityCards[allpilebase2index[x]]["basecount"];
+                        allEntityCards[allpilebase2index[x]]["basecount"] = allEntityCards[allpilebase2index[x+1]]["basecount"];
+                        allEntityCards[allpilebase2index[x+1]]["basecount"] = tempvar;
+                    }
+                }
+            }
+
+            for(var x = allpilebase2index.length - 1 ; x >= 0 ; x-- ){
+                moveCard(allpilebase2index[x],"pilebase1");
+            }
+        }
     }
 
     prepareAllCards();
