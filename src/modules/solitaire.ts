@@ -191,8 +191,6 @@ export function SolitaireGame() : void{
         prepareAllCards();
         loadAllCards();
         loadCardBases();
-        refreshPositionAll();
-        refreshRotationAll();
     }
     /// ----------------------
 
