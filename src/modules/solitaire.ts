@@ -53,6 +53,9 @@ export function SolitaireGame() : void{
 
     // For refreshClickCards(cardIndex) function
     var clickedliftsize = 0.05;
+
+    // For cardclick(cardname) function
+    var isPlaying = 0;
     /* #endregion */
 
     /* #region Initial load functions */
@@ -524,7 +527,6 @@ export function SolitaireGame() : void{
         }));
     }
 
-    var isPlaying = 0;
     function cardclick(cardname){
         if(isPlaying == 0){
             startGame();
