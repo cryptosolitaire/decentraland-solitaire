@@ -1204,9 +1204,9 @@ export function SolitaireGame() : void{
             for(var x = 0 ; x < allpilebase2index.length ; x++ ){
                 for(var y = 0 ; y < allpilebase2index.length - 1 ; y++ ){
                     if(allEntityCards[allpilebase2index[x]]["basecount"] > allEntityCards[allpilebase2index[x+1]]["basecount"]){
-                        var tempvar = allEntityCards[allpilebase2index[x]]["basecount"];
-                        allEntityCards[allpilebase2index[x]]["basecount"] = allEntityCards[allpilebase2index[x+1]]["basecount"];
-                        allEntityCards[allpilebase2index[x+1]]["basecount"] = tempvar;
+                        var tempvar = allpilebase2index[x];
+                        allpilebase2index[x]= allpilebase2index[x+1];
+                        allpilebase2index[x+1] = tempvar;
                     }
                 }
             }
