@@ -798,7 +798,7 @@ export function SolitaireGameVertical() : void{
     function refreshClickCards(cardIndex){
         refreshPosition(cardIndex);
         var cardposition = allEntityCards[cardIndex]["entity"].getComponent(Transform).position;
-        if(allEntityCards[cardIndex]["clicked"]) cardposition.set(cardposition.x,cardposition.y + clickedliftsize,cardposition.z);
+        if(allEntityCards[cardIndex]["clicked"]) cardposition.set(cardposition.x,cardposition.y,cardposition.z - clickedliftsize);
     }
 
     /* #endregion */
