@@ -1,7 +1,7 @@
 export function SolitaireGameVertical() : void{
     /* #region Code Variables */
     let solitairePositionX = 7.75;
-    let solitairePositionY = 1;
+    let solitairePositionY = 2;
     let solitairePositionZ = 6;
 
     let solitaireRotationX = 0;
