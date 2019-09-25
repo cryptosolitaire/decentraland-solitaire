@@ -1,4 +1,5 @@
 export function SolitaireGame() : void{
+    /* #region Code Variables */
     let solitairePositionX = 7.75;
     let solitairePositionY = 1;
     let solitairePositionZ = 6;
@@ -21,7 +22,6 @@ export function SolitaireGame() : void{
     var spacingY;
     var spacingZ;
 
-
     cardbasetop = solitairePositionZ - 0.5;
     cardbaseleft["cardplaybase1"] = solitairePositionX;
     cardbaseleft["cardplaybase2"] = solitairePositionX + 0.25;
@@ -42,13 +42,23 @@ export function SolitaireGame() : void{
     spacingY = 0.001;
     spacingZ = 0.06;
 
-
     // Define all cards
-    var allCards = ["ac","ad","ah","as","2c","2d","2h","2s","3c","3d","3h","3s","4c","4d","4h","4s","5c","5d","5h","6s","6c","6d","6h","6s","7c","7d","7h","7s","8c","8d","8h","8s","9c","9d","9h","9s","10c","10d","10h","10s","jc","jd","jh","js","qc","qd","qh","qs","kc","kd","kh","ks"];
+    var allCards = ["ac","ad","ah","as","2c","2d","2h","2s","3c","3d","3h","3s","4c","4d","4h","4s","5c","5d","5h","5s","6c","6d","6h","6s","7c","7d","7h","7s","8c","8d","8h","8s","9c","9d","9h","9s","10c","10d","10h","10s","jc","jd","jh","js","qc","qd","qh","qs","kc","kd","kh","ks"];
 
     // Render all cards
     var allEntityCards = [];
 
+    // For clipToCardBase() function
+    let suitCards = ["a","2","3","4","5","6","7","8","9","10","j","q","k"];
+
+    // For refreshClickCards(cardIndex) function
+    var clickedliftsize = 0.05;
+
+    // For cardclick(cardname) function
+    var isPlaying = 0;
+    /* #endregion */
+
+    /* #region Initial load functions */
     function prepareAllCards(){
         allEntityCards = [];
 
@@ -64,47 +74,6 @@ export function SolitaireGame() : void{
         }
 
         shuffle(allEntityCards);
-    }
-
-    // To shuffle array
-    function shuffle(array) {
-        var currentIndex = array.length, temporaryValue, randomIndex;
-
-        // While there remain elements to shuffle...
-        while (0 !== currentIndex) {
-
-          // Pick a remaining element...
-          randomIndex = Math.floor(Math.random() * currentIndex);
-          currentIndex -= 1;
-
-          // And swap it with the current element.
-          temporaryValue = array[currentIndex];
-          array[currentIndex] = array[randomIndex];
-          array[randomIndex] = temporaryValue;
-        }
-
-        return array;
-    }
-
-    function initialCardOrder(){
-        var count = [];
-        count["pilebase1"] = 0;
-        count["pilebase2"] = 0;
-        count["dealbase1"] = 0;
-        count["dealbase2"] = 0;
-        count["dealbase3"] = 0;
-        count["dealbase4"] = 0;
-        count["cardplaybase1"] = 0;
-        count["cardplaybase2"] = 0;
-        count["cardplaybase3"] = 0;
-        count["cardplaybase4"] = 0;
-        count["cardplaybase5"] = 0;
-        count["cardplaybase6"] = 0;
-        count["cardplaybase7"] = 0;
-
-        for( var x = 0 ; x < allEntityCards.length ; x++ ){
-            allEntityCards[x]["basecount"] = count[allEntityCards[x]["base"]]++;
-        }
     }
 
     function loadAllCards(){
@@ -172,7 +141,66 @@ export function SolitaireGame() : void{
         engine.addEntity(allEntityCards[50]["entity"]);
         engine.addEntity(allEntityCards[51]["entity"]);
 
-        initialCardOrder();
+        for( var x = 0 ; x < allEntityCards.length ; x++ ){
+            allEntityCards[x]["basecount"] = x;
+        }
+    }
+
+    var allCardBack = [];
+    function loadCardBases(){
+        /// Cardplaybase back
+        for(var x = 1 ; x <= 7 ; x++ ){
+            allCardBack[allCardBack.length] = [];
+            allCardBack[allCardBack.length-1]["name"] = "cardplaybase"+x+"bg";
+            allCardBack[allCardBack.length-1]["entity"] = new Entity();
+            allCardBack[allCardBack.length-1]["entity"].addComponent(new GLTFShape("models/cards/back.gltf"));
+            allCardBack[allCardBack.length-1]["entity"].addComponent(new Transform());
+            allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
+            allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).position.set(cardbaseleft["cardplaybase"+x] + (cardOriginalSize * cardScale), solitairePositionY, cardbasetop);
+            allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).rotation.setEuler(solitaireRotationX, 180, 0);
+            // Using dynamic setting of add component onclick does not register dynamic variable
+            addOnClickBackOnLatest("cardplaybase"+x+"bg");
+        }
+
+
+        /// Dealbase back
+        for(var x = 1 ; x <= 4 ; x++ ){
+            allCardBack[allCardBack.length] = [];
+            allCardBack[allCardBack.length-1]["name"] = "dealbase"+x+"bg";
+            allCardBack[allCardBack.length-1]["entity"] = new Entity();
+            allCardBack[allCardBack.length-1]["entity"].addComponent(new GLTFShape("models/cards/back.gltf"));
+            allCardBack[allCardBack.length-1]["entity"].addComponent(new Transform());
+            allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
+            allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).position.set(dealbaseleft["dealbase"+x] + (cardOriginalSize * cardScale), solitairePositionY, dealbasetop);
+            allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).rotation.setEuler(solitaireRotationX, 180, 0);
+            // Using dynamic setting of add component onclick does not register dynamic variable
+            addOnClickBackOnLatest("dealbase"+x+"bg");
+        }
+
+        /// Pilebase back
+        allCardBack[allCardBack.length] = [];
+        allCardBack[allCardBack.length-1]["name"] = "pilebase1bg";
+        allCardBack[allCardBack.length-1]["entity"] = new Entity();
+        allCardBack[allCardBack.length-1]["entity"].addComponent(new GLTFShape("models/cards/back.gltf"));
+        allCardBack[allCardBack.length-1]["entity"].addComponent(new Transform());
+        allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
+        allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).position.set(pilebaseleft1 + (cardOriginalSize * cardScale), solitairePositionY, pilebasetop1);
+        allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).rotation.setEuler(solitaireRotationX, 180, 0);
+        addOnClickBackOnLatest("pilebase1bg");
+
+        /// Register all back entity to engine
+        engine.addEntity(allCardBack[allCardBack.length-1]["entity"]);
+        engine.addEntity(allCardBack[allCardBack.length-2]["entity"]);
+        engine.addEntity(allCardBack[allCardBack.length-3]["entity"]);
+        engine.addEntity(allCardBack[allCardBack.length-4]["entity"]);
+        engine.addEntity(allCardBack[allCardBack.length-5]["entity"]);
+        engine.addEntity(allCardBack[allCardBack.length-6]["entity"]);
+        engine.addEntity(allCardBack[allCardBack.length-7]["entity"]);
+        engine.addEntity(allCardBack[allCardBack.length-8]["entity"]);
+        engine.addEntity(allCardBack[allCardBack.length-9]["entity"]);
+        engine.addEntity(allCardBack[allCardBack.length-10]["entity"]);
+        engine.addEntity(allCardBack[allCardBack.length-11]["entity"]);
+        engine.addEntity(allCardBack[allCardBack.length-12]["entity"]);
     }
 
     function addOnClick(index){
@@ -444,199 +472,50 @@ export function SolitaireGame() : void{
         }));
     }
 
-    var allCardBack = [];
-    function loadCardBases(){
-        /// Cardplaybase back
-        for(var x = 1 ; x <= 7 ; x++ ){
-            allCardBack[allCardBack.length] = [];
-            allCardBack[allCardBack.length-1]["name"] = "cardplaybase"+x+"bg";
-            allCardBack[allCardBack.length-1]["entity"] = new Entity();
-            allCardBack[allCardBack.length-1]["entity"].addComponent(new GLTFShape("models/cards/back.gltf"));
-            allCardBack[allCardBack.length-1]["entity"].addComponent(new Transform());
-            allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-            allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).position.set(cardbaseleft["cardplaybase"+x] + (cardOriginalSize * cardScale), solitairePositionY, cardbasetop);
-            allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).rotation.setEuler(solitaireRotationX, 180, 0);
-            // Using dynamic setting of add component onclick does not register dynamic variable
-            addOnClickBackOnLatest("cardplaybase"+x+"bg");
+    function initialLoad(){
+        prepareAllCards();
+        loadAllCards();
+        loadCardBases();
+    }
+    /* #endregion */
+
+    /* #region New Game functions */
+    function resetAllCards(){
+        for(var x = 0 ; x < allEntityCards.length ; x++ ){
+            allEntityCards[x]["base"] = "pilebase1";
+            allEntityCards[x]["basecount"] = x;
         }
-
-
-        /// Dealbase back
-        for(var x = 1 ; x <= 4 ; x++ ){
-            allCardBack[allCardBack.length] = [];
-            allCardBack[allCardBack.length-1]["name"] = "dealbase"+x+"bg";
-            allCardBack[allCardBack.length-1]["entity"] = new Entity();
-            allCardBack[allCardBack.length-1]["entity"].addComponent(new GLTFShape("models/cards/back.gltf"));
-            allCardBack[allCardBack.length-1]["entity"].addComponent(new Transform());
-            allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-            allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).position.set(dealbaseleft["dealbase"+x] + (cardOriginalSize * cardScale), solitairePositionY, dealbasetop);
-            allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).rotation.setEuler(solitaireRotationX, 180, 0);
-            // Using dynamic setting of add component onclick does not register dynamic variable
-            addOnClickBackOnLatest("dealbase"+x+"bg");
-        }
-
-        /// Pilebase back
-        allCardBack[allCardBack.length] = [];
-        allCardBack[allCardBack.length-1]["name"] = "pilebase1bg";
-        allCardBack[allCardBack.length-1]["entity"] = new Entity();
-        allCardBack[allCardBack.length-1]["entity"].addComponent(new GLTFShape("models/cards/back.gltf"));
-        allCardBack[allCardBack.length-1]["entity"].addComponent(new Transform());
-        allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).position.set(pilebaseleft1 + (cardOriginalSize * cardScale), solitairePositionY, pilebasetop1);
-        allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).rotation.setEuler(solitaireRotationX, 180, 0);
-        addOnClickBackOnLatest("pilebase1bg");
-
-        /// Register all back entity to engine
-        engine.addEntity(allCardBack[allCardBack.length-1]["entity"]);
-        engine.addEntity(allCardBack[allCardBack.length-2]["entity"]);
-        engine.addEntity(allCardBack[allCardBack.length-3]["entity"]);
-        engine.addEntity(allCardBack[allCardBack.length-4]["entity"]);
-        engine.addEntity(allCardBack[allCardBack.length-5]["entity"]);
-        engine.addEntity(allCardBack[allCardBack.length-6]["entity"]);
-        engine.addEntity(allCardBack[allCardBack.length-7]["entity"]);
-        engine.addEntity(allCardBack[allCardBack.length-8]["entity"]);
-        engine.addEntity(allCardBack[allCardBack.length-9]["entity"]);
-        engine.addEntity(allCardBack[allCardBack.length-10]["entity"]);
-        engine.addEntity(allCardBack[allCardBack.length-11]["entity"]);
-        engine.addEntity(allCardBack[allCardBack.length-12]["entity"]);
     }
 
-    var isPlaying = 0;
-    function cardclick(cardname){
-        var cardIndex = 0;
-        for( var x = 0 ; x < allEntityCards.length && !cardname.includes("bg") ; x++ ){
-            if(allEntityCards[x]["name"] == cardname){
-                cardIndex = x;
-                break;
-            }
+    // To shuffle array
+    function shuffle(array) {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+
+          // Pick a remaining element...
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex -= 1;
+
+          // And swap it with the current element.
+          temporaryValue = array[currentIndex];
+          array[currentIndex] = array[randomIndex];
+          array[randomIndex] = temporaryValue;
         }
 
-        if(isPlaying == 0){
-            isPlaying = -1;
-            for( var y = allEntityCards.length - 1 ; y >= allEntityCards.length - 29 ; y-- ){
-                if(y == 51){
-                    moveCard(y,"cardplaybase1");
-                }
-                else if(y >= 49 && y <= 50){
-                    moveCard(y,"cardplaybase2");
-                }
-                else if(y >= 46 && y <= 48){
-                    moveCard(y,"cardplaybase3");
-                }
-                else if(y >= 42 && y <= 45){
-                    moveCard(y,"cardplaybase4");
-                }
-                else if(y >= 37 && y <= 41){
-                    moveCard(y,"cardplaybase5");
-                }
-                else if(y >= 31 && y <= 36){
-                    moveCard(y,"cardplaybase6");
-                }
-                else if(y >= 24 && y <= 30){
-                    moveCard(y,"cardplaybase7");
-                }
-            }
-            openTopCard();
-            setDraggable();
-            isPlaying = 1;
-        }
-        else if(isPlaying == 1){
-            if(isSomethingClicked()){
-                var clickedIndex = [];
-
-                for (var x = 0 ; x < allEntityCards.length; x++ ){
-                    if(allEntityCards[x]["clicked"]) clickedIndex.push(x);
-                }
-
-                for (var x = 0 ; x < clickedIndex.length ; x++ ){
-                    for(var y = 0 ; y < clickedIndex.length - 1 ; y++ ){
-                        if(allEntityCards[clickedIndex[y]]["basecount"] > (allEntityCards[clickedIndex[y + 1]]["basecount"])){
-                            var tempvar = clickedIndex[y];
-                            clickedIndex[y] = clickedIndex[y + 1];
-                            clickedIndex[y+1] = tempvar;
-                        }
-                    }
-                }
-
-                if(cardname.includes("bg")){
-                    if(cardname.includes("cardplaybase")){
-                        if(cardname.substring(0,13) != allEntityCards[clickedIndex[0]]["base"] && clipToCardBase(cardname.substring(0,13),allEntityCards[clickedIndex[0]]["name"])){
-                            moveCard(clickedIndex[x],cardname.substring(0,13));
-                            openTopCard();
-                            setDraggable();
-                        }
-                    }
-                    else if(cardname.includes("dealbase")){
-                        if(cardname.substring(0,9) != allEntityCards[clickedIndex[0]]["base"] && clickedIndex.length == 1  && clipToDealBase(cardname.substring(0,9),allEntityCards[clickedIndex[0]]["name"])){
-                            moveCard(clickedIndex[0],cardname.substring(0,9));
-                            openTopCard();
-                            setDraggable();
-                        }
-                    }
-                    else if(cardname.includes("pilebase")){
-                        /// Reset pilebase1 return all cards from pilebase2 to pilebase1
-                    }
-                }
-                else if(allEntityCards[cardIndex]["base"].includes("cardplaybase")){
-                    if(allEntityCards[cardIndex]["base"] != allEntityCards[clickedIndex[0]]["base"] && clipToCardBase(allEntityCards[cardIndex]["base"],allEntityCards[clickedIndex[0]]["name"])){
-                        for (var x = 0 ; x < clickedIndex.length ; x++ ){
-                            moveCard(clickedIndex[x],allEntityCards[cardIndex]["base"]);
-                            openTopCard();
-                            setDraggable();
-                        }
-                    }
-                }
-                else if(allEntityCards[cardIndex]["base"].includes("dealbase")){
-                    if(allEntityCards[cardIndex]["base"] != allEntityCards[clickedIndex[0]]["base"] && clickedIndex.length == 1 && clipToDealBase(allEntityCards[cardIndex]["base"],allEntityCards[clickedIndex[0]]["name"])){
-                        moveCard(clickedIndex[0],allEntityCards[cardIndex]["base"]);
-                        openTopCard();
-                        setDraggable();
-                    }
-                }
-                else if(allEntityCards[cardIndex]["base"].includes("pilebase")){
-                    if(allEntityCards[cardIndex]["base"] == "pilebase1"){
-                        //Open pilebase1 here
-                    }
-                }
-
-                for (var x = 0 ; x < allEntityCards.length ; x++ ){
-                    allEntityCards[x]["clicked"] = false;
-                }
-                refreshClickCardsAll();
-            }
-            else{
-                if(cardname.includes("bg")){
-                    if(cardname.includes("pilebase1")){
-                        /// Reset pilebase1 return all cards from pilebase2 to pilebase1
-                    }
-                }
-                else if(allEntityCards[cardIndex]["base"].includes("cardplaybase")){
-                    if(allEntityCards[cardIndex]["draggable"]){
-                        for(var x = 0 ; x < allEntityCards.length ; x++ ){
-                            if(allEntityCards[x]["basecount"] >= allEntityCards[cardIndex]["basecount"] && allEntityCards[x]["base"] == allEntityCards[cardIndex]["base"]){
-                                allEntityCards[x]["clicked"] = true;
-                            }
-                        }
-                    }
-                }
-                else if(allEntityCards[cardIndex]["base"].includes("dealbase")){
-                    if(allEntityCards[cardIndex]["draggable"]){
-                        allEntityCards[cardIndex]["clicked"] = true;
-                    }
-                }
-                else if(allEntityCards[cardIndex]["base"].includes("pilebase")){
-                    if(allEntityCards[cardIndex]["base"] == "pilebase2" && allEntityCards[cardIndex]["draggable"]){
-                        allEntityCards[cardIndex]["clicked"] = true;
-                    }
-                    else if(allEntityCards[cardIndex]["base"] == "pilebase1"){
-                        //Open pilebase1 to pilebase2 here
-                    }
-                }
-
-                if(isSomethingClicked()) refreshClickCardsAll();
-            }
-        }
+        return array;
     }
+
+    function newGame(){
+        shuffle(allEntityCards);
+        resetAllCards();
+        refreshPositionAll();
+        refreshRotationAll();
+    }
+    /* #endregion */
+
+    /* #region World template */
 
     function moveCard(cardIndex, base){
         if(base == "pilebase1" && allEntityCards[cardIndex]["base"] != "pilebase1"){
@@ -909,115 +788,22 @@ export function SolitaireGame() : void{
         else allEntityCards[cardIndex]["entity"].getComponent(Transform).rotation.setEuler(solitaireRotationX, 0, 0);
     }
 
-    function openTopCard(){
-        var data = [];
-        data["cardplaybase1index"] = -1;
-        data["cardplaybase1count"] = -1;
-        data["cardplaybase2index"] = -1;
-        data["cardplaybase2count"] = -1;
-        data["cardplaybase3index"] = -1;
-        data["cardplaybase3count"] = -1;
-        data["cardplaybase4index"] = -1;
-        data["cardplaybase4count"] = -1;
-        data["cardplaybase5index"] = -1;
-        data["cardplaybase5count"] = -1;
-        data["cardplaybase6index"] = -1;
-        data["cardplaybase6count"] = -1;
-        data["cardplaybase7index"] = -1;
-        data["cardplaybase7count"] = -1;
-
+    function refreshClickCardsAll(){
         for( var x = 0 ; x < allEntityCards.length ; x++ ){
-            if(allEntityCards[x]["basecount"] > data[allEntityCards[x]["base"]+"count"]){
-                data[allEntityCards[x]["base"]+"index"] = x;
-                data[allEntityCards[x]["base"]+"count"] = allEntityCards[x]["basecount"];
-            }
-        }
-
-        if(data["cardplaybase1index"] != -1 && allEntityCards[data["cardplaybase1index"]]["facingfront"] == false){
-            allEntityCards[data["cardplaybase1index"]]["facingfront"] = true;
-            refreshPosition(data["cardplaybase1index"]);
-            refreshRotation(data["cardplaybase1index"]);
-        }
-        if(data["cardplaybase2index"] != -1 && allEntityCards[data["cardplaybase2index"]]["facingfront"] == false){
-            allEntityCards[data["cardplaybase2index"]]["facingfront"] = true;
-            refreshPosition(data["cardplaybase2index"]);
-            refreshRotation(data["cardplaybase2index"]);
-        }
-        if(data["cardplaybase3index"] != -1 && allEntityCards[data["cardplaybase3index"]]["facingfront"] == false){
-            allEntityCards[data["cardplaybase3index"]]["facingfront"] = true;
-            refreshPosition(data["cardplaybase3index"]);
-            refreshRotation(data["cardplaybase3index"]);
-        }
-        if(data["cardplaybase4index"] != -1 && allEntityCards[data["cardplaybase4index"]]["facingfront"] == false){
-            allEntityCards[data["cardplaybase4index"]]["facingfront"] = true;
-            refreshPosition(data["cardplaybase4index"]);
-            refreshRotation(data["cardplaybase4index"]);
-        }
-        if(data["cardplaybase5index"] != -1 && allEntityCards[data["cardplaybase5index"]]["facingfront"] == false){
-            allEntityCards[data["cardplaybase5index"]]["facingfront"] = true;
-            refreshPosition(data["cardplaybase5index"]);
-            refreshRotation(data["cardplaybase5index"]);
-        }
-        if(data["cardplaybase6index"] != -1 && allEntityCards[data["cardplaybase6index"]]["facingfront"] == false){
-            allEntityCards[data["cardplaybase6index"]]["facingfront"] = true;
-            refreshPosition(data["cardplaybase6index"]);
-            refreshRotation(data["cardplaybase6index"]);
-        }
-        if(data["cardplaybase7index"] != -1 && allEntityCards[data["cardplaybase7index"]]["facingfront"] == false){
-            allEntityCards[data["cardplaybase7index"]]["facingfront"] = true;
-            refreshPosition(data["cardplaybase7index"]);
-            refreshRotation(data["cardplaybase7index"]);
+            if(allEntityCards[x]["clicked"]) refreshClickCards(x);
+            else refreshPosition(x);
         }
     }
 
-    function setDraggable(){
-        var data = [];
-        data["pilebase1index"] = -1;
-        data["pilebase1count"] = -1;
-        data["pilebase2index"] = -1;
-        data["pilebase2count"] = -1;
-        data["dealbase1index"] = -1;
-        data["dealbase1count"] = -1;
-        data["dealbase2index"] = -1;
-        data["dealbase2count"] = -1;
-        data["dealbase3index"] = -1;
-        data["dealbase3count"] = -1;
-        data["dealbase4index"] = -1;
-        data["dealbase4count"] = -1;
-
-        for( var x = 0 ; x < allEntityCards.length ; x++ ){
-            allEntityCards[x]["draggable"] = false;
-            if(allEntityCards[x]["base"].includes("cardplaybase") && allEntityCards[x]["facingfront"]){
-                allEntityCards[x]["draggable"] = true;
-            }
-            else if(allEntityCards[x]["basecount"] > data[allEntityCards[x]["base"]+"count"]){
-                data[allEntityCards[x]["base"]+"index"] = x;
-                data[allEntityCards[x]["base"]+"count"] = allEntityCards[x]["basecount"];
-            }
-        }
-
-        if(data["pilebase1index"] != -1 && allEntityCards[data["pilebase1index"]]["draggable"] == false){
-            allEntityCards[data["pilebase1index"]]["draggable"] = true;
-        }
-        if(data["pilebase2index"] != -1 && allEntityCards[data["pilebase2index"]]["draggable"] == false){
-            allEntityCards[data["pilebase2index"]]["draggable"] = true;
-        }
-        if(data["dealbase1index"] != -1 && allEntityCards[data["dealbase1index"]]["draggable"] == false){
-            allEntityCards[data["dealbase1index"]]["draggable"] = true;
-        }
-        if(data["dealbase2index"] != -1 && allEntityCards[data["dealbase2index"]]["draggable"] == false){
-            allEntityCards[data["dealbase2index"]]["draggable"] = true;
-        }
-        if(data["dealbase3index"] != -1 && allEntityCards[data["dealbase3index"]]["draggable"] == false){
-            allEntityCards[data["dealbase3index"]]["draggable"] = true;
-        }
-        if(data["dealbase4index"] != -1 && allEntityCards[data["dealbase4index"]]["draggable"] == false){
-            allEntityCards[data["dealbase4index"]]["draggable"] = true;
-        }
-
+    function refreshClickCards(cardIndex){
+        refreshPosition(cardIndex);
+        var cardposition = allEntityCards[cardIndex]["entity"].getComponent(Transform).position;
+        if(allEntityCards[cardIndex]["clicked"]) cardposition.set(cardposition.x,cardposition.y + clickedliftsize,cardposition.z);
     }
 
-    let suitCards = ["a","2","3","4","5","6","7","8","9","10","j","q","k"];
+    /* #endregion */
+
+    /* #region Game Logic */
     function clipToCardBase(cardbase,fromcard){
         /// --- Check if toCardBase is empty and if card to be place is king
         var data = [];
@@ -1138,18 +924,112 @@ export function SolitaireGame() : void{
         /// ---
     }
 
-    function refreshClickCardsAll(){
+    function openTopCard(){
+        var data = [];
+        data["cardplaybase1index"] = -1;
+        data["cardplaybase1count"] = -1;
+        data["cardplaybase2index"] = -1;
+        data["cardplaybase2count"] = -1;
+        data["cardplaybase3index"] = -1;
+        data["cardplaybase3count"] = -1;
+        data["cardplaybase4index"] = -1;
+        data["cardplaybase4count"] = -1;
+        data["cardplaybase5index"] = -1;
+        data["cardplaybase5count"] = -1;
+        data["cardplaybase6index"] = -1;
+        data["cardplaybase6count"] = -1;
+        data["cardplaybase7index"] = -1;
+        data["cardplaybase7count"] = -1;
+
         for( var x = 0 ; x < allEntityCards.length ; x++ ){
-            if(allEntityCards[x]["clicked"]) refreshClickCards(x);
-            else refreshPosition(x);
+            if(allEntityCards[x]["basecount"] > data[allEntityCards[x]["base"]+"count"]){
+                data[allEntityCards[x]["base"]+"index"] = x;
+                data[allEntityCards[x]["base"]+"count"] = allEntityCards[x]["basecount"];
+            }
+        }
+
+        if(data["cardplaybase1index"] != -1 && allEntityCards[data["cardplaybase1index"]]["facingfront"] == false){
+            allEntityCards[data["cardplaybase1index"]]["facingfront"] = true;
+            refreshPosition(data["cardplaybase1index"]);
+            refreshRotation(data["cardplaybase1index"]);
+        }
+        if(data["cardplaybase2index"] != -1 && allEntityCards[data["cardplaybase2index"]]["facingfront"] == false){
+            allEntityCards[data["cardplaybase2index"]]["facingfront"] = true;
+            refreshPosition(data["cardplaybase2index"]);
+            refreshRotation(data["cardplaybase2index"]);
+        }
+        if(data["cardplaybase3index"] != -1 && allEntityCards[data["cardplaybase3index"]]["facingfront"] == false){
+            allEntityCards[data["cardplaybase3index"]]["facingfront"] = true;
+            refreshPosition(data["cardplaybase3index"]);
+            refreshRotation(data["cardplaybase3index"]);
+        }
+        if(data["cardplaybase4index"] != -1 && allEntityCards[data["cardplaybase4index"]]["facingfront"] == false){
+            allEntityCards[data["cardplaybase4index"]]["facingfront"] = true;
+            refreshPosition(data["cardplaybase4index"]);
+            refreshRotation(data["cardplaybase4index"]);
+        }
+        if(data["cardplaybase5index"] != -1 && allEntityCards[data["cardplaybase5index"]]["facingfront"] == false){
+            allEntityCards[data["cardplaybase5index"]]["facingfront"] = true;
+            refreshPosition(data["cardplaybase5index"]);
+            refreshRotation(data["cardplaybase5index"]);
+        }
+        if(data["cardplaybase6index"] != -1 && allEntityCards[data["cardplaybase6index"]]["facingfront"] == false){
+            allEntityCards[data["cardplaybase6index"]]["facingfront"] = true;
+            refreshPosition(data["cardplaybase6index"]);
+            refreshRotation(data["cardplaybase6index"]);
+        }
+        if(data["cardplaybase7index"] != -1 && allEntityCards[data["cardplaybase7index"]]["facingfront"] == false){
+            allEntityCards[data["cardplaybase7index"]]["facingfront"] = true;
+            refreshPosition(data["cardplaybase7index"]);
+            refreshRotation(data["cardplaybase7index"]);
         }
     }
 
-    var clickedliftsize = 0.05;
-    function refreshClickCards(cardIndex){
-        refreshPosition(cardIndex);
-        var cardposition = allEntityCards[cardIndex]["entity"].getComponent(Transform).position;
-        if(allEntityCards[cardIndex]["clicked"]) cardposition.set(cardposition.x,cardposition.y + clickedliftsize,cardposition.z);
+    function setDraggable(){
+        var data = [];
+        data["pilebase1index"] = -1;
+        data["pilebase1count"] = -1;
+        data["pilebase2index"] = -1;
+        data["pilebase2count"] = -1;
+        data["dealbase1index"] = -1;
+        data["dealbase1count"] = -1;
+        data["dealbase2index"] = -1;
+        data["dealbase2count"] = -1;
+        data["dealbase3index"] = -1;
+        data["dealbase3count"] = -1;
+        data["dealbase4index"] = -1;
+        data["dealbase4count"] = -1;
+
+        for( var x = 0 ; x < allEntityCards.length ; x++ ){
+            allEntityCards[x]["draggable"] = false;
+            if(allEntityCards[x]["base"].includes("cardplaybase") && allEntityCards[x]["facingfront"]){
+                allEntityCards[x]["draggable"] = true;
+            }
+            else if(allEntityCards[x]["basecount"] > data[allEntityCards[x]["base"]+"count"]){
+                data[allEntityCards[x]["base"]+"index"] = x;
+                data[allEntityCards[x]["base"]+"count"] = allEntityCards[x]["basecount"];
+            }
+        }
+
+        if(data["pilebase1index"] != -1 && allEntityCards[data["pilebase1index"]]["draggable"] == false){
+            allEntityCards[data["pilebase1index"]]["draggable"] = true;
+        }
+        if(data["pilebase2index"] != -1 && allEntityCards[data["pilebase2index"]]["draggable"] == false){
+            allEntityCards[data["pilebase2index"]]["draggable"] = true;
+        }
+        if(data["dealbase1index"] != -1 && allEntityCards[data["dealbase1index"]]["draggable"] == false){
+            allEntityCards[data["dealbase1index"]]["draggable"] = true;
+        }
+        if(data["dealbase2index"] != -1 && allEntityCards[data["dealbase2index"]]["draggable"] == false){
+            allEntityCards[data["dealbase2index"]]["draggable"] = true;
+        }
+        if(data["dealbase3index"] != -1 && allEntityCards[data["dealbase3index"]]["draggable"] == false){
+            allEntityCards[data["dealbase3index"]]["draggable"] = true;
+        }
+        if(data["dealbase4index"] != -1 && allEntityCards[data["dealbase4index"]]["draggable"] == false){
+            allEntityCards[data["dealbase4index"]]["draggable"] = true;
+        }
+
     }
 
     function isSomethingClicked(){
@@ -1159,11 +1039,228 @@ export function SolitaireGame() : void{
 
         return false;
     }
+    /* #endregion */
 
-    prepareAllCards();
-    loadAllCards();
-    loadCardBases();
-    refreshPositionAll();
-    refreshRotationAll();
+    /* #region Game Functions */
+    function drawPile(){
+        var pilebase1count = 0;
+        for(var x = 0 ; x < allEntityCards.length ; x++ ){
+            if(allEntityCards[x]["base"] == "pilebase1") pilebase1count++;
+        }
+
+        if(pilebase1count > 0){
+            // movecard to pilebase2
+            var pilebase1index = -1;
+            var pilebase1count = -1;
+
+            for(var x = 0 ; x < allEntityCards.length ; x++ ){
+                if(allEntityCards[x]["base"] == "pilebase1" && allEntityCards[x]["basecount"] > pilebase1count){
+                    pilebase1index = x;
+                    pilebase1count = allEntityCards[x]["basecount"];
+                }
+            }
+
+            if(pilebase1index != -1){
+                for(var x = 0 ; x < allEntityCards.length ; x++ ){
+                    if(allEntityCards[x]["base"] == "pilebase2") allEntityCards[x]["draggable"] = false;
+                }
+
+                allEntityCards[pilebase1index]["facingfront"] = true;
+                allEntityCards[pilebase1index]["draggable"] = true;
+                moveCard(pilebase1index,"pilebase2");
+                refreshRotation(pilebase1index);
+            }
+        }
+        else{
+            // draw all cards back to base
+            var allpilebase2index = [];
+
+            for(var x = 0 ; x < allEntityCards.length ; x++ ){
+                if(allEntityCards[x]["base"] == "pilebase2") allpilebase2index.push(x);
+            }
+
+            for(var x = 0 ; x < allpilebase2index.length ; x++ ){
+                for(var y = 0 ; y < allpilebase2index.length - 1 ; y++ ){
+                    if(allEntityCards[allpilebase2index[y]]["basecount"] > allEntityCards[allpilebase2index[y+1]]["basecount"]){
+                        var tempvar = allpilebase2index[y];
+                        allpilebase2index[y]= allpilebase2index[y+1];
+                        allpilebase2index[y+1] = tempvar;
+                    }
+                }
+            }
+
+            for(var x = allpilebase2index.length - 1 ; x >= 0 ; x-- ){
+                allEntityCards[allpilebase2index[x]]["facingfront"] = false;
+                refreshRotation(allpilebase2index[x]);
+                moveCard(allpilebase2index[x],"pilebase1");
+            }
+        }
+    }
+
+    function cardclick(cardname){
+        if(isPlaying == 0){
+            startGame();
+        }
+        else if(isPlaying == 1){
+            if(!isSomethingClicked()){
+                click1(cardname);
+            }
+            else{
+                click2(cardname);
+            }
+        }
+    }
+
+    function startGame(){
+        isPlaying = -1;
+        for( var y = allEntityCards.length - 1 ; y >= allEntityCards.length - 29 ; y-- ){
+            if(y == 51){
+                moveCard(y,"cardplaybase1");
+            }
+            else if(y >= 49 && y <= 50){
+                moveCard(y,"cardplaybase2");
+            }
+            else if(y >= 46 && y <= 48){
+                moveCard(y,"cardplaybase3");
+            }
+            else if(y >= 42 && y <= 45){
+                moveCard(y,"cardplaybase4");
+            }
+            else if(y >= 37 && y <= 41){
+                moveCard(y,"cardplaybase5");
+            }
+            else if(y >= 31 && y <= 36){
+                moveCard(y,"cardplaybase6");
+            }
+            else if(y >= 24 && y <= 30){
+                moveCard(y,"cardplaybase7");
+            }
+        }
+        openTopCard();
+        setDraggable();
+        isPlaying = 1;
+    }
+
+    function click1(cardname){
+        var cardIndex = 0;
+        for( var x = 0 ; x < allEntityCards.length && !cardname.includes("bg") ; x++ ){
+            if(allEntityCards[x]["name"] == cardname){
+                cardIndex = x;
+                break;
+            }
+        }
+
+        if(cardname.includes("bg")){
+            if(cardname.includes("pilebase1")){
+                /// Reset pilebase1 return all cards from pilebase2 to pilebase1
+                drawPile();
+            }
+        }
+        else if(allEntityCards[cardIndex]["base"].includes("cardplaybase")){
+            if(allEntityCards[cardIndex]["draggable"]){
+                for(var x = 0 ; x < allEntityCards.length ; x++ ){
+                    if(allEntityCards[x]["basecount"] >= allEntityCards[cardIndex]["basecount"] && allEntityCards[x]["base"] == allEntityCards[cardIndex]["base"]){
+                        allEntityCards[x]["clicked"] = true;
+                    }
+                }
+            }
+        }
+        else if(allEntityCards[cardIndex]["base"].includes("dealbase")){
+            if(allEntityCards[cardIndex]["draggable"]){
+                allEntityCards[cardIndex]["clicked"] = true;
+            }
+        }
+        else if(allEntityCards[cardIndex]["base"].includes("pilebase")){
+            if(allEntityCards[cardIndex]["base"] == "pilebase2" && allEntityCards[cardIndex]["draggable"]){
+                allEntityCards[cardIndex]["clicked"] = true;
+            }
+            else if(allEntityCards[cardIndex]["base"] == "pilebase1"){
+                //Open pilebase1 to pilebase2 here
+                drawPile();
+            }
+        }
+
+        if(isSomethingClicked()) refreshClickCardsAll();
+    }
+
+    function click2(cardname){
+        var cardIndex = 0;
+        for( var x = 0 ; x < allEntityCards.length && !cardname.includes("bg") ; x++ ){
+            if(allEntityCards[x]["name"] == cardname){
+                cardIndex = x;
+                break;
+            }
+        }
+
+        var clickedIndex = [];
+
+        for (var x = 0 ; x < allEntityCards.length; x++ ){
+            if(allEntityCards[x]["clicked"]) clickedIndex.push(x);
+        }
+
+        for (var x = 0 ; x < clickedIndex.length ; x++ ){
+            for(var y = 0 ; y < clickedIndex.length - 1 ; y++ ){
+                if(allEntityCards[clickedIndex[y]]["basecount"] > (allEntityCards[clickedIndex[y + 1]]["basecount"])){
+                    var tempvar = clickedIndex[y];
+                    clickedIndex[y] = clickedIndex[y + 1];
+                    clickedIndex[y+1] = tempvar;
+                }
+            }
+        }
+
+        if(cardname.includes("bg")){
+            if(cardname.includes("cardplaybase")){
+                if(cardname.substring(0,13) != allEntityCards[clickedIndex[0]]["base"] && clipToCardBase(cardname.substring(0,13),allEntityCards[clickedIndex[0]]["name"])){
+                    for (var x = 0 ; x < clickedIndex.length ; x++ ){
+                        moveCard(clickedIndex[x],cardname.substring(0,13));
+                        openTopCard();
+                        setDraggable();
+                    }
+                }
+            }
+            else if(cardname.includes("dealbase")){
+                if(cardname.substring(0,9) != allEntityCards[clickedIndex[0]]["base"] && clickedIndex.length == 1 && clipToDealBase(cardname.substring(0,9),allEntityCards[clickedIndex[0]]["name"])){
+                    moveCard(clickedIndex[0],cardname.substring(0,9));
+                    openTopCard();
+                    setDraggable();
+                }
+            }
+            else if(cardname.includes("pilebase")){
+                /// Reset pilebase1 return all cards from pilebase2 to pilebase1
+                drawPile();
+            }
+        }
+        else if(allEntityCards[cardIndex]["base"].includes("cardplaybase")){
+            if(allEntityCards[cardIndex]["base"] != allEntityCards[clickedIndex[0]]["base"] && clipToCardBase(allEntityCards[cardIndex]["base"],allEntityCards[clickedIndex[0]]["name"])){
+                for (var x = 0 ; x < clickedIndex.length ; x++ ){
+                    moveCard(clickedIndex[x],allEntityCards[cardIndex]["base"]);
+                    openTopCard();
+                    setDraggable();
+                }
+            }
+        }
+        else if(allEntityCards[cardIndex]["base"].includes("dealbase")){
+            if(allEntityCards[cardIndex]["base"] != allEntityCards[clickedIndex[0]]["base"] && clickedIndex.length == 1 && clipToDealBase(allEntityCards[cardIndex]["base"],allEntityCards[clickedIndex[0]]["name"])){
+                moveCard(clickedIndex[0],allEntityCards[cardIndex]["base"]);
+                openTopCard();
+                setDraggable();
+            }
+        }
+        else if(allEntityCards[cardIndex]["base"].includes("pilebase")){
+            if(allEntityCards[cardIndex]["base"] == "pilebase1"){
+                //Open pilebase1 here
+                drawPile();
+            }
+        }
+
+        for (var x = 0 ; x < allEntityCards.length ; x++ ){
+            allEntityCards[x]["clicked"] = false;
+        }
+        refreshClickCardsAll();
+    }
+    /* #endregion */
+
+    initialLoad();
+    newGame();
 }
 
