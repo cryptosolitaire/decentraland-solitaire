@@ -1211,13 +1211,15 @@ export function SolitaireGame() : void{
         if(cardname.includes("bg")){
             if(cardname.includes("cardplaybase")){
                 if(cardname.substring(0,13) != allEntityCards[clickedIndex[0]]["base"] && clipToCardBase(cardname.substring(0,13),allEntityCards[clickedIndex[0]]["name"])){
-                    moveCard(clickedIndex[x],cardname.substring(0,13));
-                    openTopCard();
-                    setDraggable();
+                    for (var x = 0 ; x < clickedIndex.length ; x++ ){
+                        moveCard(clickedIndex[x],cardname.substring(0,13));
+                        openTopCard();
+                        setDraggable();
+                    }
                 }
             }
             else if(cardname.includes("dealbase")){
-                if(cardname.substring(0,9) != allEntityCards[clickedIndex[0]]["base"] && clickedIndex.length == 1  && clipToDealBase(cardname.substring(0,9),allEntityCards[clickedIndex[0]]["name"])){
+                if(cardname.substring(0,9) != allEntityCards[clickedIndex[0]]["base"] && clickedIndex.length == 1 && clipToDealBase(cardname.substring(0,9),allEntityCards[clickedIndex[0]]["name"])){
                     moveCard(clickedIndex[0],cardname.substring(0,9));
                     openTopCard();
                     setDraggable();
