@@ -438,5 +438,182 @@ export function World() : void{
     /* #endregion */
     /* #endregion */
 
+    /* #region Trees */
+    const bush1 = new Entity();
+    bush1.addComponent(new GLTFShape("models/world/Prop_Bush_1.gltf"));
+    bush1.addComponent(new Transform());
+    bush1.getComponent(Transform).scale.set(1.5, 1.5, 1.5);
+    bush1.getComponent(Transform).position.set(1, 0, 14.6);
+    engine.addEntity(bush1);
+
+    const cedar1 = new Entity();
+    cedar1.addComponent(new GLTFShape("models/world/Prop_Tree_Cedar_2.gltf"));
+    cedar1.addComponent(new Transform());
+    cedar1.getComponent(Transform).scale.set(1, 1, 1);
+    cedar1.getComponent(Transform).position.set(2.3, 0, 15.3);
+    engine.addEntity(cedar1);
+
+    const cedar2 = new Entity();
+    cedar2.addComponent(new GLTFShape("models/world/Prop_Tree_Cedar_2.gltf"));
+    cedar2.addComponent(new Transform());
+    cedar2.getComponent(Transform).scale.set(1, 1, 1);
+    cedar2.getComponent(Transform).position.set(3.5, 0, 15.3);
+    engine.addEntity(cedar2);
+
+    const cedar3 = new Entity();
+    cedar3.addComponent(new GLTFShape("models/world/Prop_Tree_Cedar_2.gltf"));
+    cedar3.addComponent(new Transform());
+    cedar3.getComponent(Transform).scale.set(1, 1, 1);
+    cedar3.getComponent(Transform).position.set(4, 0, 15.3);
+    engine.addEntity(cedar3);
+
+    const cedar4 = new Entity();
+    cedar4.addComponent(new GLTFShape("models/world/Prop_Tree_Cedar_2.gltf"));
+    cedar4.addComponent(new Transform());
+    cedar4.getComponent(Transform).scale.set(1, 1, 1);
+    cedar4.getComponent(Transform).position.set(6, 0, 15.3);
+    engine.addEntity(cedar4);
+
+    const cedar5 = new Entity();
+    cedar5.addComponent(new GLTFShape("models/world/Prop_Tree_Cedar_2.gltf"));
+    cedar5.addComponent(new Transform());
+    cedar5.getComponent(Transform).scale.set(1, 1, 1);
+    cedar5.getComponent(Transform).position.set(7.5, 0, 15.3);
+    engine.addEntity(cedar5);
+
+    const cedar6 = new Entity();
+    cedar6.addComponent(new GLTFShape("models/world/Prop_Tree_Cedar_2.gltf"));
+    cedar6.addComponent(new Transform());
+    cedar6.getComponent(Transform).scale.set(1, 1, 1);
+    cedar6.getComponent(Transform).position.set(8.1, 0, 15.3);
+    engine.addEntity(cedar6);
+
+    const cedar7 = new Entity();
+    cedar7.addComponent(new GLTFShape("models/world/Prop_Tree_Cedar_2.gltf"));
+    cedar7.addComponent(new Transform());
+    cedar7.getComponent(Transform).scale.set(1, 1, 1);
+    cedar7.getComponent(Transform).position.set(9, 0, 15.3);
+    engine.addEntity(cedar7);
+
+    const cedar8 = new Entity();
+    cedar8.addComponent(new GLTFShape("models/world/Prop_Tree_Cedar_2.gltf"));
+    cedar8.addComponent(new Transform());
+    cedar8.getComponent(Transform).scale.set(1, 1, 1);
+    cedar8.getComponent(Transform).position.set(10.5, 0, 15.3);
+    engine.addEntity(cedar8);
+
+    const cedar9 = new Entity();
+    cedar9.addComponent(new GLTFShape("models/world/Prop_Tree_Cedar_2.gltf"));
+    cedar9.addComponent(new Transform());
+    cedar9.getComponent(Transform).scale.set(1, 1, 1);
+    cedar9.getComponent(Transform).position.set(12, 0, 15.3);
+    engine.addEntity(cedar9);
+
+    const cedar10 = new Entity();
+    cedar10.addComponent(new GLTFShape("models/world/Prop_Tree_Cedar_2.gltf"));
+    cedar10.addComponent(new Transform());
+    cedar10.getComponent(Transform).scale.set(1, 1, 1);
+    cedar10.getComponent(Transform).position.set(13.5, 0, 15.3);
+    engine.addEntity(cedar10);
+
+    const cedar11 = new Entity();
+    cedar11.addComponent(new GLTFShape("models/world/Prop_Tree_Cedar_2.gltf"));
+    cedar11.addComponent(new Transform());
+    cedar11.getComponent(Transform).scale.set(1, 1, 1);
+    cedar11.getComponent(Transform).position.set(15, 0, 15.3);
+    engine.addEntity(cedar11);
+
+    const cedar12 = new Entity();
+    cedar12.addComponent(new GLTFShape("models/world/Prop_Tree_Cedar_2.gltf"));
+    cedar12.addComponent(new Transform());
+    cedar12.getComponent(Transform).scale.set(1, 1, 1);
+    cedar12.getComponent(Transform).position.set(10.5, 0, 15.3);
+    engine.addEntity(cedar12);
+
+    const cedar13 = new Entity();
+    cedar13.addComponent(new GLTFShape("models/world/Prop_Tree_Cedar_2.gltf"));
+    cedar13.addComponent(new Transform());
+    cedar13.getComponent(Transform).scale.set(1, 1, 1);
+    cedar13.getComponent(Transform).position.set(10.5, 0, 15.3);
+    engine.addEntity(cedar13);
+
+    const oak1 = new Entity();
+    oak1.addComponent(new GLTFShape("models/world/Prop_Tree_Oak_1.gltf"));
+    oak1.addComponent(new Transform());
+    oak1.getComponent(Transform).scale.set(1, 1, 1);
+    oak1.getComponent(Transform).position.set(3, 0, 14.6);
+    engine.addEntity(oak1);
+
+    const oak2 = new Entity();
+    oak2.addComponent(new GLTFShape("models/world/Prop_Tree_Oak_1.gltf"));
+    oak2.addComponent(new Transform());
+    oak2.getComponent(Transform).scale.set(1, 1, 1);
+    oak2.getComponent(Transform).position.set(4.1, 0, 14.6);
+    engine.addEntity(oak2);
+
+    const oak3 = new Entity();
+    oak3.addComponent(new GLTFShape("models/world/Prop_Tree_Oak_2.gltf"));
+    oak3.addComponent(new Transform());
+    oak3.getComponent(Transform).scale.set(1, 1, 1);
+    oak3.getComponent(Transform).position.set(5.2, 0, 14.6);
+    engine.addEntity(oak3);
+
+    const oak4 = new Entity();
+    oak4.addComponent(new GLTFShape("models/world/Prop_Tree_Oak_1.gltf"));
+    oak4.addComponent(new Transform());
+    oak4.getComponent(Transform).scale.set(1, 1, 1);
+    oak4.getComponent(Transform).position.set(6.4, 0, 14.6);
+    engine.addEntity(oak4);
+
+    const oak5 = new Entity();
+    oak5.addComponent(new GLTFShape("models/world/Prop_Tree_Oak_2.gltf"));
+    oak5.addComponent(new Transform());
+    oak5.getComponent(Transform).scale.set(1, 1, 1);
+    oak5.getComponent(Transform).position.set(7.1, 0, 14.6);
+    engine.addEntity(oak5);
+
+    const oak6 = new Entity();
+    oak6.addComponent(new GLTFShape("models/world/Prop_Tree_Oak_2.gltf"));
+    oak6.addComponent(new Transform());
+    oak6.getComponent(Transform).scale.set(1, 1, 1);
+    oak6.getComponent(Transform).position.set(8.4, 0, 14.6);
+    engine.addEntity(oak6);
+
+    const oak7 = new Entity();
+    oak7.addComponent(new GLTFShape("models/world/Prop_Tree_Oak_1.gltf"));
+    oak7.addComponent(new Transform());
+    oak7.getComponent(Transform).scale.set(1, 1, 1);
+    oak7.getComponent(Transform).position.set(9.1, 0, 14.6);
+    engine.addEntity(oak7);
+
+    const oak8 = new Entity();
+    oak8.addComponent(new GLTFShape("models/world/Prop_Tree_Oak_1.gltf"));
+    oak8.addComponent(new Transform());
+    oak8.getComponent(Transform).scale.set(1, 1, 1);
+    oak8.getComponent(Transform).position.set(10.5, 0, 14.6);
+    engine.addEntity(oak8);
+
+    const oak9 = new Entity();
+    oak9.addComponent(new GLTFShape("models/world/Prop_Tree_Oak_1.gltf"));
+    oak9.addComponent(new Transform());
+    oak9.getComponent(Transform).scale.set(1, 1, 1);
+    oak9.getComponent(Transform).position.set(12, 0, 14.6);
+    engine.addEntity(oak9);
+
+    const oak10 = new Entity();
+    oak10.addComponent(new GLTFShape("models/world/Prop_Tree_Oak_1.gltf"));
+    oak10.addComponent(new Transform());
+    oak10.getComponent(Transform).scale.set(1, 1, 1);
+    oak10.getComponent(Transform).position.set(13.8, 0, 14.6);
+    engine.addEntity(oak10);
+
+    const oak11 = new Entity();
+    oak11.addComponent(new GLTFShape("models/world/Prop_Tree_Oak_1.gltf"));
+    oak11.addComponent(new Transform());
+    oak11.getComponent(Transform).scale.set(1, 1, 1);
+    oak11.getComponent(Transform).position.set(14.5, 0, 14.6);
+    engine.addEntity(oak11);
+    /* #endregion */
+
 
 }
