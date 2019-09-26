@@ -615,5 +615,218 @@ export function World() : void{
     engine.addEntity(oak11);
     /* #endregion */
 
+    /* #region Grass */
+    const grass = [];
+    grass[grass.length] = new Entity();
+    grass[grass.length-1].addComponent(new GLTFShape("models/world/Prop_Grass_Clump_1.gltf"));
+    grass[grass.length-1].addComponent(new Transform());
+    grass[grass.length-1].getComponent(Transform).scale.set(1, 1, 1);
+    grass[grass.length-1].getComponent(Transform).position.set(0.3, 0, 0.3);
+    engine.addEntity(grass[grass.length-1]);
 
+    grass[grass.length] = new Entity();
+    grass[grass.length-1].addComponent(new GLTFShape("models/world/Prop_Grass_Clump_1.gltf"));
+    grass[grass.length-1].addComponent(new Transform());
+    grass[grass.length-1].getComponent(Transform).scale.set(1, 1, 1);
+    grass[grass.length-1].getComponent(Transform).position.set(2, 0, 14.5);
+    engine.addEntity(grass[grass.length-1]);
+
+    grass[grass.length] = new Entity();
+    grass[grass.length-1].addComponent(new GLTFShape("models/world/Prop_Grass_Clump_1.gltf"));
+    grass[grass.length-1].addComponent(new Transform());
+    grass[grass.length-1].getComponent(Transform).scale.set(1, 1, 1);
+    grass[grass.length-1].getComponent(Transform).position.set(2.3, 0, 14.5);
+    engine.addEntity(grass[grass.length-1]);
+
+    grass[grass.length] = new Entity();
+    grass[grass.length-1].addComponent(new GLTFShape("models/world/Prop_Grass_Clump_2.gltf"));
+    grass[grass.length-1].addComponent(new Transform());
+    grass[grass.length-1].getComponent(Transform).scale.set(1, 1, 1);
+    grass[grass.length-1].getComponent(Transform).position.set(2.2, 0, 14.6);
+    engine.addEntity(grass[grass.length-1]);
+
+    grass[grass.length] = new Entity();
+    grass[grass.length-1].addComponent(new GLTFShape("models/world/Prop_Grass_Clump_2.gltf"));
+    grass[grass.length-1].addComponent(new Transform());
+    grass[grass.length-1].getComponent(Transform).scale.set(1.5, 1.5, 1.5);
+    grass[grass.length-1].getComponent(Transform).position.set(2, 0, 14.8);
+    engine.addEntity(grass[grass.length-1]);
+
+    grass[grass.length] = new Entity();
+    grass[grass.length-1].addComponent(new GLTFShape("models/world/Prop_Grass_Clump_2.gltf"));
+    grass[grass.length-1].addComponent(new Transform());
+    grass[grass.length-1].getComponent(Transform).scale.set(1.5, 1.5, 1.5);
+    grass[grass.length-1].getComponent(Transform).position.set(2.5, 0, 14.8);
+    engine.addEntity(grass[grass.length-1]);
+
+    grass[grass.length] = new Entity();
+    grass[grass.length-1].addComponent(new GLTFShape("models/world/Prop_Grass_Clump_1.gltf"));
+    grass[grass.length-1].addComponent(new Transform());
+    grass[grass.length-1].getComponent(Transform).scale.set(1, 1, 1);
+    grass[grass.length-1].getComponent(Transform).position.set(3.5, 0, 14.5);
+    engine.addEntity(grass[grass.length-1]);
+
+    grass[grass.length] = new Entity();
+    grass[grass.length-1].addComponent(new GLTFShape("models/world/Prop_Grass_Clump_1.gltf"));
+    grass[grass.length-1].addComponent(new Transform());
+    grass[grass.length-1].getComponent(Transform).scale.set(1.2, 1.2, 1.2);
+    grass[grass.length-1].getComponent(Transform).position.set(3.7, 0, 14.6);
+    engine.addEntity(grass[grass.length-1]);
+
+    grass[grass.length] = new Entity();
+    grass[grass.length-1].addComponent(new GLTFShape("models/world/Prop_Grass_Clump_1.gltf"));
+    grass[grass.length-1].addComponent(new Transform());
+    grass[grass.length-1].getComponent(Transform).scale.set(1, 1, 1);
+    grass[grass.length-1].getComponent(Transform).position.set(4.6, 0, 14.5);
+    engine.addEntity(grass[grass.length-1]);
+
+    grass[grass.length] = new Entity();
+    grass[grass.length-1].addComponent(new GLTFShape("models/world/Prop_Grass_Clump_1.gltf"));
+    grass[grass.length-1].addComponent(new Transform());
+    grass[grass.length-1].getComponent(Transform).scale.set(1.3, 1.3, 1.3);
+    grass[grass.length-1].getComponent(Transform).position.set(4.8, 0, 14.5);
+    engine.addEntity(grass[grass.length-1]);
+
+    grass[grass.length] = new Entity();
+    grass[grass.length-1].addComponent(new GLTFShape("models/world/Prop_Grass_Clump_1.gltf"));
+    grass[grass.length-1].addComponent(new Transform());
+    grass[grass.length-1].getComponent(Transform).scale.set(1, 1, 1);
+    grass[grass.length-1].getComponent(Transform).position.set(5, 0, 14.5);
+    engine.addEntity(grass[grass.length-1]);
+
+    grass[grass.length] = new Entity();
+    grass[grass.length-1].addComponent(new GLTFShape("models/world/Prop_Grass_Clump_1.gltf"));
+    grass[grass.length-1].addComponent(new Transform());
+    grass[grass.length-1].getComponent(Transform).scale.set(1.4, 1.4, 1.4);
+    grass[grass.length-1].getComponent(Transform).position.set(4.7, 0, 14.8);
+    engine.addEntity(grass[grass.length-1]);
+
+    grass[grass.length] = new Entity();
+    grass[grass.length-1].addComponent(new GLTFShape("models/world/Prop_Grass_Clump_1.gltf"));
+    grass[grass.length-1].addComponent(new Transform());
+    grass[grass.length-1].getComponent(Transform).scale.set(1.4, 1.4, 1.4);
+    grass[grass.length-1].getComponent(Transform).position.set(4.5, 0, 15);
+    engine.addEntity(grass[grass.length-1]);
+
+    grass[grass.length] = new Entity();
+    grass[grass.length-1].addComponent(new GLTFShape("models/world/Prop_Grass_Clump_1.gltf"));
+    grass[grass.length-1].addComponent(new Transform());
+    grass[grass.length-1].getComponent(Transform).scale.set(1, 1, 1);
+    grass[grass.length-1].getComponent(Transform).position.set(4.7, 0, 15);
+    engine.addEntity(grass[grass.length-1]);
+
+    grass[grass.length] = new Entity();
+    grass[grass.length-1].addComponent(new GLTFShape("models/world/Prop_Grass_Clump_1.gltf"));
+    grass[grass.length-1].addComponent(new Transform());
+    grass[grass.length-1].getComponent(Transform).scale.set(1.5, 1.5, 1.5);
+    grass[grass.length-1].getComponent(Transform).position.set(4.9, 0, 15);
+    engine.addEntity(grass[grass.length-1]);
+
+    grass[grass.length] = new Entity();
+    grass[grass.length-1].addComponent(new GLTFShape("models/world/Prop_Grass_Clump_1.gltf"));
+    grass[grass.length-1].addComponent(new Transform());
+    grass[grass.length-1].getComponent(Transform).scale.set(1.5, 1.5, 1.5);
+    grass[grass.length-1].getComponent(Transform).position.set(6, 0, 15);
+    engine.addEntity(grass[grass.length-1]);
+
+    grass[grass.length] = new Entity();
+    grass[grass.length-1].addComponent(new GLTFShape("models/world/Prop_Grass_Clump_1.gltf"));
+    grass[grass.length-1].addComponent(new Transform());
+    grass[grass.length-1].getComponent(Transform).scale.set(1.2, 1.2, 1.2);
+    grass[grass.length-1].getComponent(Transform).position.set(5.6, 0, 15);
+    engine.addEntity(grass[grass.length-1]);
+
+    grass[grass.length] = new Entity();
+    grass[grass.length-1].addComponent(new GLTFShape("models/world/Prop_Grass_Clump_1.gltf"));
+    grass[grass.length-1].addComponent(new Transform());
+    grass[grass.length-1].getComponent(Transform).scale.set(1, 1, 1);
+    grass[grass.length-1].getComponent(Transform).position.set(5.7, 0, 14.5);
+    engine.addEntity(grass[grass.length-1]);
+
+    grass[grass.length] = new Entity();
+    grass[grass.length-1].addComponent(new GLTFShape("models/world/Prop_Grass_Clump_1.gltf"));
+    grass[grass.length-1].addComponent(new Transform());
+    grass[grass.length-1].getComponent(Transform).scale.set(1, 1, 1);
+    grass[grass.length-1].getComponent(Transform).position.set(5.8, 0, 14.8);
+    engine.addEntity(grass[grass.length-1]);
+
+    grass[grass.length] = new Entity();
+    grass[grass.length-1].addComponent(new GLTFShape("models/world/Prop_Grass_Clump_1.gltf"));
+    grass[grass.length-1].addComponent(new Transform());
+    grass[grass.length-1].getComponent(Transform).scale.set(1.5, 1.5, 1.5);
+    grass[grass.length-1].getComponent(Transform).position.set(7, 0, 15);
+    engine.addEntity(grass[grass.length-1]);
+
+    grass[grass.length] = new Entity();
+    grass[grass.length-1].addComponent(new GLTFShape("models/world/Prop_Grass_Clump_1.gltf"));
+    grass[grass.length-1].addComponent(new Transform());
+    grass[grass.length-1].getComponent(Transform).scale.set(1.5, 1.5, 1.5);
+    grass[grass.length-1].getComponent(Transform).position.set(7.7, 0, 15);
+    engine.addEntity(grass[grass.length-1]);
+
+
+    grass[grass.length] = new Entity();
+    grass[grass.length-1].addComponent(new GLTFShape("models/world/Prop_Grass_Clump_1.gltf"));
+    grass[grass.length-1].addComponent(new Transform());
+    grass[grass.length-1].getComponent(Transform).scale.set(1.5, 1.5, 1.5);
+    grass[grass.length-1].getComponent(Transform).position.set(8, 0, 15);
+    engine.addEntity(grass[grass.length-1]);
+
+    grass[grass.length] = new Entity();
+    grass[grass.length-1].addComponent(new GLTFShape("models/world/Prop_Grass_Clump_1.gltf"));
+    grass[grass.length-1].addComponent(new Transform());
+    grass[grass.length-1].getComponent(Transform).scale.set(1.5, 1.5, 1.5);
+    grass[grass.length-1].getComponent(Transform).position.set(9, 0, 15);
+    engine.addEntity(grass[grass.length-1]);
+
+    grass[grass.length] = new Entity();
+    grass[grass.length-1].addComponent(new GLTFShape("models/world/Prop_Grass_Clump_1.gltf"));
+    grass[grass.length-1].addComponent(new Transform());
+    grass[grass.length-1].getComponent(Transform).scale.set(1.5, 1.5, 1.5);
+    grass[grass.length-1].getComponent(Transform).position.set(9.8, 0, 15);
+    engine.addEntity(grass[grass.length-1]);
+
+    grass[grass.length] = new Entity();
+    grass[grass.length-1].addComponent(new GLTFShape("models/world/Prop_Grass_Clump_1.gltf"));
+    grass[grass.length-1].addComponent(new Transform());
+    grass[grass.length-1].getComponent(Transform).scale.set(1.5, 1.5, 1.5);
+    grass[grass.length-1].getComponent(Transform).position.set(10, 0, 15);
+    engine.addEntity(grass[grass.length-1]);
+
+    grass[grass.length] = new Entity();
+    grass[grass.length-1].addComponent(new GLTFShape("models/world/Prop_Grass_Clump_1.gltf"));
+    grass[grass.length-1].addComponent(new Transform());
+    grass[grass.length-1].getComponent(Transform).scale.set(1.5, 1.5, 1.5);
+    grass[grass.length-1].getComponent(Transform).position.set(11, 0, 15);
+    engine.addEntity(grass[grass.length-1]);
+
+    grass[grass.length] = new Entity();
+    grass[grass.length-1].addComponent(new GLTFShape("models/world/Prop_Grass_Clump_1.gltf"));
+    grass[grass.length-1].addComponent(new Transform());
+    grass[grass.length-1].getComponent(Transform).scale.set(1.3, 1.3, 1.3);
+    grass[grass.length-1].getComponent(Transform).position.set(11.1, 0, 15);
+    engine.addEntity(grass[grass.length-1]);
+
+    grass[grass.length] = new Entity();
+    grass[grass.length-1].addComponent(new GLTFShape("models/world/Prop_Grass_Clump_1.gltf"));
+    grass[grass.length-1].addComponent(new Transform());
+    grass[grass.length-1].getComponent(Transform).scale.set(1.5, 1.5, 1.5);
+    grass[grass.length-1].getComponent(Transform).position.set(12, 0, 15);
+    engine.addEntity(grass[grass.length-1]);
+
+    grass[grass.length] = new Entity();
+    grass[grass.length-1].addComponent(new GLTFShape("models/world/Prop_Grass_Clump_1.gltf"));
+    grass[grass.length-1].addComponent(new Transform());
+    grass[grass.length-1].getComponent(Transform).scale.set(1.5, 1.5, 1.5);
+    grass[grass.length-1].getComponent(Transform).position.set(13, 0, 15);
+    engine.addEntity(grass[grass.length-1]);
+
+    grass[grass.length] = new Entity();
+    grass[grass.length-1].addComponent(new GLTFShape("models/world/Prop_Grass_Clump_1.gltf"));
+    grass[grass.length-1].addComponent(new Transform());
+    grass[grass.length-1].getComponent(Transform).scale.set(1.5, 1.5, 1.5);
+    grass[grass.length-1].getComponent(Transform).position.set(14, 0, 15);
+    engine.addEntity(grass[grass.length-1]);
+
+    /* #endregion */
 }
