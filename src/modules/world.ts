@@ -854,4 +854,41 @@ export function World() : void{
     engine.addEntity(picnictable[picnictable.length-1]);
 
     /* #endregion */
+
+    /* #region Tree Barrier */
+    const treebarrier = [];
+
+    treebarrier[treebarrier.length] = new Entity();
+    treebarrier[treebarrier.length-1].addComponent(new GLTFShape("models/world/Prop_Tree_Cedar_2.gltf"));
+    treebarrier[treebarrier.length-1].addComponent(new Transform());
+    treebarrier[treebarrier.length-1].getComponent(Transform).scale.set(1, 1, 1);
+    treebarrier[treebarrier.length-1].getComponent(Transform).position.set(7.4, 0, 6.5);
+    engine.addEntity(treebarrier[treebarrier.length-1]);
+
+    treebarrier[treebarrier.length] = new Entity();
+    treebarrier[treebarrier.length-1].addComponent(new GLTFShape("models/world/Prop_Tree_Cedar_2.gltf"));
+    treebarrier[treebarrier.length-1].addComponent(new Transform());
+    treebarrier[treebarrier.length-1].getComponent(Transform).scale.set(1, 1, 1);
+    treebarrier[treebarrier.length-1].getComponent(Transform).position.set(8.1, 0, 7);
+    engine.addEntity(treebarrier[treebarrier.length-1]);
+
+    treebarrier[treebarrier.length] = new Entity();
+    treebarrier[treebarrier.length-1].addComponent(new GLTFShape("models/world/Prop_Tree_Cedar_2.gltf"));
+    treebarrier[treebarrier.length-1].addComponent(new Transform());
+    treebarrier[treebarrier.length-1].getComponent(Transform).scale.set(1, 1, 1);
+    treebarrier[treebarrier.length-1].getComponent(Transform).position.set(8.9, 0, 7);
+    engine.addEntity(treebarrier[treebarrier.length-1]);
+
+    treebarrier[treebarrier.length] = new Entity();
+    treebarrier[treebarrier.length-1].addComponent(new GLTFShape("models/world/Prop_Tree_Cedar_2.gltf"));
+    treebarrier[treebarrier.length-1].addComponent(new Transform());
+    treebarrier[treebarrier.length-1].getComponent(Transform).scale.set(1, 1, 1);
+    treebarrier[treebarrier.length-1].getComponent(Transform).position.set(9.6, 0, 6.5);
+    engine.addEntity(treebarrier[treebarrier.length-1]);
+    let box = new BoxShape()
+    box.withCollisions = true
+    treebarrier[treebarrier.length-1].addComponent(box)
+
+
+    /* #endregion */
 }
