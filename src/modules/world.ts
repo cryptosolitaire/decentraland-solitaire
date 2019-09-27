@@ -833,21 +833,21 @@ export function World() : void{
     /* #region Picnic Table */
     const picnictable = [];
     picnictable[picnictable.length] = new Entity();
-    picnictable[picnictable.length-1].addComponent(new GLTFShape("models/picnictable.gltf"));
+    picnictable[picnictable.length-1].addComponent(new GLTFShape("models/picnictable.glb"));
     picnictable[picnictable.length-1].addComponent(new Transform());
     picnictable[picnictable.length-1].getComponent(Transform).scale.set(2.5, 2, 2);
     picnictable[picnictable.length-1].getComponent(Transform).position.set(2, 1.75, 2);
     engine.addEntity(picnictable[picnictable.length-1]);
 
     picnictable[picnictable.length] = new Entity();
-    picnictable[picnictable.length-1].addComponent(new GLTFShape("models/picnictable.gltf"));
+    picnictable[picnictable.length-1].addComponent(new GLTFShape("models/picnictable.glb"));
     picnictable[picnictable.length-1].addComponent(new Transform());
     picnictable[picnictable.length-1].getComponent(Transform).scale.set(2.5, 2, 2);
     picnictable[picnictable.length-1].getComponent(Transform).position.set(2, 1.75, 6);
     engine.addEntity(picnictable[picnictable.length-1]);
 
     picnictable[picnictable.length] = new Entity();
-    picnictable[picnictable.length-1].addComponent(new GLTFShape("models/picnictable.gltf"));
+    picnictable[picnictable.length-1].addComponent(new GLTFShape("models/picnictable.glb"));
     picnictable[picnictable.length-1].addComponent(new Transform());
     picnictable[picnictable.length-1].getComponent(Transform).scale.set(2.5, 2, 2);
     picnictable[picnictable.length-1].getComponent(Transform).position.set(2, 1.75, 10);
