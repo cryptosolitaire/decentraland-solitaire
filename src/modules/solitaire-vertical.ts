@@ -1273,7 +1273,29 @@ export function SolitaireGameVertical() : void{
     button.addComponent(new Transform());
     button.getComponent(Transform).scale.set(0.8, 0.8, 0.8);
     button.getComponent(Transform).position.set(6, 0, 5);
+    button.addComponent(new OnClick(event =>{
+        buttonclick();
+    }));
     engine.addEntity(button);
+
+    var buttonpressed = false;
+    function buttonclick(){
+        if(!buttonpressed){
+            buttonpressed = true;
+            newGame();
+            setTimeout(buttonreset, 500);
+            var buttonp = button.getComponent(Transform).position;
+            buttonp.set(buttonp.x, buttonp.y - 0.03, buttonp.z);
+        }
+    }
+
+    function buttonreset(){
+        if(buttonpressed){
+            buttonpressed = false;
+            var buttonp = button.getComponent(Transform).position;
+            buttonp.set(buttonp.x, buttonp.y + 0.03, buttonp.z);
+        }
+    }
     /* #endregion */
 
     initialLoad();
