@@ -53,9 +53,6 @@ export function SolitaireGameVertical() : void{
 
     // For refreshClickCards(cardIndex) function
     var clickedliftsize = 0.05;
-
-    // For cardclick(cardname) function
-    var isPlaying = 0;
     /* #endregion */
 
     /* #region Initial load functions */
@@ -1101,21 +1098,15 @@ export function SolitaireGameVertical() : void{
     }
 
     function cardclick(cardname){
-        if(isPlaying == 0){
-            startGame();
+        if(!isSomethingClicked()){
+            click1(cardname);
         }
-        else if(isPlaying == 1){
-            if(!isSomethingClicked()){
-                click1(cardname);
-            }
-            else{
-                click2(cardname);
-            }
+        else{
+            click2(cardname);
         }
     }
 
     function startGame(){
-        isPlaying = -1;
         for( var y = allEntityCards.length - 1 ; y >= allEntityCards.length - 29 ; y-- ){
             if(y == 51){
                 moveCard(y,"cardplaybase1");
@@ -1141,7 +1132,6 @@ export function SolitaireGameVertical() : void{
         }
         openTopCard();
         setDraggable();
-        isPlaying = 1;
     }
 
     function click1(cardname){
@@ -1303,5 +1293,6 @@ export function SolitaireGameVertical() : void{
 
     initialLoad();
     newGame();
+    startGame();
 }
 
