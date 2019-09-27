@@ -538,14 +538,14 @@ export function World() : void{
     engine.addEntity(cedar13);
 
     const oak1 = new Entity();
-    oak1.addComponent(new GLTFShape("models/world/Prop_Tree_Oak_1.gltf"));
+    oak1.addComponent(new GLTFShape("models/world/Prop_Tree_Oak_1.glb"));
     oak1.addComponent(new Transform());
     oak1.getComponent(Transform).scale.set(1, 1, 1);
     oak1.getComponent(Transform).position.set(3, 0, 14.6);
     engine.addEntity(oak1);
 
     const oak2 = new Entity();
-    oak2.addComponent(new GLTFShape("models/world/Prop_Tree_Oak_1.gltf"));
+    oak2.addComponent(new GLTFShape("models/world/Prop_Tree_Oak_1.glb"));
     oak2.addComponent(new Transform());
     oak2.getComponent(Transform).scale.set(1, 1, 1);
     oak2.getComponent(Transform).position.set(4.1, 0, 14.6);
@@ -559,7 +559,7 @@ export function World() : void{
     engine.addEntity(oak3);
 
     const oak4 = new Entity();
-    oak4.addComponent(new GLTFShape("models/world/Prop_Tree_Oak_1.gltf"));
+    oak4.addComponent(new GLTFShape("models/world/Prop_Tree_Oak_1.glb"));
     oak4.addComponent(new Transform());
     oak4.getComponent(Transform).scale.set(1, 1, 1);
     oak4.getComponent(Transform).position.set(6.4, 0, 14.6);
@@ -580,35 +580,35 @@ export function World() : void{
     engine.addEntity(oak6);
 
     const oak7 = new Entity();
-    oak7.addComponent(new GLTFShape("models/world/Prop_Tree_Oak_1.gltf"));
+    oak7.addComponent(new GLTFShape("models/world/Prop_Tree_Oak_1.glb"));
     oak7.addComponent(new Transform());
     oak7.getComponent(Transform).scale.set(1, 1, 1);
     oak7.getComponent(Transform).position.set(9.1, 0, 14.6);
     engine.addEntity(oak7);
 
     const oak8 = new Entity();
-    oak8.addComponent(new GLTFShape("models/world/Prop_Tree_Oak_1.gltf"));
+    oak8.addComponent(new GLTFShape("models/world/Prop_Tree_Oak_1.glb"));
     oak8.addComponent(new Transform());
     oak8.getComponent(Transform).scale.set(1, 1, 1);
     oak8.getComponent(Transform).position.set(10.5, 0, 14.6);
     engine.addEntity(oak8);
 
     const oak9 = new Entity();
-    oak9.addComponent(new GLTFShape("models/world/Prop_Tree_Oak_1.gltf"));
+    oak9.addComponent(new GLTFShape("models/world/Prop_Tree_Oak_1.glb"));
     oak9.addComponent(new Transform());
     oak9.getComponent(Transform).scale.set(1, 1, 1);
     oak9.getComponent(Transform).position.set(12, 0, 14.6);
     engine.addEntity(oak9);
 
     const oak10 = new Entity();
-    oak10.addComponent(new GLTFShape("models/world/Prop_Tree_Oak_1.gltf"));
+    oak10.addComponent(new GLTFShape("models/world/Prop_Tree_Oak_1.glb"));
     oak10.addComponent(new Transform());
     oak10.getComponent(Transform).scale.set(1, 1, 1);
     oak10.getComponent(Transform).position.set(13.8, 0, 14.6);
     engine.addEntity(oak10);
 
     const oak11 = new Entity();
-    oak11.addComponent(new GLTFShape("models/world/Prop_Tree_Oak_1.gltf"));
+    oak11.addComponent(new GLTFShape("models/world/Prop_Tree_Oak_1.glb"));
     oak11.addComponent(new Transform());
     oak11.getComponent(Transform).scale.set(1, 1, 1);
     oak11.getComponent(Transform).position.set(14.5, 0, 14.6);
