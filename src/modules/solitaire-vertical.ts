@@ -1315,6 +1315,16 @@ export function SolitaireGameVertical() : void{
         else myEntity.getComponent(Transform).scale.set(0, 0, 0);
     }
     /* #endregion */
+
+    /* #region Addition Collision */
+    const cardcollision = new Entity();
+    cardcollision.addComponent(new GLTFShape("models/cardboxcollision.glb"));
+    cardcollision.addComponent(new Transform());
+    cardcollision.getComponent(Transform).scale.set(0.3, 1, 0.8);
+    cardcollision.getComponent(Transform).rotation.setEuler(0, 90, 0);
+    cardcollision.getComponent(Transform).position.set(8.6, 1.5, 6);
+    engine.addEntity(cardcollision);
+    /* #endregion */
     initialLoad();
     newGame();
     startGame();
