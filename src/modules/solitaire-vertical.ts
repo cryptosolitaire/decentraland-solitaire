@@ -484,6 +484,9 @@ export function SolitaireGameVertical() : void{
         for(var x = 0 ; x < allEntityCards.length ; x++ ){
             allEntityCards[x]["base"] = "pilebase1";
             allEntityCards[x]["basecount"] = x;
+            allEntityCards[x]["facingfront"] = false;
+            allEntityCards[x]["draggable"] = false;
+            allEntityCards[x]["clicked"] = false;
         }
     }
 
