@@ -1250,6 +1250,7 @@ export function SolitaireGameVertical() : void{
             allEntityCards[x]["clicked"] = false;
         }
         refreshClickCardsAll();
+        winGame();
     }
     /* #endregion */
 
@@ -1277,6 +1278,7 @@ export function SolitaireGameVertical() : void{
             buttonpressed = true;
             newGame();
             startGame();
+            winGame();
             setTimeout(buttonreset, 500);
             var buttonp = button.getComponent(Transform).position;
             buttonp.set(buttonp.x, buttonp.y - 0.03, buttonp.z);
@@ -1292,6 +1294,27 @@ export function SolitaireGameVertical() : void{
     }
     /* #endregion */
 
+    /* #region Win Function */
+    const myEntity = new Entity();
+    const myText = new TextShape("CONGRATULATIONS!");
+    myText.fontSize = 6;
+    myEntity.addComponent(myText);
+    myEntity.addComponent(new Transform());
+    myEntity.getComponent(Transform).scale.set(0, 0, 0);
+    myEntity.getComponent(Transform).position.set(8.5, 2.8, 6);
+    engine.addEntity(myEntity);
+
+    function winGame(){
+        var dealbasetotalcount = 0;
+
+        for(var x = 0; x < allEntityCards.length ; x++ ){
+            if(allEntityCards[x]["base"].includes("dealbase")) dealbasetotalcount++;
+        }
+
+        if(dealbasetotalcount == 52) myEntity.getComponent(Transform).scale.set(1, 1, 1);
+        else myEntity.getComponent(Transform).scale.set(0, 0, 0);
+    }
+    /* #endregion */
     initialLoad();
     newGame();
     startGame();
