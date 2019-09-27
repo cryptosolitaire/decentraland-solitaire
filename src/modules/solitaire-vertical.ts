@@ -1276,6 +1276,7 @@ export function SolitaireGameVertical() : void{
         if(!buttonpressed){
             buttonpressed = true;
             newGame();
+            startGame();
             setTimeout(buttonreset, 500);
             var buttonp = button.getComponent(Transform).position;
             buttonp.set(buttonp.x, buttonp.y - 0.03, buttonp.z);
