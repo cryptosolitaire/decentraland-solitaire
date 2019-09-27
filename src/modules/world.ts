@@ -552,7 +552,7 @@ export function World() : void{
     engine.addEntity(oak2);
 
     const oak3 = new Entity();
-    oak3.addComponent(new GLTFShape("models/world/Prop_Tree_Oak_2.gltf"));
+    oak3.addComponent(new GLTFShape("models/world/Prop_Tree_Oak_2.glb"));
     oak3.addComponent(new Transform());
     oak3.getComponent(Transform).scale.set(1, 1, 1);
     oak3.getComponent(Transform).position.set(5.2, 0, 14.6);
@@ -566,14 +566,14 @@ export function World() : void{
     engine.addEntity(oak4);
 
     const oak5 = new Entity();
-    oak5.addComponent(new GLTFShape("models/world/Prop_Tree_Oak_2.gltf"));
+    oak5.addComponent(new GLTFShape("models/world/Prop_Tree_Oak_2.glb"));
     oak5.addComponent(new Transform());
     oak5.getComponent(Transform).scale.set(1, 1, 1);
     oak5.getComponent(Transform).position.set(7.1, 0, 14.6);
     engine.addEntity(oak5);
 
     const oak6 = new Entity();
-    oak6.addComponent(new GLTFShape("models/world/Prop_Tree_Oak_2.gltf"));
+    oak6.addComponent(new GLTFShape("models/world/Prop_Tree_Oak_2.glb"));
     oak6.addComponent(new Transform());
     oak6.getComponent(Transform).scale.set(1, 1, 1);
     oak6.getComponent(Transform).position.set(8.4, 0, 14.6);
