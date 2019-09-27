@@ -1256,17 +1256,17 @@ export function SolitaireGameVertical() : void{
 
     /* #region Pedestal Button */
     const buttonbase = new Entity();
-    buttonbase.addComponent(new GLTFShape("models/buttonbase.gltf"));
+    buttonbase.addComponent(new GLTFShape("models/buttonbase.glb"));
     buttonbase.addComponent(new Transform());
     buttonbase.getComponent(Transform).scale.set(0.8, 0.8, 0.8);
-    buttonbase.getComponent(Transform).position.set(6, 0, 5);
+    buttonbase.getComponent(Transform).position.set(6, 0.1, 5);
     engine.addEntity(buttonbase);
 
     const button = new Entity();
     button.addComponent(new GLTFShape("models/button.gltf"));
     button.addComponent(new Transform());
     button.getComponent(Transform).scale.set(0.8, 0.8, 0.8);
-    button.getComponent(Transform).position.set(6, 0, 5);
+    button.getComponent(Transform).position.set(6, 0.1, 5);
     button.addComponent(new OnClick(event =>{
         buttonclick();
     }));
