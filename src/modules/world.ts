@@ -440,7 +440,7 @@ export function World() : void{
 
     /* #region Trees */
     const bush1 = new Entity();
-    bush1.addComponent(new GLTFShape("models/world/Prop_Bush_1.gltf"));
+    bush1.addComponent(new GLTFShape("models/world/Prop_Bush_1.glb"));
     bush1.addComponent(new Transform());
     bush1.getComponent(Transform).scale.set(1.5, 1.5, 1.5);
     bush1.getComponent(Transform).position.set(1, 0, 14.6);
