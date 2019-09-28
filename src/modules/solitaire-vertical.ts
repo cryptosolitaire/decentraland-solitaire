@@ -1061,6 +1061,7 @@ export function SolitaireGameVertical() : void{
 
     function click2(cardname){
         var cardIndex = 0;
+        var somethingismoved = false;
         for( var x = 0 ; x < allEntityCards.length && !cardname.includes("bg") ; x++ ){
             if(allEntityCards[x]["name"] == cardname){
                 cardIndex = x;
@@ -1091,6 +1092,7 @@ export function SolitaireGameVertical() : void{
                         moveCardAnimated(clickedIndex[x],cardname.substring(0,13));
                         openTopCard();
                         setDraggable();
+                        somethingismoved = true;
                     }
                 }
             }
@@ -1099,6 +1101,7 @@ export function SolitaireGameVertical() : void{
                     moveCardAnimated(clickedIndex[0],cardname.substring(0,9));
                     openTopCard();
                     setDraggable();
+                    somethingismoved = true;
                 }
             }
             else if(cardname.includes("pilebase")){
@@ -1112,6 +1115,7 @@ export function SolitaireGameVertical() : void{
                     moveCardAnimated(clickedIndex[x],allEntityCards[cardIndex]["base"]);
                     openTopCard();
                     setDraggable();
+                    somethingismoved = true;
                 }
             }
         }
@@ -1120,6 +1124,7 @@ export function SolitaireGameVertical() : void{
                 moveCardAnimated(clickedIndex[0],allEntityCards[cardIndex]["base"]);
                 openTopCard();
                 setDraggable();
+                somethingismoved = true;
             }
         }
         else if(allEntityCards[cardIndex]["base"].includes("pilebase")){
@@ -1132,7 +1137,8 @@ export function SolitaireGameVertical() : void{
         for (var x = 0 ; x < allEntityCards.length ; x++ ){
             allEntityCards[x]["clicked"] = false;
         }
-        refreshClickCards(cardIndex);
+
+        if(!somethingismoved) refreshClickCardsAll();
         winGame();
     }
     /* #endregion */
