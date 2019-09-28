@@ -53,6 +53,9 @@ export function SolitaireGameVertical() : void{
 
     // For refreshClickCards(cardIndex) function
     var clickedliftsize = 0.05;
+
+    // For card positions
+    var moveCardPosition = [];
     /* #endregion */
 
     /* #region Initial load functions */
@@ -469,10 +472,78 @@ export function SolitaireGameVertical() : void{
         }));
     }
 
+    function loadMoveCardPosition(){
+        moveCardPosition["pilebase1"] = [];
+        moveCardPosition["pilebase1"]["x"] = pilebaseleft1;
+        moveCardPosition["pilebase1"]["y"] = pilebasetop1;
+        moveCardPosition["pilebase1"]["z"] = solitairePositionZ;
+
+        moveCardPosition["pilebase2"] = [];
+        moveCardPosition["pilebase2"]["x"] = pilebaseleft2;
+        moveCardPosition["pilebase2"]["y"] = pilebasetop2;
+        moveCardPosition["pilebase2"]["z"] = solitairePositionZ;
+
+        moveCardPosition["dealbase1"] = [];
+        moveCardPosition["dealbase1"]["x"] = dealbaseleft["dealbase1"];
+        moveCardPosition["dealbase1"]["y"] = dealbasetop;
+        moveCardPosition["dealbase1"]["z"] = solitairePositionZ;
+
+        moveCardPosition["dealbase2"] = [];
+        moveCardPosition["dealbase2"]["x"] = dealbaseleft["dealbase2"];;
+        moveCardPosition["dealbase2"]["y"] = dealbasetop;
+        moveCardPosition["dealbase2"]["z"] = solitairePositionZ;
+
+        moveCardPosition["dealbase3"] = [];
+        moveCardPosition["dealbase3"]["x"] = dealbaseleft["dealbase3"];;
+        moveCardPosition["dealbase3"]["y"] = dealbasetop;
+        moveCardPosition["dealbase3"]["z"] = solitairePositionZ;
+
+        moveCardPosition["dealbase4"] = [];
+        moveCardPosition["dealbase4"]["x"] = dealbaseleft["dealbase4"];;
+        moveCardPosition["dealbase4"]["y"] = dealbasetop;
+        moveCardPosition["dealbase4"]["z"] = solitairePositionZ;
+
+        moveCardPosition["cardplaybase1"] = [];
+        moveCardPosition["cardplaybase1"]["x"] = cardbaseleft["cardplaybase1"];
+        moveCardPosition["cardplaybase1"]["y"] = cardbasetop;
+        moveCardPosition["cardplaybase1"]["z"] = solitairePositionZ;
+
+        moveCardPosition["cardplaybase2"] = [];
+        moveCardPosition["cardplaybase2"]["x"] = cardbaseleft["cardplaybase2"];;
+        moveCardPosition["cardplaybase2"]["y"] = cardbasetop;
+        moveCardPosition["cardplaybase2"]["z"] = solitairePositionZ;
+
+        moveCardPosition["cardplaybase3"] = [];
+        moveCardPosition["cardplaybase3"]["x"] = cardbaseleft["cardplaybase3"];;
+        moveCardPosition["cardplaybase3"]["y"] = cardbasetop;
+        moveCardPosition["cardplaybase3"]["z"] = solitairePositionZ;
+
+        moveCardPosition["cardplaybase4"] = [];
+        moveCardPosition["cardplaybase4"]["x"] = cardbaseleft["cardplaybase4"];;
+        moveCardPosition["cardplaybase4"]["y"] = cardbasetop;
+        moveCardPosition["cardplaybase4"]["z"] = solitairePositionZ;
+
+        moveCardPosition["cardplaybase5"] = [];
+        moveCardPosition["cardplaybase5"]["x"] = cardbaseleft["cardplaybase5"];;
+        moveCardPosition["cardplaybase5"]["y"] = cardbasetop;
+        moveCardPosition["cardplaybase5"]["z"] = solitairePositionZ;
+
+        moveCardPosition["cardplaybase6"] = [];
+        moveCardPosition["cardplaybase6"]["x"] = cardbaseleft["cardplaybase6"];;
+        moveCardPosition["cardplaybase6"]["y"] = cardbasetop;
+        moveCardPosition["cardplaybase6"]["z"] = solitairePositionZ;
+
+        moveCardPosition["cardplaybase7"] = [];
+        moveCardPosition["cardplaybase7"]["x"] = cardbaseleft["cardplaybase7"];;
+        moveCardPosition["cardplaybase7"]["y"] = cardbasetop;
+        moveCardPosition["cardplaybase7"]["z"] = solitairePositionZ;
+    }
+
     function initialLoad(){
         prepareAllCards();
         loadAllCards();
         loadCardBases();
+        loadMoveCardPosition();
     }
     /* #endregion */
 
@@ -531,81 +602,14 @@ export function SolitaireGameVertical() : void{
             lengthofbase = allEntityCards[cardIndex]["basecount"];
         }
 
-        var moveCardPosition = [];
-        /* #region moveCardPosition */
+        var px = moveCardPosition[base]["x"];
+        var py = moveCardPosition[base]["y"];
+        var pz = moveCardPosition[base]["z"] - (spacingY * (lengthofbase+1));
 
-        moveCardPosition["pilebase1"] = [];
-        moveCardPosition["pilebase1"]["x"] = pilebaseleft1;
-        moveCardPosition["pilebase1"]["y"] = pilebasetop1;
-        moveCardPosition["pilebase1"]["z"] = solitairePositionZ - (spacingY * (lengthofbase+1));
+        if(allEntityCards[cardIndex]["facingfront"]) px += (cardOriginalSize * cardScale);
+        if(base.includes("cardplaybase")) py -= (spacingZ * (lengthofbase));
 
-        moveCardPosition["pilebase2"] = [];
-        moveCardPosition["pilebase2"]["x"] = pilebaseleft2;
-        moveCardPosition["pilebase2"]["y"] = pilebasetop2;
-        moveCardPosition["pilebase2"]["z"] = solitairePositionZ - (spacingY * (lengthofbase+1));
-
-        moveCardPosition["dealbase1"] = [];
-        moveCardPosition["dealbase1"]["x"] = dealbaseleft["dealbase1"];
-        moveCardPosition["dealbase1"]["y"] = dealbasetop;
-        moveCardPosition["dealbase1"]["z"] = solitairePositionZ - (spacingY * (lengthofbase+1));
-
-        moveCardPosition["dealbase2"] = [];
-        moveCardPosition["dealbase2"]["x"] = dealbaseleft["dealbase2"];;
-        moveCardPosition["dealbase2"]["y"] = dealbasetop;
-        moveCardPosition["dealbase2"]["z"] = solitairePositionZ - (spacingY * (lengthofbase+1));
-
-        moveCardPosition["dealbase3"] = [];
-        moveCardPosition["dealbase3"]["x"] = dealbaseleft["dealbase3"];;
-        moveCardPosition["dealbase3"]["y"] = dealbasetop;
-        moveCardPosition["dealbase3"]["z"] = solitairePositionZ - (spacingY * (lengthofbase+1));
-
-        moveCardPosition["dealbase4"] = [];
-        moveCardPosition["dealbase4"]["x"] = dealbaseleft["dealbase4"];;
-        moveCardPosition["dealbase4"]["y"] = dealbasetop;
-        moveCardPosition["dealbase4"]["z"] = solitairePositionZ - (spacingY * (lengthofbase+1));
-
-        moveCardPosition["cardplaybase1"] = [];
-        moveCardPosition["cardplaybase1"]["x"] = cardbaseleft["cardplaybase1"];
-        moveCardPosition["cardplaybase1"]["y"] = cardbasetop - (spacingZ * (lengthofbase));
-        moveCardPosition["cardplaybase1"]["z"] = solitairePositionZ - (spacingY * (lengthofbase+1));
-
-        moveCardPosition["cardplaybase2"] = [];
-        moveCardPosition["cardplaybase2"]["x"] = cardbaseleft["cardplaybase2"];;
-        moveCardPosition["cardplaybase2"]["y"] = cardbasetop - (spacingZ * (lengthofbase));
-        moveCardPosition["cardplaybase2"]["z"] = solitairePositionZ - (spacingY * (lengthofbase+1));
-
-        moveCardPosition["cardplaybase3"] = [];
-        moveCardPosition["cardplaybase3"]["x"] = cardbaseleft["cardplaybase3"];;
-        moveCardPosition["cardplaybase3"]["y"] = cardbasetop - (spacingZ * (lengthofbase));
-        moveCardPosition["cardplaybase3"]["z"] = solitairePositionZ - (spacingY * (lengthofbase+1));
-
-        moveCardPosition["cardplaybase4"] = [];
-        moveCardPosition["cardplaybase4"]["x"] = cardbaseleft["cardplaybase4"];;
-        moveCardPosition["cardplaybase4"]["y"] = cardbasetop - (spacingZ * (lengthofbase));
-        moveCardPosition["cardplaybase4"]["z"] = solitairePositionZ - (spacingY * (lengthofbase+1));
-
-        moveCardPosition["cardplaybase5"] = [];
-        moveCardPosition["cardplaybase5"]["x"] = cardbaseleft["cardplaybase5"];;
-        moveCardPosition["cardplaybase5"]["y"] = cardbasetop - (spacingZ * (lengthofbase));
-        moveCardPosition["cardplaybase5"]["z"] = solitairePositionZ - (spacingY * (lengthofbase+1));
-
-        moveCardPosition["cardplaybase6"] = [];
-        moveCardPosition["cardplaybase6"]["x"] = cardbaseleft["cardplaybase6"];;
-        moveCardPosition["cardplaybase6"]["y"] = cardbasetop - (spacingZ * (lengthofbase));
-        moveCardPosition["cardplaybase6"]["z"] = solitairePositionZ - (spacingY * (lengthofbase+1));
-
-        moveCardPosition["cardplaybase7"] = [];
-        moveCardPosition["cardplaybase7"]["x"] = cardbaseleft["cardplaybase7"];;
-        moveCardPosition["cardplaybase7"]["y"] = cardbasetop - (spacingZ * (lengthofbase));
-        moveCardPosition["cardplaybase7"]["z"] = solitairePositionZ - (spacingY * (lengthofbase+1));
-
-        /* #endregion */
-
-        log(cardIndex + " " + base + " " + moveCardPosition[base]["x"] + " " + moveCardPosition[base]["y"] + " " + moveCardPosition[base]["z"] + allEntityCards[cardIndex]["facingfront"]);
-
-        if(allEntityCards[cardIndex]["facingfront"]) allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(moveCardPosition[base]["x"] + (cardOriginalSize * cardScale), moveCardPosition[base]["y"], moveCardPosition[base]["z"]);
-        else allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(moveCardPosition[base]["x"], moveCardPosition[base]["y"], moveCardPosition[base]["z"]);
-
+        allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(px, py, pz);
         allEntityCards[cardIndex]["base"] = base;
         allEntityCards[cardIndex]["basecount"] = lengthofbase;
     }
