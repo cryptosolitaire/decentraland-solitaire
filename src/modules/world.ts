@@ -886,6 +886,25 @@ export function World() : void{
     treebarrier[treebarrier.length-1].getComponent(Transform).position.set(9.6, 0, 6.5);
     engine.addEntity(treebarrier[treebarrier.length-1]);
 
+    treebarrier[treebarrier.length] = new Entity();
+    treebarrier[treebarrier.length-1].addComponent(new GLTFShape("models/world/Prop_Tree_Oak_2.glb"));
+    treebarrier[treebarrier.length-1].addComponent(new Transform());
+    treebarrier[treebarrier.length-1].getComponent(Transform).scale.set(0.6, 0.6, 0.6);
+    treebarrier[treebarrier.length-1].getComponent(Transform).position.set(9.6, 0, 7.4);
+    engine.addEntity(treebarrier[treebarrier.length-1]);
 
+    treebarrier[treebarrier.length] = new Entity();
+    treebarrier[treebarrier.length-1].addComponent(new GLTFShape("models/world/Prop_Tree_Oak_2.glb"));
+    treebarrier[treebarrier.length-1].addComponent(new Transform());
+    treebarrier[treebarrier.length-1].getComponent(Transform).scale.set(0.6, 0.6, 0.6);
+    treebarrier[treebarrier.length-1].getComponent(Transform).position.set(8.5, 0, 8);
+    engine.addEntity(treebarrier[treebarrier.length-1]);
+
+    treebarrier[treebarrier.length] = new Entity();
+    treebarrier[treebarrier.length-1].addComponent(new GLTFShape("models/world/Prop_Tree_Oak_2.glb"));
+    treebarrier[treebarrier.length-1].addComponent(new Transform());
+    treebarrier[treebarrier.length-1].getComponent(Transform).scale.set(0.6, 0.6, 0.6);
+    treebarrier[treebarrier.length-1].getComponent(Transform).position.set(7.1, 0, 7.4);
+    engine.addEntity(treebarrier[treebarrier.length-1]);
     /* #endregion */
 }
