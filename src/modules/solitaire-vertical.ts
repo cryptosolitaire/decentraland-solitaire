@@ -1,3 +1,5 @@
+import utils from "../../node_modules/decentraland-ecs-utils/index"
+
 export function SolitaireGameVertical() : void{
     /* #region Code Variables */
     let solitairePositionX = 7.75;
@@ -614,6 +616,36 @@ export function SolitaireGameVertical() : void{
         if(base.includes("cardplaybase")) py -= (spacingZ * (lengthofbase));
 
         allEntityCards[cardIndex]["entity"].getComponent(Transform).position.set(px, py, pz);
+
+        allEntityCards[cardIndex]["base"] = base;
+        allEntityCards[cardIndex]["basecount"] = lengthofbase;
+    }
+
+    function moveCardAnimated(cardIndex, base){
+        var lengthofbase = 0;
+
+        if(allEntityCards[cardIndex]["base"] != base){
+            for(var x = allEntityCards.length - 1 ; x >= 0 ; x-- ){
+                if(allEntityCards[x]["base"] == base){
+                    if(allEntityCards[x]["basecount"] >= lengthofbase) lengthofbase = allEntityCards[x]["basecount"] + 1;
+                }
+            }
+        }
+        else{
+            lengthofbase = allEntityCards[cardIndex]["basecount"];
+        }
+
+        var px = moveCardPosition[base]["x"];
+        var py = moveCardPosition[base]["y"];
+        var pz = moveCardPosition[base]["z"] - (spacingY * (lengthofbase+1));
+
+        if(allEntityCards[cardIndex]["facingfront"]) px += (cardOriginalSize * cardScale);
+        if(base.includes("cardplaybase")) py -= (spacingZ * (lengthofbase));
+
+        let SP = allEntityCards[cardIndex]["entity"].getComponent(Transform).position;
+        let EP = new Vector3(px, py, pz);
+        allEntityCards[cardIndex]["entity"].addComponent(new utils.MoveTransformComponent(SP, EP, 0.25));
+
         allEntityCards[cardIndex]["base"] = base;
         allEntityCards[cardIndex]["basecount"] = lengthofbase;
     }
@@ -1029,6 +1061,7 @@ export function SolitaireGameVertical() : void{
 
     function click2(cardname){
         var cardIndex = 0;
+        var somethingismoved = false;
         for( var x = 0 ; x < allEntityCards.length && !cardname.includes("bg") ; x++ ){
             if(allEntityCards[x]["name"] == cardname){
                 cardIndex = x;
@@ -1056,17 +1089,19 @@ export function SolitaireGameVertical() : void{
             if(cardname.includes("cardplaybase")){
                 if(cardname.substring(0,13) != allEntityCards[clickedIndex[0]]["base"] && clipToCardBase(cardname.substring(0,13),allEntityCards[clickedIndex[0]]["name"])){
                     for (var x = 0 ; x < clickedIndex.length ; x++ ){
-                        moveCard(clickedIndex[x],cardname.substring(0,13));
+                        moveCardAnimated(clickedIndex[x],cardname.substring(0,13));
                         openTopCard();
                         setDraggable();
+                        somethingismoved = true;
                     }
                 }
             }
             else if(cardname.includes("dealbase")){
                 if(cardname.substring(0,9) != allEntityCards[clickedIndex[0]]["base"] && clickedIndex.length == 1 && clipToDealBase(cardname.substring(0,9),allEntityCards[clickedIndex[0]]["name"])){
-                    moveCard(clickedIndex[0],cardname.substring(0,9));
+                    moveCardAnimated(clickedIndex[0],cardname.substring(0,9));
                     openTopCard();
                     setDraggable();
+                    somethingismoved = true;
                 }
             }
             else if(cardname.includes("pilebase")){
@@ -1077,17 +1112,19 @@ export function SolitaireGameVertical() : void{
         else if(allEntityCards[cardIndex]["base"].includes("cardplaybase")){
             if(allEntityCards[cardIndex]["base"] != allEntityCards[clickedIndex[0]]["base"] && clipToCardBase(allEntityCards[cardIndex]["base"],allEntityCards[clickedIndex[0]]["name"])){
                 for (var x = 0 ; x < clickedIndex.length ; x++ ){
-                    moveCard(clickedIndex[x],allEntityCards[cardIndex]["base"]);
+                    moveCardAnimated(clickedIndex[x],allEntityCards[cardIndex]["base"]);
                     openTopCard();
                     setDraggable();
+                    somethingismoved = true;
                 }
             }
         }
         else if(allEntityCards[cardIndex]["base"].includes("dealbase")){
             if(allEntityCards[cardIndex]["base"] != allEntityCards[clickedIndex[0]]["base"] && clickedIndex.length == 1 && clipToDealBase(allEntityCards[cardIndex]["base"],allEntityCards[clickedIndex[0]]["name"])){
-                moveCard(clickedIndex[0],allEntityCards[cardIndex]["base"]);
+                moveCardAnimated(clickedIndex[0],allEntityCards[cardIndex]["base"]);
                 openTopCard();
                 setDraggable();
+                somethingismoved = true;
             }
         }
         else if(allEntityCards[cardIndex]["base"].includes("pilebase")){
@@ -1100,7 +1137,8 @@ export function SolitaireGameVertical() : void{
         for (var x = 0 ; x < allEntityCards.length ; x++ ){
             allEntityCards[x]["clicked"] = false;
         }
-        refreshClickCardsAll();
+
+        if(!somethingismoved) refreshClickCardsAll();
         winGame();
     }
     /* #endregion */
