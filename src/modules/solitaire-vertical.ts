@@ -11,36 +11,8 @@ export function SolitaireGameVertical() : void{
     let cardOriginalSize = 1.5;
     let cardScale = 0.15;
 
-    var cardbasetop;
-    var cardbaseleft = {};
-    var dealbasetop;
-    var dealbaseleft = {};
-    var pilebasetop1;
-    var pilebaseleft1;
-    var pilebasetop2;
-    var pilebaseleft2;
-    var spacingY;
-    var spacingZ;
-
-    cardbasetop = solitairePositionY - 0.5;
-    cardbaseleft["cardplaybase1"] = solitairePositionX;
-    cardbaseleft["cardplaybase2"] = solitairePositionX + 0.25;
-    cardbaseleft["cardplaybase3"] = solitairePositionX + 0.5;
-    cardbaseleft["cardplaybase4"] = solitairePositionX + 0.75;
-    cardbaseleft["cardplaybase5"] = solitairePositionX + 1.0;
-    cardbaseleft["cardplaybase6"] = solitairePositionX + 1.25;
-    cardbaseleft["cardplaybase7"] = solitairePositionX + 1.50;
-    dealbasetop = solitairePositionY;
-    dealbaseleft["dealbase1"] = cardbaseleft["cardplaybase4"];
-    dealbaseleft["dealbase2"] = cardbaseleft["cardplaybase5"];
-    dealbaseleft["dealbase3"] = cardbaseleft["cardplaybase6"];
-    dealbaseleft["dealbase4"] = cardbaseleft["cardplaybase7"];
-    pilebasetop1 = dealbasetop;
-    pilebaseleft1 = cardbaseleft["cardplaybase1"] ;
-    pilebasetop2 = dealbasetop;
-    pilebaseleft2 = cardbaseleft["cardplaybase2"] ;
-    spacingY = 0.001;
-    spacingZ = 0.06;
+    var spacingY = 0.001;
+    var spacingZ = 0.06;
 
     // Define all cards
     var allCards = ["ac","ad","ah","as","2c","2d","2h","2s","3c","3d","3h","3s","4c","4d","4h","4s","5c","5d","5h","5s","6c","6d","6h","6s","7c","7d","7h","7s","8c","8d","8h","8s","9c","9d","9h","9s","10c","10d","10h","10s","jc","jd","jh","js","qc","qd","qh","qs","kc","kd","kh","ks"];
@@ -156,7 +128,7 @@ export function SolitaireGameVertical() : void{
             allCardBack[allCardBack.length-1]["entity"].addComponent(new GLTFShape("models/cards/back.gltf"));
             allCardBack[allCardBack.length-1]["entity"].addComponent(new Transform());
             allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-            allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).position.set(cardbaseleft["cardplaybase"+x] + (cardOriginalSize * cardScale), cardbasetop, solitairePositionZ);
+            allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).position.set(moveCardPosition["cardplaybase"+x]["x"] + (cardOriginalSize * cardScale), moveCardPosition["cardplaybase"+x]["y"], moveCardPosition["cardplaybase"+x]["z"]);
             allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).rotation.setEuler(solitaireRotationX, 180, 0);
             // Using dynamic setting of add component onclick does not register dynamic variable
             addOnClickBackOnLatest("cardplaybase"+x+"bg");
@@ -171,7 +143,7 @@ export function SolitaireGameVertical() : void{
             allCardBack[allCardBack.length-1]["entity"].addComponent(new GLTFShape("models/cards/back.gltf"));
             allCardBack[allCardBack.length-1]["entity"].addComponent(new Transform());
             allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-            allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).position.set(dealbaseleft["dealbase"+x] + (cardOriginalSize * cardScale), dealbasetop, solitairePositionZ);
+            allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).position.set(moveCardPosition["dealbase"+x]["x"] + (cardOriginalSize * cardScale), moveCardPosition["dealbase"+x]["y"], moveCardPosition["dealbase"+x]["z"]);
             allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).rotation.setEuler(solitaireRotationX, 180, 0);
             // Using dynamic setting of add component onclick does not register dynamic variable
             addOnClickBackOnLatest("dealbase"+x+"bg");
@@ -184,7 +156,7 @@ export function SolitaireGameVertical() : void{
         allCardBack[allCardBack.length-1]["entity"].addComponent(new GLTFShape("models/cards/back.gltf"));
         allCardBack[allCardBack.length-1]["entity"].addComponent(new Transform());
         allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).scale.set(cardScale, cardScale, cardScale);
-        allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).position.set(pilebaseleft1 + (cardOriginalSize * cardScale), pilebasetop1, solitairePositionZ);
+        allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).position.set(moveCardPosition["pilebase1"]["x"] + (cardOriginalSize * cardScale), moveCardPosition["pilebase1"]["y"], moveCardPosition["pilebase1"]["z"]);
         allCardBack[allCardBack.length-1]["entity"].getComponent(Transform).rotation.setEuler(solitaireRotationX, 180, 0);
         addOnClickBackOnLatest("pilebase1bg");
 
@@ -473,6 +445,37 @@ export function SolitaireGameVertical() : void{
     }
 
     function loadMoveCardPosition(){
+        /* #region Location Config */
+        var cardbasetop;
+        var cardbaseleft = {};
+        var dealbasetop;
+        var dealbaseleft = {};
+        var pilebasetop1;
+        var pilebaseleft1;
+        var pilebasetop2;
+        var pilebaseleft2;
+
+
+        cardbasetop = solitairePositionY - 0.5;
+        cardbaseleft["cardplaybase1"] = solitairePositionX;
+        cardbaseleft["cardplaybase2"] = solitairePositionX + 0.25;
+        cardbaseleft["cardplaybase3"] = solitairePositionX + 0.5;
+        cardbaseleft["cardplaybase4"] = solitairePositionX + 0.75;
+        cardbaseleft["cardplaybase5"] = solitairePositionX + 1.0;
+        cardbaseleft["cardplaybase6"] = solitairePositionX + 1.25;
+        cardbaseleft["cardplaybase7"] = solitairePositionX + 1.50;
+        dealbasetop = solitairePositionY;
+        dealbaseleft["dealbase1"] = cardbaseleft["cardplaybase4"];
+        dealbaseleft["dealbase2"] = cardbaseleft["cardplaybase5"];
+        dealbaseleft["dealbase3"] = cardbaseleft["cardplaybase6"];
+        dealbaseleft["dealbase4"] = cardbaseleft["cardplaybase7"];
+        pilebasetop1 = dealbasetop;
+        pilebaseleft1 = cardbaseleft["cardplaybase1"] ;
+        pilebasetop2 = dealbasetop;
+        pilebaseleft2 = cardbaseleft["cardplaybase2"] ;
+        /* #endregion */
+
+        /* #region Location Setup */
         moveCardPosition["pilebase1"] = [];
         moveCardPosition["pilebase1"]["x"] = pilebaseleft1;
         moveCardPosition["pilebase1"]["y"] = pilebasetop1;
@@ -537,13 +540,14 @@ export function SolitaireGameVertical() : void{
         moveCardPosition["cardplaybase7"]["x"] = cardbaseleft["cardplaybase7"];;
         moveCardPosition["cardplaybase7"]["y"] = cardbasetop;
         moveCardPosition["cardplaybase7"]["z"] = solitairePositionZ;
+        /* #endregion */
     }
 
     function initialLoad(){
+        loadMoveCardPosition();
         prepareAllCards();
         loadAllCards();
         loadCardBases();
-        loadMoveCardPosition();
     }
     /* #endregion */
 
