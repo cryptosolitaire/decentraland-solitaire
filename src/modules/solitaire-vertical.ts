@@ -1132,7 +1132,7 @@ export function SolitaireGameVertical() : void{
         for (var x = 0 ; x < allEntityCards.length ; x++ ){
             allEntityCards[x]["clicked"] = false;
         }
-        // refreshClickCardsAll();
+        refreshClickCards(cardIndex);
         winGame();
     }
     /* #endregion */
