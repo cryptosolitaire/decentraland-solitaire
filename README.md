@@ -1,6 +1,6 @@
 # 3D Solitaire Game
 
-Solitaire Game using Decentraland SDK
+Solitaire Game using Decentraland SDK. [Play now](https://3d.cryptosolitaire.now.sh/)
 
 ---
 ## Requirements
